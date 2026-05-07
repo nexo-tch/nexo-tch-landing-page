@@ -110,8 +110,18 @@ export function Hero() {
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 -inset-x-12 rounded-[40px] bg-gradient-to-tr from-accent/10 via-transparent to-transparent blur-3xl"
             />
+            {/* Inline style + clamp() reserva el aspect-ratio del archivo
+                fuente (577/1024) y el ancho responsive ANTES de que Tailwind
+                cargue su chunk de CSS. Sin esto, antes del paint del CSS el
+                wrapper hereda altura del padre y `<Image fill>` se estiraba
+                a 308×7869, lo que disparaba "imágenes con relación de aspecto
+                incorrecta" en Lighthouse y bloqueaba el Speed Index. */}
             <div
-              className="relative aspect-[520/780] w-[213px] sm:w-[293px] md:w-[320px] lg:w-[413px]"
+              className="relative"
+              style={{
+                aspectRatio: "577 / 1024",
+                width: "clamp(213px, 35vw, 413px)",
+              }}
             >
               <Image
                 src="/images/nexo-cafe-machine.webp"

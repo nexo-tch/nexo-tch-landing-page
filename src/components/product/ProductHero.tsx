@@ -112,16 +112,27 @@ export function ProductHero({
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 -inset-x-12 rounded-[40px] bg-gradient-to-tr from-accent/10 via-transparent to-transparent blur-3xl"
             />
-            <Image
-              src={machineImage}
-              alt={machineAlt}
-              width={520}
-              height={780}
-              priority
-              fetchPriority="high"
-              sizes="(min-width: 1024px) 40vw, (min-width: 768px) 35vw, 70vw"
-              className="relative h-[300px] w-auto object-contain drop-shadow-[0_30px_60px_oklch(0_0_0/0.5)] sm:h-[420px] md:h-[460px] lg:h-[600px]"
-            />
+            {/* Slot reservado vía inline style con aspect-ratio matching el
+                archivo source (577/1024). Aplica antes del CSS chunk de
+                Tailwind y previene el slot 308×7869 que Lighthouse detecta
+                en wrappers que solo usan clases utilitarias. */}
+            <div
+              className="relative"
+              style={{
+                aspectRatio: "577 / 1024",
+                width: "clamp(180px, 35vw, 413px)",
+              }}
+            >
+              <Image
+                src={machineImage}
+                alt={machineAlt}
+                fill
+                priority
+                fetchPriority="high"
+                sizes="(min-width: 1024px) 413px, (min-width: 768px) 320px, (min-width: 640px) 293px, 213px"
+                className="object-contain drop-shadow-[0_30px_60px_oklch(0_0_0/0.5)]"
+              />
+            </div>
           </motion.div>
         </div>
       </div>

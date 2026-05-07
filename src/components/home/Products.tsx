@@ -102,11 +102,18 @@ export function Products() {
                       aria-hidden="true"
                       className="pointer-events-none absolute inset-0 -inset-x-8 rounded-[40px] bg-accent/5 blur-3xl"
                     />
-                    {/* Aspect-ratio reservado vía wrapper para CLS = 0.
-                        Source PNG: 577×1024 → ratio 577/1024.
-                        sizes ajustado a los breakpoints reales para que
-                        next/image sirva 256w/384w en vez de 640w/750w. */}
-                    <div className="relative aspect-[577/1024] h-[320px] sm:h-[420px] md:h-[440px] lg:h-[520px]">
+                    {/* Inline style + clamp() reserva aspect-ratio y ancho
+                        responsivo ANTES del CSS chunk. Sin esto, `<Image fill>`
+                        en estado pre-CSS se estiraba a un slot enorme y
+                        disparaba el warning "aspect ratio incorrecta" en
+                        Lighthouse, además de empujar Speed Index. */}
+                    <div
+                      className="relative"
+                      style={{
+                        aspectRatio: "577 / 1024",
+                        width: "clamp(180px, 28vw, 296px)",
+                      }}
+                    >
                       <Image
                         src={product.image}
                         alt={product.imageAlt}
