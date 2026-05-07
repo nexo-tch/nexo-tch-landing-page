@@ -136,7 +136,7 @@ export function ContactForm() {
       bot_detected: "No pudimos verificar tu solicitud. Recargá la página.",
       turnstile_failed:
         "Verificación de seguridad fallida. Recargá la página e intentá de nuevo.",
-      upstream_failed:
+      db_failed:
         "Tuvimos un problema procesando tu solicitud. Probá por WhatsApp si es urgente.",
     };
 

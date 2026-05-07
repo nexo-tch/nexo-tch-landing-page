@@ -9,11 +9,8 @@ import {
 import { verifyTurnstileToken } from "@/lib/security/turnstile";
 import { isDisposableEmail } from "@/lib/security/disposable-emails";
 import { isAllowedOrigin } from "@/lib/security/origin";
-import {
-  forwardLead,
-  hashIp,
-  type LeadPayload,
-} from "@/lib/security/prospecting-api";
+import { hashIp } from "@/lib/security/pii";
+import { insertLead, type LeadRecord } from "@/lib/db/leads";
 
 /**
  * Schema server-side. Es independiente del schema del cliente a propósito:
@@ -82,7 +79,7 @@ export type SubmitLeadResult =
         | "validation_failed"
         | "bot_detected"
         | "turnstile_failed"
-        | "upstream_failed";
+        | "db_failed";
       message: string;
       fieldErrors?: Record<string, string[]>;
       retryAfterSeconds?: number;
@@ -98,7 +95,7 @@ export type SubmitLeadResult =
  *   3. Honeypot (si está lleno → simula éxito, no avisa al bot)
  *   4. Validación Zod (formato + dominios desechables)
  *   5. Turnstile verify (si está configurado)
- *   6. Forward al endpoint de Railway (con request id, IP hasheada)
+ *   6. INSERT en Neon Postgres (con IP hasheada como metadata forense)
  *
  * NUNCA loguea PII en claro. NUNCA tira excepciones — siempre devuelve
  * SubmitLeadResult discriminado.
@@ -186,12 +183,12 @@ export async function submitLead(
     };
   }
 
-  // 7. Forward al API de prospecting
+  // 7. INSERT en Neon Postgres
   const ipHash = await hashIp(ip);
   const userAgent = headersList.get("user-agent") ?? undefined;
   const referer = headersList.get("referer") ?? undefined;
 
-  const payload: LeadPayload = {
+  const record: LeadRecord = {
     companyName: data.empresa,
     email: data.email,
     productsInterested: data.productos,
@@ -210,19 +207,19 @@ export async function submitLead(
     },
   };
 
-  const result = await forwardLead(payload);
+  const result = await insertLead(record);
 
   if (!result.ok) {
-    // No exponemos detalle del upstream al cliente.
+    // No exponemos detalle interno al cliente.
     return {
       ok: false,
-      error: "upstream_failed",
+      error: "db_failed",
       message:
         "Tuvimos un problema procesando tu solicitud. Intentá de nuevo o escribinos por WhatsApp.",
     };
   }
 
-  return { ok: true, requestId: result.requestId };
+  return { ok: true, requestId: result.id };
 }
 
 /**
