@@ -23,18 +23,31 @@ import {
 //   500 → footer h, FAQ, Navbar mobile h
 //   600 → Navbar logo, h2 nosotros, h3 secciones
 //   800 → drama (hero stats, accent spans en h1, not-found 404)
-//   (700 estaba pero no se usa en ningún componente real)
 //
-// 5 weights × ~30 KiB = ~150 KiB. Son las fonts más pesadas del bundle.
-// adjustFontFallback (default true en next/font) genera CSS @font-face
-// con size-adjust/ascent-override que evita FOUT/CLS al cambiar de
-// fallback a Outfit cuando carga.
+// === FONT-DISPLAY STRATEGY ===
+// Outfit es la fuente de los display headings (display-xl en Hero, display-lg
+// en CTA final, h2/h3 de cada sección). Cuando estos cambian de altura entre
+// fallback y Outfit, el shift acumulado mueve el footer ~1 viewport completo
+// → CLS = 1.0.
+//
+// Aún con `adjustFontFallback: true`, las métricas (size-adjust, ascent-override)
+// solo aproximan el tamaño de Outfit; quedan diferencias de 1-3px por línea
+// que en H1 multilínea se acumulan visiblemente.
+//
+// Solución: `display: "optional"`. Si Outfit carga en <100ms → se usa.
+// Si no → queda con el fallback ajustado para esta visita. Garantiza CLS 0.
+// La segunda visita ya tiene Outfit en cache y se ve siempre.
+//
+// Geist (body) y Geist Mono (badges) se mantienen con `swap` porque sus
+// métricas son muy similares al fallback system-ui (Geist está diseñada
+// alrededor de las métricas de un sans moderno) y no producen shifts notables.
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "800"],
-  display: "swap",
+  display: "optional",
   adjustFontFallback: true,
+  preload: true,
 });
 
 const geist = Geist({
