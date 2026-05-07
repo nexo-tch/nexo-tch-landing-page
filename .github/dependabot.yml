@@ -1,0 +1,68 @@
+# Dependabot — actualizaciones automáticas de dependencias.
+# Docs: https://docs.github.com/en/code-security/dependabot
+#
+# Estrategia:
+#   - npm: weekly, agrupado por familia para minimizar PRs ruidosos
+#   - github-actions: weekly, todos juntos
+#   - Apertura máxima de PRs: 5 por ecosistema (no spamear el board)
+#
+# Auto-merge: NO se configura acá. Las PRs se revisan a mano para minor/patch
+# y se mergean manualmente. Para majors siempre hay que validar breaking changes.
+
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "America/Bogota"
+    open-pull-requests-limit: 5
+    versioning-strategy: "increase"
+    labels:
+      - "dependencies"
+      - "automated"
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
+    groups:
+      next-react:
+        patterns:
+          - "next"
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+          - "eslint-config-next"
+      tooling:
+        patterns:
+          - "eslint*"
+          - "typescript"
+          - "@types/node"
+          - "@tailwindcss/*"
+          - "tailwindcss"
+          - "postcss*"
+      forms:
+        patterns:
+          - "react-hook-form"
+          - "@hookform/*"
+          - "zod"
+      ui:
+        patterns:
+          - "framer-motion"
+          - "lucide-react"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "America/Bogota"
+    open-pull-requests-limit: 3
+    labels:
+      - "ci"
+      - "automated"
+    commit-message:
+      prefix: "chore(ci)"

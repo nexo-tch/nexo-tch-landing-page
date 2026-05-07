@@ -1,0 +1,60 @@
+name: security
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Lunes 06:00 UTC = 01:00 Bogotá. Detecta secretos olvidados en historia.
+    - cron: "0 6 * * 1"
+
+# Permisos mínimos: solo lectura del repo.
+permissions:
+  contents: read
+
+jobs:
+  gitleaks:
+    name: gitleaks (secret scanning)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # gitleaks necesita historia completa para escanear todos los commits.
+          fetch-depth: 0
+
+      - name: Run gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GITLEAKS_LICENSE solo es necesario para organizaciones; para repos
+          # personales/públicos funciona sin licencia.
+          # GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
+
+  npm-audit:
+    name: pnpm audit (dependency vulns)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Audit dependencies (high severity and above)
+        # No fallar el CI por low/moderate (suelen ser falsos positivos transitivos).
+        # Para high/critical sí queremos enterarnos rápido.
+        run: pnpm audit --audit-level=high

@@ -1,0 +1,52 @@
+# gitleaks — detección de secretos en el repo y en cada commit/PR.
+# Docs: https://github.com/gitleaks/gitleaks
+#
+# Uso local (manual, opt-in):
+#   brew install gitleaks
+#   gitleaks protect --staged --verbose      # antes de commitear
+#   gitleaks detect --no-git --verbose       # escanea filesystem entero
+#
+# Uso en CI:
+#   Ver .github/workflows/security.yml — corre en cada PR.
+
+title = "Nexo Vending — gitleaks config"
+
+# Heredamos las reglas default (>150 patrones de AWS, GCP, Stripe, GitHub, etc.)
+[extend]
+useDefault = true
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Allowlist — paths/contenido que NO debe disparar alerta.
+# ─────────────────────────────────────────────────────────────────────────────
+[allowlist]
+description = "Archivos y patrones esperados que no son secretos reales"
+
+paths = [
+  '''(.*?)(jpg|jpeg|png|gif|webp|avif|ico|svg|pdf)$''',
+  '''node_modules/.*''',
+  '''\.next/.*''',
+  '''pnpm-lock\.yaml''',
+  '''package-lock\.json''',
+  '''yarn\.lock''',
+  '''\.env\.example''',
+  '''README\.md''',
+  '''SECURITY\.md''',
+  '''AGENTS\.md''',
+  '''CLAUDE\.md''',
+  '''DESIGN\.md''',
+  '''PRODUCT\.md''',
+  '''skills/.*''',
+  # Reglas/snippets de docs propias del repo, no son leaks
+  '''\.cursor/.*''',
+]
+
+# Regex para falsos positivos comunes (placeholders, ejemplos, comentarios).
+regexes = [
+  '''cambiame-por-un-string-aleatorio-largo''',
+  '''nexo-default-salt-change-me''',
+  '''tu-app-prospecting\.up\.railway\.app''',
+  '''<token>''',
+  '''<secret>''',
+  '''<KEY>''',
+  '''xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx''',
+]
