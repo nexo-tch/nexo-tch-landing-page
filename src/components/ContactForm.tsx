@@ -176,7 +176,8 @@ export function ContactForm() {
               </h3>
               <p className="mt-4 max-w-md text-base leading-relaxed text-fg-muted">
                 Nuestro equipo revisará tu información y te contactará en menos
-                de 24 horas para coordinar la instalación.
+                de 24 horas para entender tu espacio y proponerte la mejor
+                opción.
               </p>
             </motion.div>
           ) : (

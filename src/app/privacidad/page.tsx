@@ -67,8 +67,9 @@ const sections: Array<{ id: string; title: string; body: React.ReactNode }> = [
         <p>Tus datos serán tratados única y exclusivamente para:</p>
         <ul>
           <li>
-            Contactarte para coordinar la instalación, demostración o
-            cotización de las soluciones de {company.brandName}.
+            Contactarte para evaluar la viabilidad, cotizar y, cuando
+            corresponda, coordinar la instalación o demostración de las
+            soluciones de {company.brandName}.
           </li>
           <li>
             Enviarte información comercial sobre productos, novedades y
