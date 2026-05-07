@@ -27,8 +27,8 @@ export const company = {
     },
   },
   social: {
-    instagram: "https://www.instagram.com/nexo.vending",
-    linkedin: "https://www.linkedin.com/company/nexo-technologies",
+    instagram: "https://www.instagram.com/nexotechco",
+    linkedin: "https://www.linkedin.com/company/nexotech-io",
   },
   site: {
     // TODO(deploy): poner el dominio definitivo cuando se publique.
