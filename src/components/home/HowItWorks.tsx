@@ -80,42 +80,41 @@ export function HowItWorks() {
               <ScrollReveal
                 key={step.number}
                 delay={0.2 + i * 0.1}
-                className="block"
+                as="li"
+                className="group relative"
               >
-                <li className="group relative">
-                  {/* Row 1: mono number on the rail's baseline */}
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs uppercase tracking-[0.18em] text-accent">
-                      {step.number}
-                    </span>
-                    {/* Dot that anchors the rail. Animates in after the rail
-                        finishes drawing, creating a "nodes lighting up" feel. */}
-                    <motion.span
-                      aria-hidden="true"
-                      className="hidden h-2 w-2 rounded-full bg-accent ring-4 ring-bg md:block"
-                      initial={{ scale: 0, opacity: 0 }}
-                      whileInView={{ scale: 1, opacity: 1 }}
-                      viewport={{ once: true, amount: 0.2 }}
-                      transition={{
-                        delay: 0.8 + i * 0.12,
-                        duration: 0.5,
-                        ease: [0.34, 1.56, 0.64, 1],
-                      }}
-                    />
-                  </div>
+                {/* Row 1: mono number on the rail's baseline */}
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-xs uppercase tracking-[0.18em] text-accent">
+                    {step.number}
+                  </span>
+                  {/* Dot that anchors the rail. Animates in after the rail
+                      finishes drawing, creating a "nodes lighting up" feel. */}
+                  <motion.span
+                    aria-hidden="true"
+                    className="hidden h-2 w-2 rounded-full bg-accent ring-4 ring-bg md:block"
+                    initial={{ scale: 0, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{
+                      delay: 0.8 + i * 0.12,
+                      duration: 0.5,
+                      ease: [0.34, 1.56, 0.64, 1],
+                    }}
+                  />
+                </div>
 
-                  <div className="mt-8 md:mt-10">
-                    <span className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-fg-subtle">
-                      {step.phase}
-                    </span>
-                    <h3 className="font-display mt-2 text-xl font-light leading-tight text-fg transition-colors duration-300 group-hover:text-accent md:text-[1.35rem] lg:text-2xl">
-                      {step.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-fg-muted md:text-[0.925rem]">
-                      {step.description}
-                    </p>
-                  </div>
-                </li>
+                <div className="mt-8 md:mt-10">
+                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-fg-subtle">
+                    {step.phase}
+                  </span>
+                  <h3 className="font-display mt-2 text-xl font-light leading-tight text-fg transition-colors duration-300 group-hover:text-accent md:text-[1.35rem] lg:text-2xl">
+                    {step.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-fg-muted md:text-[0.925rem]">
+                    {step.description}
+                  </p>
+                </div>
               </ScrollReveal>
             ))}
           </ol>

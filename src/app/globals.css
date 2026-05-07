@@ -10,10 +10,13 @@
   --color-border: oklch(0.25 0 0);
   --color-border-soft: oklch(0.17 0 0);
 
-  /* Text — neutral grays */
+  /* Text — neutral grays.
+     fg-subtle se subió de 0.55 a 0.62 para pasar WCAG AA contrast (4.5:1) sobre
+     bg-elevated y bg-sunken, no solo sobre el negro puro. Cambio sutil pero
+     hace que pequeños labels legales/footer/metadata se lean mejor. */
   --color-fg: oklch(0.97 0 0);
   --color-fg-muted: oklch(0.72 0 0);
-  --color-fg-subtle: oklch(0.55 0 0);
+  --color-fg-subtle: oklch(0.62 0 0);
 
   /* Accent — muted pistachio (tech-forward but restrained).
      Yellow-green at L 0.86, C 0.13 — reads as sage / pistachio / matcha digital.

@@ -55,21 +55,20 @@ export function Problem() {
               <ScrollReveal
                 key={point.number}
                 delay={0.1 + i * 0.08}
-                className="block"
+                as="li"
+                className="grid grid-cols-[auto_1fr] gap-6 py-8 lg:gap-10 lg:py-10"
               >
-                <li className="grid grid-cols-[auto_1fr] gap-6 py-8 lg:gap-10 lg:py-10">
-                  <span className="font-mono text-xs uppercase tracking-wider text-accent">
-                    {point.number}
-                  </span>
-                  <div>
-                    <h3 className="font-display text-2xl font-semibold leading-tight text-fg lg:text-3xl">
-                      {point.title}
-                    </h3>
-                    <p className="mt-3 max-w-xl text-base leading-relaxed text-fg-muted">
-                      {point.description}
-                    </p>
-                  </div>
-                </li>
+                <span className="font-mono text-xs uppercase tracking-wider text-accent">
+                  {point.number}
+                </span>
+                <div>
+                  <h3 className="font-display text-2xl font-semibold leading-tight text-fg lg:text-3xl">
+                    {point.title}
+                  </h3>
+                  <p className="mt-3 max-w-xl text-base leading-relaxed text-fg-muted">
+                    {point.description}
+                  </p>
+                </div>
               </ScrollReveal>
             ))}
           </ol>

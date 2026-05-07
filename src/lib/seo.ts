@@ -50,8 +50,16 @@ export function organizationSchema() {
     "@id": `${absoluteUrl("/")}#organization`,
     name: company.legalName,
     alternateName: "Nexo Vending",
+    description:
+      "Nexo Technologies S.A.S. opera máquinas vending corporativas de café, proteína y snacks de calidad para empresas en Medellín y el Valle de Aburrá.",
     url: absoluteUrl("/"),
-    logo: absoluteUrl("/og-image.jpg"),
+    logo: {
+      "@type": "ImageObject",
+      url: absoluteUrl("/og-image.jpg"),
+      width: 1200,
+      height: 630,
+    },
+    image: absoluteUrl("/og-image.jpg"),
     email: company.contact.email,
     ...(company.contact.whatsapp.display
       ? { telephone: company.contact.whatsapp.display }
@@ -77,7 +85,15 @@ export function localBusinessSchema() {
     "@type": "LocalBusiness",
     "@id": `${absoluteUrl("/")}#localbusiness`,
     name: "Nexo Vending",
-    image: absoluteUrl("/og-image.jpg"),
+    description:
+      "Soluciones vending B2B en Medellín: máquinas de café, proteína y snacks de calidad para oficinas, coworkings y gimnasios. Operación, mantenimiento y abastecimiento incluidos.",
+    image: {
+      "@type": "ImageObject",
+      url: absoluteUrl("/og-image.jpg"),
+      width: 1200,
+      height: 630,
+    },
+    logo: absoluteUrl("/og-image.jpg"),
     url: absoluteUrl("/"),
     email: company.contact.email,
     ...(company.contact.whatsapp.display
@@ -90,6 +106,13 @@ export function localBusinessSchema() {
       addressRegion: "Antioquia",
       addressCountry: company.countryCode,
     },
+    // Centro geográfico aproximado de Medellín. Sirve para el local pack;
+    // si en el futuro tenés oficina física, reemplazá por las coords reales.
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 6.2476,
+      longitude: -75.5658,
+    },
     areaServed: [
       { "@type": "City", name: "Medellín" },
       { "@type": "City", name: "Envigado" },
@@ -97,6 +120,27 @@ export function localBusinessSchema() {
       { "@type": "City", name: "Itagüí" },
       { "@type": "City", name: "Bello" },
       { "@type": "City", name: "La Estrella" },
+    ],
+    // Operación 100% digital, atención remota en horario corporativo.
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+        ],
+        opens: "08:00",
+        closes: "18:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Saturday",
+        opens: "09:00",
+        closes: "13:00",
+      },
     ],
     parentOrganization: {
       "@id": `${absoluteUrl("/")}#organization`,

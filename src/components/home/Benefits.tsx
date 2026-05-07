@@ -52,27 +52,26 @@ export function Benefits() {
             <ScrollReveal
               key={benefit.title}
               delay={i * 0.06}
-              className="block"
+              as="li"
+              className="group grid grid-cols-1 items-start gap-6 py-8 transition-[background-color] duration-300 hover:bg-bg-elevated/40 lg:grid-cols-12 lg:gap-10 lg:py-10"
             >
-              <li className="group grid grid-cols-1 items-start gap-6 py-8 transition-[background-color] duration-300 hover:bg-bg-elevated/40 lg:grid-cols-12 lg:gap-10 lg:py-10">
-                <div className="flex items-center gap-4 lg:col-span-4">
-                  <span className="font-mono text-xs text-fg-subtle">
-                    0{i + 1}
-                  </span>
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-bg transition-[border-color,background-color] duration-300 group-hover:border-accent/30">
-                    <benefit.icon
-                      className="h-4 w-4 text-accent"
-                      strokeWidth={1.75}
-                    />
-                  </div>
-                  <h3 className="font-display text-xl font-semibold text-fg lg:text-2xl">
-                    {benefit.title}
-                  </h3>
+              <div className="flex items-center gap-4 lg:col-span-4">
+                <span className="font-mono text-xs text-fg-subtle">
+                  0{i + 1}
+                </span>
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-bg transition-[border-color,background-color] duration-300 group-hover:border-accent/30">
+                  <benefit.icon
+                    className="h-4 w-4 text-accent"
+                    strokeWidth={1.75}
+                  />
                 </div>
-                <p className="max-w-2xl text-base leading-relaxed text-fg-muted lg:col-span-8">
-                  {benefit.description}
-                </p>
-              </li>
+                <h3 className="font-display text-xl font-semibold text-fg lg:text-2xl">
+                  {benefit.title}
+                </h3>
+              </div>
+              <p className="max-w-2xl text-base leading-relaxed text-fg-muted lg:col-span-8">
+                {benefit.description}
+              </p>
             </ScrollReveal>
           ))}
         </ul>
