@@ -69,7 +69,7 @@ export default function SnacksPage() {
           name: PRODUCT_NAME,
           description: PRODUCT_DESCRIPTION,
           slug: "/snacks",
-          image: "/images/nexo-snacks-machine.png",
+          image: "/images/nexo-snacks-machine.webp",
           category: "Snack vending machine",
           audience: "Oficinas, coworkings y espacios corporativos",
         })}
@@ -88,7 +88,7 @@ export default function SnacksPage() {
         subheadline="Una selección propia con opciones saludables y antojos de calidad, que rota según lo que tu equipo realmente consume. Todo al alcance en tu propio espacio."
         ctaText="Quiero Nexo Snacks"
         ctaHref="/contacto"
-        machineImage="/images/nexo-snacks-machine.png"
+        machineImage="/images/nexo-snacks-machine.webp"
         machineAlt="Máquina Nexo Snacks"
       />
 

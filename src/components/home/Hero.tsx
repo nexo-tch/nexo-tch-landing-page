@@ -114,7 +114,7 @@ export function Hero() {
               className="relative aspect-[520/780] w-[213px] sm:w-[293px] md:w-[320px] lg:w-[413px]"
             >
               <Image
-                src="/images/nexo-cafe-machine.png"
+                src="/images/nexo-cafe-machine.webp"
                 alt="Máquina Nexo Café para oficinas"
                 fill
                 priority

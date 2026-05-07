@@ -65,19 +65,21 @@ export function organizationSchema() {
       ? { telephone: company.contact.whatsapp.display }
       : {}),
     sameAs: [company.social.instagram, company.social.linkedin].filter(Boolean),
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: company.city,
-      addressRegion: "Antioquia",
-      addressCountry: company.countryCode,
-    },
+    // Sin `address` PostalAddress: Nexo opera 100% digital, sin punto físico
+    // de atención. Mantener un PostalAddress vacío o parcial generaría
+    // warnings ("Missing field postalCode/streetAddress") y, peor, la señal
+    // de un brick-and-mortar inexistente. Usamos LocalBusiness service-area
+    // (areaServed + geo) para indicar cobertura sin punto físico.
     taxID: company.nit,
   } as const;
 }
 
 /**
- * LocalBusiness schema — essential for local SEO in Medellín.
- * Enables appearance in Google Maps local pack and the business Knowledge Panel.
+ * LocalBusiness schema — service-area business (sin punto físico de atención).
+ * Para SEO local en Medellín usamos `areaServed` + `geo` en lugar de
+ * `address`, indicando a Google que servimos un área pero no atendemos
+ * en una dirección publicable. Google soporta este patrón vía
+ * https://developers.google.com/search/docs/appearance/structured-data/local-business
  */
 export function localBusinessSchema() {
   return {
@@ -100,14 +102,9 @@ export function localBusinessSchema() {
       ? { telephone: company.contact.whatsapp.display }
       : {}),
     priceRange: "$$",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: company.city,
-      addressRegion: "Antioquia",
-      addressCountry: company.countryCode,
-    },
     // Centro geográfico aproximado de Medellín. Sirve para el local pack;
-    // si en el futuro tenés oficina física, reemplazá por las coords reales.
+    // si en el futuro tenés oficina física, reemplazá por las coords reales
+    // y agregá un PostalAddress completo.
     geo: {
       "@type": "GeoCoordinates",
       latitude: 6.2476,

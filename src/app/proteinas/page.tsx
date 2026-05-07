@@ -88,7 +88,7 @@ export default function ProteinPage() {
           name: PRODUCT_NAME,
           description: PRODUCT_DESCRIPTION,
           slug: "/proteinas",
-          image: "/images/nexo-protein-machine.png",
+          image: "/images/nexo-protein-machine.webp",
           category: "Protein shake vending machine",
           audience: "Gimnasios y centros deportivos",
         })}
@@ -107,7 +107,7 @@ export default function ProteinPage() {
         subheadline="Batidos de whey y barras proteicas directo en tu gimnasio. Tus socios entrenan, toman su proteína y se van. Sin espera, sin licuadora, sin excusas."
         ctaText="Quiero Nexo Protein"
         ctaHref="/contacto"
-        machineImage="/images/nexo-protein-machine.png"
+        machineImage="/images/nexo-protein-machine.webp"
         machineAlt="Máquina Nexo Protein para gimnasios"
       />
 

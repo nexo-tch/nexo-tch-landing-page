@@ -17,7 +17,7 @@ const products = [
       "Para oficinas y coworkings",
     ],
     href: "/cafe",
-    image: "/images/nexo-cafe-machine.png",
+    image: "/images/nexo-cafe-machine.webp",
     imageAlt: "Máquina Nexo Café",
   },
   {
@@ -33,7 +33,7 @@ const products = [
       "Para gimnasios de alto flujo",
     ],
     href: "/proteinas",
-    image: "/images/nexo-protein-machine.png",
+    image: "/images/nexo-protein-machine.webp",
     imageAlt: "Máquina Nexo Protein",
   },
   {
@@ -49,7 +49,7 @@ const products = [
       "Para oficinas y espacios corporativos",
     ],
     href: "/snacks",
-    image: "/images/nexo-snacks-machine.png",
+    image: "/images/nexo-snacks-machine.webp",
     imageAlt: "Máquina Nexo Snacks",
   },
 ];

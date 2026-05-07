@@ -112,7 +112,7 @@ export default function CafePage() {
           name: PRODUCT_NAME,
           description: PRODUCT_DESCRIPTION,
           slug: "/cafe",
-          image: "/images/nexo-cafe-machine.png",
+          image: "/images/nexo-cafe-machine.webp",
           category: "Coffee vending machine",
           audience: "Oficinas, coworkings y universidades",
         })}
@@ -131,7 +131,7 @@ export default function CafePage() {
         subheadline="Bebidas clásicas al instante: espresso, americano, cappuccino y más. Calidad real en cada taza, disponible cuando tu equipo la necesita. Sin obras, sin inversión."
         ctaText="Quiero mi máquina"
         ctaHref="/contacto"
-        machineImage="/images/nexo-cafe-machine.png"
+        machineImage="/images/nexo-cafe-machine.webp"
         machineAlt="Máquina Nexo Café"
       />
 
