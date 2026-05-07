@@ -17,17 +17,24 @@ import {
   websiteSchema,
 } from "@/lib/seo";
 
-// Outfit weights:
-//   300 → airy subheads (hero pull-quotes, emphasized body)
-//   400 → body default
-//   500/600 → display headings (most H1/H2)
-//   700 → strong accent moments
-//   800 → drama (big stats, break-out numbers, 404)
+// Outfit weights efectivamente usados en el código:
+//   300 → headings airy (hero h1, contacto h1, nosotros h1, CTA final, 404)
+//   400 → body cuando se aplica font-display (raro)
+//   500 → footer h, FAQ, Navbar mobile h
+//   600 → Navbar logo, h2 nosotros, h3 secciones
+//   800 → drama (hero stats, accent spans en h1, not-found 404)
+//   (700 estaba pero no se usa en ningún componente real)
+//
+// 5 weights × ~30 KiB = ~150 KiB. Son las fonts más pesadas del bundle.
+// adjustFontFallback (default true en next/font) genera CSS @font-face
+// con size-adjust/ascent-override que evita FOUT/CLS al cambiar de
+// fallback a Outfit cuando carga.
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["300", "400", "500", "600", "800"],
   display: "swap",
+  adjustFontFallback: true,
 });
 
 const geist = Geist({
@@ -35,6 +42,7 @@ const geist = Geist({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   display: "swap",
+  adjustFontFallback: true,
 });
 
 const geistMono = Geist_Mono({
@@ -42,6 +50,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   display: "swap",
+  adjustFontFallback: true,
 });
 
 // Global metadata. Per-page metadata merges on top via `generateMetadata`

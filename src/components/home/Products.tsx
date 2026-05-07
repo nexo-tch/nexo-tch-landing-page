@@ -102,16 +102,21 @@ export function Products() {
                       aria-hidden="true"
                       className="pointer-events-none absolute inset-0 -inset-x-8 rounded-[40px] bg-accent/5 blur-3xl"
                     />
-                    <Image
-                      src={product.image}
-                      alt={product.imageAlt}
-                      width={420}
-                      height={620}
-                      loading={isFirst ? "eager" : "lazy"}
-                      fetchPriority={isFirst ? "high" : "auto"}
-                      sizes="(min-width: 1024px) 40vw, (min-width: 768px) 35vw, 70vw"
-                      className="relative h-[320px] w-auto object-contain drop-shadow-[0_25px_45px_oklch(0_0_0/0.45)] sm:h-[420px] md:h-[440px] lg:h-[520px]"
-                    />
+                    {/* Aspect-ratio reservado vía wrapper para CLS = 0.
+                        Source PNG: 577×1024 → ratio 577/1024.
+                        sizes ajustado a los breakpoints reales para que
+                        next/image sirva 256w/384w en vez de 640w/750w. */}
+                    <div className="relative aspect-[577/1024] h-[320px] sm:h-[420px] md:h-[440px] lg:h-[520px]">
+                      <Image
+                        src={product.image}
+                        alt={product.imageAlt}
+                        fill
+                        loading={isFirst ? "eager" : "lazy"}
+                        fetchPriority={isFirst ? "high" : "auto"}
+                        sizes="(min-width: 1024px) 296px, (min-width: 640px) 240px, 184px"
+                        className="object-contain drop-shadow-[0_25px_45px_oklch(0_0_0/0.45)]"
+                      />
+                    </div>
                   </div>
                 </ScrollReveal>
 
