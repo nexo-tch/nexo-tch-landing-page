@@ -1,83 +1,87 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { Ban, Clock, ImageOff } from "lucide-react";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 const painPoints = [
   {
-    icon: Ban,
-    title: "Productos que nadie quiere",
+    number: "01",
+    title: "El horario de alguien más.",
     description:
-      "Café instantáneo, snacks genéricos y cero opciones saludables. El vending tradicional llena máquinas con lo que sea — no con lo que tu equipo merece.",
+      "La cafetería abre a las 8, el entrenamiento es a las 6, la reunión se estira hasta las 10. La gente no necesita las cosas cuando alguien decide abrir la puerta — las necesita cuando las necesita.",
   },
   {
-    icon: Clock,
-    title: "Tiempo y energía perdidos",
+    number: "02",
+    title: "Salir del espacio es salir del momento.",
     description:
-      "Tu equipo sale 20 minutos a buscar un buen café o un snack decente. Los atletas de tu gym se van sin proteína. Son horas y oportunidades que no vuelven.",
+      "El hambre aparece, la energía pide café, la proteína espera al terminar de entrenar. Cuando conseguirlo implica salir y volver, el momento ya no es el mismo.",
   },
   {
-    icon: ImageOff,
-    title: "Una imagen que no te representa",
+    number: "03",
+    title: "Parece simple. Nunca lo es.",
     description:
-      "Máquinas descuidadas, productos vencidos, experiencia cero. Ese vending dice más de tu empresa que cualquier brochure corporativo.",
+      "Proveedores, pedidos, mantenimiento, rotación, calidad. Cada cosa por separado es menor; todas juntas, son un trabajo aparte que tu equipo no debería estar haciendo.",
   },
 ];
 
 export function Problem() {
   return (
-    <section className="relative bg-nexo-black py-24 lg:py-32">
-      <div className="bg-noise pointer-events-none absolute inset-0" />
-
-      <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 lg:px-12">
-        <ScrollReveal>
-          <p className="mb-4 text-center text-sm font-medium uppercase tracking-widest text-nexo-gold">
-            El problema
-          </p>
-        </ScrollReveal>
-
-        <ScrollReveal delay={0.1}>
-          <h2 className="mx-auto max-w-3xl text-center font-display text-3xl font-bold leading-tight text-nexo-white sm:text-4xl lg:text-5xl">
-            ¿Tu espacio todavía tiene vending genérico?
-          </h2>
-        </ScrollReveal>
-
-        <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {painPoints.map((point, i) => (
-            <ScrollReveal key={point.title} delay={0.15 + i * 0.1}>
-              <div className="group rounded-2xl border border-nexo-gray/10 bg-nexo-black-light/50 p-8 transition-all duration-300 hover:border-red-500/20 hover:bg-nexo-black-light h-full">
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-red-500/10">
-                  <point.icon className="h-6 w-6 text-red-400" />
-                </div>
-                <h3 className="mb-3 font-display text-xl font-semibold text-nexo-white">
-                  {point.title}
-                </h3>
-                <p className="text-base leading-relaxed text-nexo-gray/70">
-                  {point.description}
+    <section className="relative py-24 lg:py-32">
+      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+        <div className="grid gap-16 lg:grid-cols-12 lg:gap-12">
+          {/* Sticky title column */}
+          <div className="lg:col-span-5">
+            <div className="lg:sticky lg:top-32">
+              <ScrollReveal>
+                <Eyebrow index="01">El problema</Eyebrow>
+              </ScrollReveal>
+              <ScrollReveal delay={0.05}>
+                <h2 className="display-lg mt-6 text-fg">
+                  Lo que necesitas, donde estás, cuando lo necesitas.
+                </h2>
+              </ScrollReveal>
+              <ScrollReveal delay={0.1}>
+                <p className="mt-6 max-w-md text-base leading-relaxed text-fg-muted">
+                  Suena básico — y aún así, casi ningún espacio lo resuelve
+                  bien. En oficinas, gimnasios, coworkings o universidades, la
+                  gente termina saliendo a buscar, esperando horarios ajenos o
+                  dependiendo de alguien más. O simplemente, decide no hacerlo.
                 </p>
-              </div>
-            </ScrollReveal>
-          ))}
+              </ScrollReveal>
+            </div>
+          </div>
+
+          {/* Editorial divide-y list */}
+          <ol className="divide-y divide-border-soft border-t border-border-soft lg:col-span-7">
+            {painPoints.map((point, i) => (
+              <ScrollReveal
+                key={point.number}
+                delay={0.1 + i * 0.08}
+                className="block"
+              >
+                <li className="grid grid-cols-[auto_1fr] gap-6 py-8 lg:gap-10 lg:py-10">
+                  <span className="font-mono text-xs uppercase tracking-wider text-accent">
+                    {point.number}
+                  </span>
+                  <div>
+                    <h3 className="font-display text-2xl font-semibold leading-tight text-fg lg:text-3xl">
+                      {point.title}
+                    </h3>
+                    <p className="mt-3 max-w-xl text-base leading-relaxed text-fg-muted">
+                      {point.description}
+                    </p>
+                  </div>
+                </li>
+              </ScrollReveal>
+            ))}
+          </ol>
         </div>
 
         <ScrollReveal delay={0.4}>
-          <div className="mt-16 text-center">
-            <p className="mx-auto max-w-2xl text-xl leading-relaxed text-nexo-gray md:text-2xl">
-              Cada experiencia mediocre es una{" "}
-              <span className="font-semibold text-nexo-white">
-                oportunidad perdida
-              </span>{" "}
-              de energizar, nutrir y cuidar a tu equipo. Mientras tanto, otros ya
-              ofrecen algo mejor.
+          <div className="mt-20 flex items-center justify-center gap-4">
+            <span className="h-px w-16 bg-border" />
+            <p className="font-mono text-xs uppercase tracking-widest text-accent">
+              Nexo cierra esa brecha
             </p>
-          </div>
-        </ScrollReveal>
-
-        <ScrollReveal delay={0.5}>
-          <div className="mt-12 flex items-center justify-center gap-3">
-            <div className="h-px w-12 bg-gradient-to-r from-transparent to-nexo-gold/50" />
-            <p className="font-display text-lg font-semibold text-nexo-gold">
-              Existe una mejor forma...
-            </p>
-            <div className="h-px w-12 bg-gradient-to-l from-transparent to-nexo-gold/50" />
+            <span className="h-px w-16 bg-border" />
           </div>
         </ScrollReveal>
       </div>

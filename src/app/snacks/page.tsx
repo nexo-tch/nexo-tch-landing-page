@@ -1,212 +1,231 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, X, Check } from "lucide-react";
+import { Check } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { ProductHero } from "@/components/product/ProductHero";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { Button } from "@/components/ui/Button";
+import { Magnetic } from "@/components/ui/Magnetic";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { DEFAULT_OG_IMAGE, absoluteUrl, productSchema } from "@/lib/seo";
+
+const PRODUCT_NAME = "Nexo Snacks";
+const PRODUCT_DESCRIPTION =
+  "Máquina vending de snacks seleccionados para oficinas y coworkings. Opciones saludables y antojos de calidad, con rotación según el consumo real de tu equipo. Sin costo para tu empresa.";
 
 export const metadata: Metadata = {
-  title: "Nexo Snacks — Snacks premium seleccionados para oficinas | Medellín",
+  title: "Nexo Snacks — Snacks seleccionados para oficinas",
   description:
-    "Snacks curados y de calidad consistente para tu oficina. Granola, frutos secos, galletas artesanales y más. Instalación en 48h, sin costo.",
+    "Snacks seleccionados con criterio para tu oficina. Opciones saludables y antojos de calidad. Sin costo para tu empresa — nosotros operamos todo.",
+  alternates: { canonical: "/snacks" },
   openGraph: {
     title: "Nexo Snacks — Snacks que tu equipo realmente quiere",
     description:
-      "Adiós al vending genérico. Snacks premium seleccionados para oficinas y coworkings en Medellín.",
+      "Snacks seleccionados con criterio, pensados para oficinas y coworkings en Medellín.",
+    url: absoluteUrl("/snacks"),
+    type: "website",
+    images: [
+      {
+        url: DEFAULT_OG_IMAGE.url,
+        width: DEFAULT_OG_IMAGE.width,
+        height: DEFAULT_OG_IMAGE.height,
+        alt: "Nexo Snacks — máquina vending de snacks para oficinas",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nexo Snacks — Snacks seleccionados para oficinas",
+    description:
+      "Snacks seleccionados con criterio. Sin costo para tu empresa.",
+    images: [DEFAULT_OG_IMAGE.url],
   },
 };
 
 const snacks = [
-  { emoji: "🥣", name: "Granola Premium", description: "Hojuelas crujientes con miel y frutos rojos" },
-  { emoji: "🥜", name: "Mix de Frutos Secos", description: "Almendras, nueces y arándanos seleccionados" },
-  { emoji: "🍪", name: "Galletas Artesanales", description: "Horneadas con mantequilla real y chips de chocolate" },
-  { emoji: "🍌", name: "Chips de Plátano", description: "Plátano maduro crocante, sin aceite añadido" },
-  { emoji: "🌾", name: "Barras de Cereal", description: "Avena, miel y semillas para energía sostenida" },
-  { emoji: "🍫", name: "Chocolate Premium", description: "Cacao colombiano de origen, mínimo 65% cacao" },
-  { emoji: "🥛", name: "Yogurt Griego", description: "Alta proteína, bajo en azúcar, sabor natural" },
-  { emoji: "🍎", name: "Fruta Deshidratada", description: "Mango, piña y fresa sin azúcar añadida" },
-];
-
-const genericProblems = [
-  "Productos genéricos y repetitivos",
-  "Calidad inconsistente entre recargas",
-  "Snacks ultraprocesados que nadie quiere",
-  "Máquinas descuidadas y sin mantenimiento",
-  "Cero variedad ni rotación de productos",
+  { name: "Granola artesanal", description: "Hojuelas crujientes con miel y frutos rojos." },
+  { name: "Mix de frutos secos", description: "Almendras, nueces y arándanos seleccionados." },
+  { name: "Galletas artesanales", description: "Horneadas con mantequilla real y chips de chocolate." },
+  { name: "Chips de plátano", description: "Plátano maduro crocante, sin aceite añadido." },
+  { name: "Barras de cereal", description: "Avena, miel y semillas para energía sostenida." },
+  { name: "Chocolate oscuro", description: "Cacao de calidad con sabor intenso, no industrial." },
+  { name: "Yogurt griego", description: "Más proteína, menos azúcar, sabor limpio." },
+  { name: "Fruta deshidratada", description: "Frutas seleccionadas, sin azúcar añadida." },
 ];
 
 const nexoAdvantages = [
-  "Selección curada por expertos en nutrición",
-  "Calidad premium y consistente siempre",
-  "Snacks que tu equipo realmente quiere comer",
-  "Máquina impecable con mantenimiento continuo",
-  "Rotación inteligente según preferencias",
+  "Selección propia con criterio",
+  "Opciones saludables y antojos de calidad",
+  "Snacks que tu equipo realmente come",
+  "Mantenimiento continuo y monitoreo",
+  "Rotación según el consumo real",
 ];
 
 export default function SnacksPage() {
   return (
     <>
+      <JsonLd
+        data={productSchema({
+          name: PRODUCT_NAME,
+          description: PRODUCT_DESCRIPTION,
+          slug: "/snacks",
+          image: "/images/nexo-snacks-machine.png",
+          category: "Snack vending machine",
+          audience: "Oficinas, coworkings y espacios corporativos",
+        })}
+      />
       <ProductHero
         badge="Nexo Snacks"
+        index="03"
         headline={
           <>
-            Snacks que tu equipo{" "}
-            <span className="text-gradient-gold">realmente quiere</span>
+            Snacks seleccionados,{" "}
+            <span className="font-extrabold text-accent">
+              al alcance del día a día.
+            </span>
           </>
         }
-        subheadline="Olvídate del vending genérico. Snacks curados, de calidad consistente, que tu equipo agradece todos los días. Productos que sí quieres tener en tu oficina."
-        ctaText="Quiero Nexo Snacks →"
+        subheadline="Una selección propia con opciones saludables y antojos de calidad, que rota según lo que tu equipo realmente consume. Todo al alcance en tu propio espacio."
+        ctaText="Quiero Nexo Snacks"
         ctaHref="/contacto"
         machineImage="/images/nexo-snacks-machine.png"
-        machineAlt="Máquina Nexo Snacks premium"
+        machineAlt="Máquina Nexo Snacks"
       />
 
-      {/* Products Grid */}
-      <section className="py-24 lg:py-32 bg-nexo-black">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <ScrollReveal>
-            <div className="text-center mb-16">
-              <span className="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-nexo-teal border border-nexo-teal/30 rounded-full mb-4">
-                Selección curada
-              </span>
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-                Snacks curados{" "}
-                <span className="text-gradient-gold">para tu equipo</span>
-              </h2>
-              <p className="text-nexo-gray text-lg max-w-2xl mx-auto">
-                Cada producto seleccionado por calidad, sabor y valor nutricional. Rotamos según las preferencias de tu equipo.
-              </p>
-            </div>
-          </ScrollReveal>
+      {/* Snacks — divide-y editorial */}
+      <section className="border-t border-border-soft py-24 lg:py-32">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <SectionHeader
+            index="A"
+            eyebrow="Selección propia"
+            title={
+              <>
+                Productos seleccionados
+                <br />
+                <span className="text-accent">por calidad y sabor.</span>
+              </>
+            }
+            description="Cada producto seleccionado con criterio — saludables y antojos. Rotamos según lo que tu equipo realmente consume."
+            className="mb-16 lg:mb-20"
+          />
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
+          <ul className="grid grid-cols-1 gap-x-12 gap-y-0 divide-y divide-border-soft border-y border-border-soft lg:grid-cols-2 lg:divide-y-0">
             {snacks.map((snack, i) => (
-              <ScrollReveal key={snack.name} delay={i * 0.06}>
-                <div className="group bg-nexo-gray-dark rounded-xl p-5 lg:p-6 border border-white/5 hover:border-orange-400/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-400/5 h-full">
-                  <span className="text-3xl lg:text-4xl block mb-3">{snack.emoji}</span>
-                  <h3 className="font-display font-semibold text-base lg:text-lg mb-1">
-                    {snack.name}
-                  </h3>
-                  <p className="text-nexo-gray text-sm leading-relaxed">
-                    {snack.description}
-                  </p>
-                </div>
+              <ScrollReveal key={snack.name} delay={i * 0.04}>
+                <li
+                  className={`grid grid-cols-[auto_1fr] items-baseline gap-6 py-6 lg:py-8 ${
+                    i >= 4 ? "lg:border-t lg:border-border-soft" : ""
+                  } ${i % 2 === 1 ? "lg:border-l lg:border-border-soft lg:pl-12" : "lg:pr-12"}`}
+                >
+                  <span className="font-mono text-xs text-accent">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="font-display text-xl font-medium text-fg">
+                      {snack.name}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-fg-muted">
+                      {snack.description}
+                    </p>
+                  </div>
+                </li>
               </ScrollReveal>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
-      {/* Why Not Generic */}
-      <section className="py-24 lg:py-32 bg-mesh-gradient">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      {/* What Nexo Snacks includes — positive-only list, no confrontation */}
+      <section className="bg-bg-sunken py-24 lg:py-32">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+          <SectionHeader
+            index="B"
+            eyebrow="Qué incluye Nexo Snacks"
+            title={
+              <>
+                Todo pensado para
+                <br />
+                <span className="text-accent">tu espacio.</span>
+              </>
+            }
+            description="Cada detalle está diseñado para que tu equipo encuentre lo que busca — y tu empresa no tenga que preocuparse por nada."
+            className="mb-16 lg:mb-20"
+          />
+
           <ScrollReveal>
-            <div className="text-center mb-16">
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-                No todos los vending{" "}
-                <span className="text-gradient-gold">son iguales</span>
-              </h2>
-              <p className="text-nexo-gray text-lg max-w-2xl mx-auto">
-                El vending tradicional llena una máquina con lo que sea. Nexo Snacks cura cada producto pensando en tu equipo.
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
-            <ScrollReveal direction="left">
-              <div className="bg-nexo-gray-dark/50 rounded-2xl p-8 lg:p-10 border border-red-500/10 h-full">
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center">
-                    <X className="w-5 h-5 text-red-400" />
-                  </div>
-                  <h3 className="font-display text-xl font-bold text-red-400">
-                    Vending tradicional
-                  </h3>
-                </div>
-                <ul className="flex flex-col gap-4">
-                  {genericProblems.map((problem) => (
-                    <li key={problem} className="flex items-start gap-3">
-                      <div className="shrink-0 w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center mt-0.5">
-                        <X className="w-3.5 h-3.5 text-red-400" />
-                      </div>
-                      <span className="text-nexo-gray">{problem}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal direction="right">
-              <div className="bg-nexo-gray-dark/50 rounded-2xl p-8 lg:p-10 border border-nexo-teal/20 h-full relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-nexo-teal/5 rounded-full blur-3xl" />
-                <div className="relative">
-                  <div className="flex items-center gap-3 mb-8">
-                    <div className="w-10 h-10 rounded-lg bg-nexo-teal/10 flex items-center justify-center">
-                      <Check className="w-5 h-5 text-nexo-teal" />
-                    </div>
-                    <h3 className="font-display text-xl font-bold text-nexo-teal">
-                      Nexo Snacks
-                    </h3>
-                  </div>
-                  <ul className="flex flex-col gap-4">
-                    {nexoAdvantages.map((advantage) => (
-                      <li key={advantage} className="flex items-start gap-3">
-                        <div className="shrink-0 w-6 h-6 rounded-full bg-nexo-teal/10 flex items-center justify-center mt-0.5">
-                          <Check className="w-3.5 h-3.5 text-nexo-teal" />
-                        </div>
-                        <span className="text-nexo-white">{advantage}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 lg:py-32 bg-nexo-black relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-orange-500/5 via-transparent to-transparent" />
-        <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <ScrollReveal>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-              Snacks premium{" "}
-              <span className="text-gradient-gold">en tu oficina</span>
-            </h2>
-            <p className="text-nexo-gray text-lg lg:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-              Tu equipo merece snacks de calidad. Curados, consistentes, y siempre disponibles. Instalamos en 48 horas, sin costo, sin compromiso.
-            </p>
-            <Link
-              href="/contacto"
-              className="inline-flex items-center gap-2 bg-nexo-teal hover:bg-nexo-teal-hover text-nexo-black font-semibold rounded-xl px-8 py-4 transition-all duration-300 hover:shadow-lg hover:shadow-nexo-teal/20 hover:-translate-y-0.5 text-lg"
-            >
-              Quiero Nexo Snacks
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-            <p className="mt-4 text-sm text-nexo-gray/60">
-              Sin costo de instalación · Rotación según preferencias · Mantenimiento incluido
-            </p>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.2}>
-            <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6">
-              {[
-                { value: "48h", label: "Instalación express" },
-                { value: "8+", label: "Productos curados" },
-                { value: "100%", label: "Operado por Nexo" },
-              ].map((stat) => (
-                <div
-                  key={stat.label}
-                  className="bg-nexo-gray-dark/50 rounded-xl p-6 border border-white/5"
+            <ul className="divide-y divide-border-soft border-y border-border-soft">
+              {nexoAdvantages.map((advantage, i) => (
+                <li
+                  key={advantage}
+                  className="flex items-center gap-5 py-6 lg:py-7"
                 >
-                  <div className="font-display text-2xl lg:text-3xl font-bold text-orange-400 mb-1">
-                    {stat.value}
+                  <span className="font-mono text-xs text-accent">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-accent/30 bg-accent/10 text-accent">
+                    <Check className="h-4 w-4" strokeWidth={2} />
                   </div>
-                  <div className="text-nexo-gray text-sm">{stat.label}</div>
-                </div>
+                  <span className="text-base text-fg lg:text-lg">
+                    {advantage}
+                  </span>
+                </li>
               ))}
-            </div>
+            </ul>
           </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="border-t border-border-soft py-24 lg:py-32">
+        <div className="mx-auto max-w-5xl px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-7">
+              <ScrollReveal>
+                <Eyebrow>Lleva Nexo Snacks a tu oficina</Eyebrow>
+              </ScrollReveal>
+              <ScrollReveal delay={0.05}>
+                <h2 className="display-lg mt-6 text-fg">
+                  Snacks seleccionados,
+                  <br />
+                  <span className="text-accent">curados para tu equipo.</span>
+                </h2>
+              </ScrollReveal>
+              <ScrollReveal delay={0.1}>
+                <p className="mt-6 max-w-md text-base leading-relaxed text-fg-muted md:text-lg">
+                  Calidad consistente, rotación según el consumo real,
+                  mantenimiento continuo. Te contactamos en menos de 24 horas.
+                </p>
+              </ScrollReveal>
+              <ScrollReveal delay={0.15}>
+                <div className="mt-10">
+                  <Magnetic strength={0.35} maxTravelPx={10}>
+                    <Button href="/contacto" variant="accent" size="lg" withArrow>
+                      Quiero Nexo Snacks
+                    </Button>
+                  </Magnetic>
+                </div>
+              </ScrollReveal>
+            </div>
+            <ScrollReveal delay={0.2} className="lg:col-span-5">
+              <ul className="divide-y divide-border-soft border-y border-border-soft">
+                {[
+                  "Respuesta en menos de 24 horas",
+                  "Selección propia con criterio",
+                  "Rotación según consumo real",
+                ].map((signal, i) => (
+                  <li
+                    key={signal}
+                    className="flex items-baseline gap-4 py-4"
+                  >
+                    <span className="font-mono text-xs text-accent">
+                      0{i + 1}
+                    </span>
+                    <span className="text-base text-fg-muted">{signal}</span>
+                  </li>
+                ))}
+              </ul>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
     </>

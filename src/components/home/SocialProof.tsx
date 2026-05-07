@@ -1,49 +1,53 @@
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { Clock, BadgeDollarSign, Wrench, Shield, MapPin } from "lucide-react";
 
-const companies = [
-  "WeWork",
-  "Rappi",
-  "Colpatria",
-  "Bancolombia",
-  "Nutresa",
-  "Sura",
+const valueProps = [
+  { icon: Clock, text: "Respuesta en 24h" },
+  { icon: BadgeDollarSign, text: "Cero inversión" },
+  { icon: Wrench, text: "Operación incluida" },
+  { icon: Shield, text: "Modelo comercial flexible" },
+  { icon: MapPin, text: "Medellín y Valle de Aburrá" },
 ];
 
 export function SocialProof() {
   return (
-    <section className="relative border-y border-nexo-gray/10 bg-nexo-black py-12 lg:py-16">
-      <ScrollReveal>
-        <p className="mb-8 text-center text-sm font-medium uppercase tracking-widest text-nexo-gray/50">
-          Confían en Nexo
-        </p>
-      </ScrollReveal>
-
-      {/* Desktop grid */}
-      <div className="mx-auto hidden max-w-5xl grid-cols-6 gap-6 px-8 md:grid">
-        {companies.map((name, i) => (
-          <ScrollReveal key={name} delay={i * 0.06}>
-            <div className="flex items-center justify-center rounded-xl border border-nexo-gray/10 bg-nexo-black-light/50 px-4 py-5 transition-colors duration-300 hover:border-nexo-gold/20">
-              <span className="text-sm font-semibold tracking-wide text-nexo-gray/40 transition-colors duration-300 hover:text-nexo-gray/70">
-                {name}
-              </span>
-            </div>
-          </ScrollReveal>
+    <section
+      aria-label="Garantías Nexo"
+      className="border-y border-border-soft bg-bg-sunken"
+    >
+      <div className="mx-auto hidden max-w-7xl items-center justify-between gap-6 px-8 py-6 md:flex">
+        {valueProps.map((prop) => (
+          <div
+            key={prop.text}
+            className="flex items-center gap-2.5 text-fg-muted"
+          >
+            <prop.icon
+              className="h-4 w-4 shrink-0 text-accent/70"
+              strokeWidth={1.75}
+            />
+            <span className="whitespace-nowrap text-xs font-medium uppercase tracking-wider">
+              {prop.text}
+            </span>
+          </div>
         ))}
       </div>
 
-      {/* Mobile infinite scroll */}
-      <div className="relative overflow-hidden md:hidden">
-        <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-12 bg-gradient-to-r from-nexo-black to-transparent" />
-        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-12 bg-gradient-to-l from-nexo-black to-transparent" />
+      {/* Mobile marquee */}
+      <div className="relative overflow-hidden py-5 md:hidden">
+        <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-12 bg-gradient-to-r from-bg-sunken to-transparent" />
+        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-12 bg-gradient-to-l from-bg-sunken to-transparent" />
 
-        <div className="flex animate-marquee gap-4">
-          {[...companies, ...companies].map((name, i) => (
+        <div className="flex animate-marquee gap-10 will-change-transform">
+          {[...valueProps, ...valueProps].map((prop, i) => (
             <div
-              key={`${name}-${i}`}
-              className="flex shrink-0 items-center justify-center rounded-xl border border-nexo-gray/10 bg-nexo-black-light/50 px-6 py-4"
+              key={`${prop.text}-${i}`}
+              className="flex shrink-0 items-center gap-2.5 text-fg-muted"
             >
-              <span className="whitespace-nowrap text-sm font-semibold tracking-wide text-nexo-gray/40">
-                {name}
+              <prop.icon
+                className="h-4 w-4 shrink-0 text-accent/70"
+                strokeWidth={1.75}
+              />
+              <span className="whitespace-nowrap text-xs font-medium uppercase tracking-wider">
+                {prop.text}
               </span>
             </div>
           ))}

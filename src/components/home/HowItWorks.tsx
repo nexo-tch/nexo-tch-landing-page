@@ -1,83 +1,124 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { MessageSquare, Wrench, PartyPopper } from "lucide-react";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
 const steps = [
   {
     number: "01",
-    icon: MessageSquare,
-    title: "Solicita",
+    phase: "Conversación",
+    title: "Conversación inicial",
     description:
-      "Cuéntanos sobre tu espacio y elige tu máquina ideal. Sin compromiso, sin letra pequeña.",
+      "Nos cuentas sobre tu espacio, tu equipo y qué estás buscando. Sin compromiso, sin letra pequeña.",
   },
   {
     number: "02",
-    icon: Wrench,
-    title: "Instalamos en 48h",
+    phase: "Viabilidad",
+    title: "Viabilidad comercial",
     description:
-      "Nuestro equipo llega, instala y configura todo. Sin obras, sin interrupciones en tu operación.",
+      "Validamos que podemos instalar la máquina adecuada para tu espacio y tu tipo de consumo.",
   },
   {
     number: "03",
-    icon: PartyPopper,
-    title: "Disfruta",
+    phase: "Selección",
+    title: "Match de productos",
     description:
-      "Tu equipo disfruta café de especialidad desde el primer día. Nexo opera, mantiene y abastece.",
+      "Definimos contigo la línea y el mix según tu espacio: café, proteína, snacks o combinación.",
+  },
+  {
+    number: "04",
+    phase: "Acuerdo",
+    title: "Propuesta y acuerdo",
+    description:
+      "Te presentamos una propuesta a tu medida bajo la modalidad que mejor calce: comodato, suministros, arrendamiento o revenue sharing. Acordamos términos con flexibilidad real, sin sorpresas.",
+  },
+  {
+    number: "05",
+    phase: "En vivo",
+    title: "Instalación y operación",
+    description:
+      "Coordinamos la instalación según disponibilidad. Desde ese día, nosotros operamos, mantenemos y abastecemos.",
   },
 ];
 
 export function HowItWorks() {
   return (
-    <section
-      id="como-funciona"
-      className="relative bg-nexo-black py-24 lg:py-32"
-    >
-      <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 lg:px-12">
-        <ScrollReveal>
-          <p className="mb-4 text-center text-sm font-medium uppercase tracking-widest text-nexo-gold">
-            Así de simple
-          </p>
-        </ScrollReveal>
+    <section id="como-funciona" className="relative py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <SectionHeader
+          index="05"
+          eyebrow="Cómo trabajamos contigo"
+          title={
+            <>
+              De la primera llamada
+              <br />
+              <span className="text-accent">al día uno. Sin rodeos.</span>
+            </>
+          }
+          description="Un proceso claro, con tiempos honestos. Pensado para espacios que valoran hacer las cosas bien."
+          className="mb-16 lg:mb-20"
+        />
 
-        <ScrollReveal delay={0.1}>
-          <h2 className="mx-auto max-w-3xl text-center font-display text-3xl font-bold leading-tight text-nexo-white sm:text-4xl lg:text-5xl">
-            Tu máquina Nexo en 3 pasos
-          </h2>
-        </ScrollReveal>
+        {/* Editorial horizontal timeline — desktop: 5 columns on a hairline
+            rail that draws in on scroll. Mobile: graceful vertical stack. */}
+        <div className="relative">
+          {/* Animated horizontal rail — desktop only, sits at the dot's y.
+              The dot y is driven by the height of the mono "01" label + its
+              bottom margin, so 40px is intentional. */}
+          <motion.div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-0 right-0 top-[1.4rem] hidden h-px origin-left bg-gradient-to-r from-transparent via-border to-transparent md:block"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          />
 
-        <div className="relative mt-16">
-          {/* Connecting line — desktop only */}
-          <div className="absolute left-0 right-0 top-16 hidden h-px bg-gradient-to-r from-transparent via-nexo-gold/30 to-transparent lg:block" />
-
-          <div className="grid gap-10 lg:grid-cols-3 lg:gap-8">
+          <ol className="grid grid-cols-1 gap-12 md:grid-cols-5 md:gap-6 lg:gap-8">
             {steps.map((step, i) => (
-              <ScrollReveal key={step.number} delay={0.15 + i * 0.12}>
-                <div className="relative flex flex-col items-center text-center">
-                  {/* Step number circle */}
-                  <div className="relative z-10 mb-6 flex h-16 w-16 items-center justify-center rounded-full border-2 border-nexo-gold/40 bg-nexo-black">
-                    <span className="font-display text-lg font-bold text-nexo-gold">
+              <ScrollReveal
+                key={step.number}
+                delay={0.2 + i * 0.1}
+                className="block"
+              >
+                <li className="group relative">
+                  {/* Row 1: mono number on the rail's baseline */}
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-xs uppercase tracking-[0.18em] text-accent">
                       {step.number}
                     </span>
+                    {/* Dot that anchors the rail. Animates in after the rail
+                        finishes drawing, creating a "nodes lighting up" feel. */}
+                    <motion.span
+                      aria-hidden="true"
+                      className="hidden h-2 w-2 rounded-full bg-accent ring-4 ring-bg md:block"
+                      initial={{ scale: 0, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
+                      viewport={{ once: true, amount: 0.2 }}
+                      transition={{
+                        delay: 0.8 + i * 0.12,
+                        duration: 0.5,
+                        ease: [0.34, 1.56, 0.64, 1],
+                      }}
+                    />
                   </div>
 
-                  {/* Mobile connecting line */}
-                  {i < steps.length - 1 && (
-                    <div className="absolute left-1/2 top-16 h-10 w-px -translate-x-1/2 bg-gradient-to-b from-nexo-gold/30 to-transparent lg:hidden" />
-                  )}
-
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-nexo-gold/10">
-                    <step.icon className="h-6 w-6 text-nexo-gold" />
+                  <div className="mt-8 md:mt-10">
+                    <span className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-fg-subtle">
+                      {step.phase}
+                    </span>
+                    <h3 className="font-display mt-2 text-xl font-light leading-tight text-fg transition-colors duration-300 group-hover:text-accent md:text-[1.35rem] lg:text-2xl">
+                      {step.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-fg-muted md:text-[0.925rem]">
+                      {step.description}
+                    </p>
                   </div>
-
-                  <h3 className="mb-3 font-display text-xl font-bold text-nexo-white sm:text-2xl">
-                    {step.title}
-                  </h3>
-                  <p className="max-w-xs text-base leading-relaxed text-nexo-gray/70">
-                    {step.description}
-                  </p>
-                </div>
+                </li>
               </ScrollReveal>
             ))}
-          </div>
+          </ol>
         </div>
       </div>
     </section>

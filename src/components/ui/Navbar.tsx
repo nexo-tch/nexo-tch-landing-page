@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
+import { Button } from "./Button";
 
 const links = [
   { href: "/", label: "Inicio" },
@@ -18,16 +19,21 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const [lastPath, setLastPath] = useState(pathname);
+
+  // Adjust state during render when route changes — React-recommended pattern
+  // for syncing state to a prop change without an effect.
+  if (pathname !== lastPath) {
+    setLastPath(pathname);
+    if (isOpen) setIsOpen(false);
+  }
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 16);
     window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
@@ -38,105 +44,113 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-nexo-black/90 backdrop-blur-xl border-b border-nexo-gold/10 shadow-lg shadow-black/20"
-          : "bg-transparent"
+      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,border-color] duration-300 ${
+        isOpen
+          ? "border-b border-border-soft bg-bg"
+          : scrolled
+            ? "border-b border-border-soft bg-bg/85 backdrop-blur-xl"
+            : "border-b border-transparent bg-transparent"
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          <Link
-            href="/"
-            className="relative z-10 flex items-center gap-3 group"
+      <nav className="relative z-50 mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:h-20 lg:px-8">
+        <Link
+          href="/"
+          aria-label="Nexo, ir al inicio"
+          className="group flex items-center gap-2.5 tactile"
+        >
+          <span
+            aria-hidden="true"
+            className="font-display text-xl font-semibold leading-none text-fg transition-colors duration-200 group-hover:text-accent"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-nexo-gold to-nexo-gold-bright flex items-center justify-center font-display font-extrabold text-nexo-black text-lg transition-transform duration-300 group-hover:scale-110">
-              N
-            </div>
-            <span className="font-display font-bold text-xl tracking-tight">
-              Nexo<span className="text-nexo-gold">.</span>
-            </span>
-          </Link>
+            Nexo
+          </span>
+          <span className="h-1.5 w-1.5 rounded-full bg-accent transition-transform duration-200 group-hover:scale-125" />
+        </Link>
 
-          <div className="hidden lg:flex items-center gap-1">
-            {links.map((link) => {
-              const isActive = pathname === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 rounded-lg ${
-                    isActive
-                      ? "text-nexo-gold"
-                      : "text-nexo-gray hover:text-nexo-white"
-                  }`}
-                >
-                  {link.label}
-                  <span
-                    className={`absolute bottom-0 left-2 right-2 h-0.5 rounded-full bg-nexo-gold transition-all duration-300 ${
-                      isActive
-                        ? "opacity-100 scale-x-100"
-                        : "opacity-0 scale-x-0"
-                    }`}
-                  />
-                </Link>
-              );
-            })}
-          </div>
-
-          <div className="hidden lg:block">
-            <Link
-              href="/contacto"
-              className="inline-flex items-center gap-2 px-6 py-2.5 bg-nexo-teal hover:bg-nexo-teal-hover text-nexo-black font-semibold text-sm rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-nexo-teal/20 hover:-translate-y-0.5"
-            >
-              Quiero mi máquina
-            </Link>
-          </div>
-
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden relative z-10 p-2 text-nexo-white"
-            aria-label="Menú"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile menu — CSS-only transitions */}
-      <div
-        className={`fixed inset-0 z-40 bg-nexo-black/98 backdrop-blur-xl lg:hidden transition-all duration-300 ${
-          isOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
-      >
-        <div className="flex flex-col items-center justify-center min-h-screen gap-6 px-6">
+        <div className="hidden items-center gap-1 lg:flex">
           {links.map((link) => {
-            const isActive = pathname === link.href;
+            const isActive =
+              link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={() => setIsOpen(false)}
-                className={`text-3xl font-display font-bold transition-colors duration-300 ${
+                className={`relative rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 ${
                   isActive
-                    ? "text-nexo-gold"
-                    : "text-nexo-white hover:text-nexo-gold"
+                    ? "text-fg"
+                    : "text-fg-muted hover:text-fg"
                 }`}
               >
                 {link.label}
+                {isActive && (
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-x-3 -bottom-0.5 h-px bg-accent"
+                  />
+                )}
               </Link>
             );
           })}
-          <div className="mt-6">
-            <Link
+        </div>
+
+        <div className="hidden lg:block">
+          <Button href="/contacto" variant="accent" size="md">
+            Quiero mi máquina
+          </Button>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}
+          className="relative z-10 -mr-2 inline-flex h-11 w-11 items-center justify-center rounded-md text-fg lg:hidden tactile"
+          aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={isOpen}
+        >
+          {isOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
+      </nav>
+
+      <div
+        className={`fixed inset-0 z-40 bg-bg lg:hidden transition-opacity duration-200 ${
+          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="flex min-h-[100dvh] flex-col px-6 pb-12 pt-24">
+          <div className="flex flex-1 flex-col">
+            {links.map((link, i) => {
+              const isActive =
+                link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  style={{
+                    transitionDelay: isOpen ? `${i * 30}ms` : "0ms",
+                  }}
+                  className={`flex items-center justify-between border-b border-border-soft py-5 font-display text-2xl font-medium transition-[color,opacity,transform] duration-300 ${
+                    isOpen
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-4 opacity-0"
+                  } ${isActive ? "text-accent" : "text-fg hover:text-accent"}`}
+                >
+                  {link.label}
+                  <span className="font-mono text-xs text-fg-subtle">
+                    0{i + 1}
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+          <div className="pt-8">
+            <Button
               href="/contacto"
-              onClick={() => setIsOpen(false)}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-nexo-teal text-nexo-black font-bold text-lg rounded-xl"
+              variant="accent"
+              size="lg"
+              className="w-full"
             >
               Quiero mi máquina
-            </Link>
+            </Button>
           </div>
         </div>
       </div>

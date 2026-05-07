@@ -1,132 +1,189 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-nexo-black: #0D0D0D;
-  --color-nexo-black-light: #1A1A1A;
-  --color-nexo-gold: #C28B53;
-  --color-nexo-gold-bright: #FFD700;
-  --color-nexo-white: #FFFFFF;
-  --color-nexo-gray: #E0E0E0;
-  --color-nexo-gray-dark: #1A1A1A;
-  --color-nexo-teal: #00C2A0;
-  --color-nexo-teal-hover: #00A88A;
+  /* Surfaces — pure black + neutral grays (no warm tint) */
+  --color-bg: oklch(0 0 0);
+  --color-bg-elevated: oklch(0.13 0 0);
+  --color-bg-sunken: oklch(0.05 0 0);
 
-  --font-display: var(--font-syne);
-  --font-body: var(--font-dm-sans);
+  /* Borders — neutral grays */
+  --color-border: oklch(0.25 0 0);
+  --color-border-soft: oklch(0.17 0 0);
+
+  /* Text — neutral grays */
+  --color-fg: oklch(0.97 0 0);
+  --color-fg-muted: oklch(0.72 0 0);
+  --color-fg-subtle: oklch(0.55 0 0);
+
+  /* Accent — muted pistachio (tech-forward but restrained).
+     Yellow-green at L 0.86, C 0.13 — reads as sage / pistachio / matcha digital.
+     Selected after A/B tests: white, bone, lime, aqua, seafoam, dusty teal, lavender.
+     Revert to amber: accent oklch(0.78 0.16 70), dim oklch(0.65 0.12 70), bright oklch(0.85 0.14 75).
+     Revert to pure white: accent oklch(1 0 0), dim oklch(0.80 0 0), bright oklch(1 0 0).
+     Revert to bone: accent oklch(0.93 0.015 85), dim oklch(0.78 0.012 85), bright oklch(0.97 0.018 85).
+     Revert to electric lime: accent oklch(0.90 0.22 130), dim oklch(0.75 0.18 130), bright oklch(0.95 0.24 130).
+     Revert to aqua cyan: accent oklch(0.86 0.13 200), dim oklch(0.72 0.11 200), bright oklch(0.91 0.14 200).
+     Revert to bright seafoam: accent oklch(0.86 0.13 175), dim oklch(0.72 0.11 175), bright oklch(0.91 0.14 175).
+     Revert to dusty teal: accent oklch(0.84 0.08 175), dim oklch(0.68 0.07 175), bright oklch(0.89 0.09 175).
+     Revert to digital lavender: accent oklch(0.82 0.09 300), dim oklch(0.68 0.08 300), bright oklch(0.88 0.10 300). */
+  --color-accent: oklch(0.86 0.13 130);
+  --color-accent-dim: oklch(0.72 0.11 130);
+  --color-accent-bright: oklch(0.91 0.14 130);
+
+  /* Semantic */
+  --color-danger: oklch(0.65 0.18 25);
+  --color-success: oklch(0.72 0.15 145);
+
+  --font-display: var(--font-outfit);
+  --font-body: var(--font-geist);
+  --font-mono: var(--font-geist-mono);
 }
 
-* {
-  box-sizing: border-box;
+@layer base {
+  :root {
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+    --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+    --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-body), system-ui, sans-serif;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-bg);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 999px;
+    border: 2px solid var(--color-bg);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent-dim);
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px var(--color-bg-elevated) inset;
+    -webkit-text-fill-color: var(--color-fg);
+    transition: background-color 5000s ease-in-out 0s;
+  }
 }
 
-html {
-  scroll-behavior: smooth;
+@layer utilities {
+  /* Display typography utility for hero headlines */
+  .display-xl {
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    font-weight: 600;
+  }
+
+  .display-lg {
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-size: clamp(2.25rem, 5vw, 4rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-weight: 600;
+  }
+
+  .display-md {
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+
+  /* Eyebrow label — used across all sections */
+  .eyebrow {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  /* Hairline divider */
+  .hairline {
+    border-color: var(--color-border-soft);
+  }
+
+  /* Subtle warm noise — only on fixed overlays, never scrolling */
+  .noise-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+  }
+
+  /* Tactile feedback on press */
+  .tactile {
+    transition: transform 160ms var(--ease-out-quart);
+  }
+  .tactile:active {
+    transform: scale(0.97);
+  }
+
+  /* Soft glow for accent surfaces — used on accent CTA hover only.
+     Uses the accent color at low alpha so it follows the mono/amber toggle. */
+  .accent-glow {
+    box-shadow: 0 0 0 1px oklch(0.86 0.13 130 / 0.22),
+      0 12px 48px -12px oklch(0.86 0.13 130 / 0.26);
+  }
+
+  /* Marquee for value props bar */
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
 }
 
-body {
-  background: var(--color-nexo-black);
-  color: var(--color-nexo-white);
-  font-family: var(--font-body), system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-::selection {
-  background: var(--color-nexo-gold);
-  color: var(--color-nexo-black);
-}
-
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-nexo-black);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-nexo-gold);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-nexo-gold-bright);
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(194, 139, 83, 0.2); }
-  50% { box-shadow: 0 0 40px rgba(194, 139, 83, 0.4); }
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.animate-shimmer {
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(194, 139, 83, 0.15) 50%,
-    transparent 100%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 3s ease-in-out infinite;
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
-}
-
-.animate-marquee {
-  animation: marquee 20s linear infinite;
-}
-
-.text-gradient-gold {
-  background: linear-gradient(135deg, var(--color-nexo-gold), var(--color-nexo-gold-bright));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.bg-noise {
-  position: relative;
-}
-
-.bg-noise::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 0;
-}
-
-.bg-mesh-gradient {
-  background:
-    radial-gradient(ellipse at 20% 0%, rgba(194, 139, 83, 0.08) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 100%, rgba(0, 194, 160, 0.05) 0%, transparent 60%),
-    var(--color-nexo-black);
-}
-
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0 1000px var(--color-nexo-black-light) inset;
-  -webkit-text-fill-color: var(--color-nexo-white);
-  transition: background-color 5000s ease-in-out 0s;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

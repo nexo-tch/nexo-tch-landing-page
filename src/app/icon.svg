@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Nexo">
+  <rect width="512" height="512" fill="#000000"/>
+  <g fill="#FFFFFF">
+    <rect x="126" y="106" width="68" height="300"/>
+    <rect x="318" y="106" width="68" height="300"/>
+    <polygon points="194,106 262,106 386,406 318,406"/>
+  </g>
+</svg>

@@ -1,114 +1,167 @@
-"use client";
-
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
 const products = [
   {
+    number: "01",
     name: "Nexo Café",
-    tagline: "Café de especialidad al alcance de tu equipo",
+    tagline: "Café que se siente café",
     description:
-      "8 bebidas premium — espresso, americano, cappuccino, chocolate y más. Vasos de 7oz con diseño exclusivo, granos de especialidad seleccionados.",
-    benefit: "El café que tu equipo merece, sin salir de la oficina",
+      "Espresso, americano, cappuccino y más. Calidad en cada taza — del primer sorbo al último. Máquinas pensadas para el ritmo real de una oficina.",
+    bullets: [
+      "Café de calidad",
+      "Bebidas clásicas al instante",
+      "Para oficinas y coworkings",
+    ],
     href: "/cafe",
     image: "/images/nexo-cafe-machine.png",
     imageAlt: "Máquina Nexo Café",
-    accentBorder: "hover:border-nexo-gold/30",
-    accentGlow: "hover:shadow-[0_0_40px_rgba(194,139,83,0.08)]",
   },
   {
+    number: "02",
     name: "Nexo Protein",
-    tagline: "Post-entrenamiento inmediato, sin espera",
+    tagline: "Proteína lista cuando la necesitan",
     description:
-      "Batidos de proteína listos al instante. Ideal para gimnasios de alto flujo donde cada minuto cuenta.",
-    benefit: "Recuperación instantánea para los atletas de tu gym",
+      "Batidos listos al instante, para antes y después de entrenar. Proteína de marcas confiables, servida en segundos. Sin filas, sin espera.",
+    bullets: [
+      "Proteína de calidad",
+      "Lista en segundos",
+      "Cero operación para el gym",
+      "Para gimnasios de alto flujo",
+    ],
     href: "/proteinas",
     image: "/images/nexo-protein-machine.png",
     imageAlt: "Máquina Nexo Protein",
-    accentBorder: "hover:border-nexo-teal/30",
-    accentGlow: "hover:shadow-[0_0_40px_rgba(0,194,160,0.08)]",
   },
   {
+    number: "03",
     name: "Nexo Snacks",
-    tagline: "Snacks curados, no genéricos",
+    tagline: "Snacks seleccionados con criterio",
     description:
-      "Selección consistente de snacks premium para tu oficina. Productos curados que elevan la experiencia del break.",
-    benefit: "Adiós a la máquina triste con productos vencidos",
+      "Una selección de snacks pensada para tu espacio. Opciones saludables y antojos de calidad, rotando según lo que tu equipo consume.",
+    bullets: [
+      "Selección propia",
+      "Opciones saludables y antojos",
+      "Rotación según consumo",
+      "Para oficinas y espacios corporativos",
+    ],
     href: "/snacks",
     image: "/images/nexo-snacks-machine.png",
     imageAlt: "Máquina Nexo Snacks",
-    accentBorder: "hover:border-nexo-gold-bright/30",
-    accentGlow: "hover:shadow-[0_0_40px_rgba(255,215,0,0.06)]",
   },
 ];
 
 export function Products() {
   return (
-    <section className="relative bg-nexo-black py-24 lg:py-32">
-      <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 lg:px-12">
-        <ScrollReveal>
-          <p className="mb-4 text-center text-sm font-medium uppercase tracking-widest text-nexo-gold">
-            Nuestras soluciones
-          </p>
-        </ScrollReveal>
+    <section id="productos" className="relative py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <SectionHeader
+          index="02"
+          eyebrow="Tres líneas, una operación"
+          title={
+            <>
+              Una solución para cada
+              <br />
+              <span className="text-accent">tipo de espacio.</span>
+            </>
+          }
+          description="Cada máquina Nexo se adapta al ritmo de tu empresa. Tú eliges la línea, nosotros operamos todo el resto."
+          className="mb-20 lg:mb-28"
+        />
 
-        <ScrollReveal delay={0.1}>
-          <h2 className="mx-auto max-w-3xl text-center font-display text-3xl font-bold leading-tight text-nexo-white sm:text-4xl lg:text-5xl">
-            Tres formas de energizar tu espacio
-          </h2>
-        </ScrollReveal>
-
-        <ScrollReveal delay={0.15}>
-          <p className="mx-auto mt-5 max-w-xl text-center text-lg text-nexo-gray/70">
-            Cada máquina Nexo se adapta a las necesidades de tu empresa. Tú
-            eliges, nosotros operamos.
-          </p>
-        </ScrollReveal>
-
-        <div className="mt-16 grid gap-8 lg:grid-cols-3">
-          {products.map((product, i) => (
-            <ScrollReveal key={product.name} delay={0.2 + i * 0.1}>
-              <Link href={product.href} className="group block h-full">
-                <div
-                  className={`relative flex h-full flex-col rounded-2xl border border-nexo-gray/10 bg-nexo-black-light p-8 transition-all duration-500 ${product.accentBorder} ${product.accentGlow}`}
+        {/* Zig-zag full-width sections */}
+        <div className="flex flex-col gap-20 md:gap-28 lg:gap-36">
+          {products.map((product, i) => {
+            const reversed = i % 2 !== 0;
+            // First card shares its image with the Hero LCP asset. Marking it
+            // eager prevents Next.js from flagging it as "LCP without priority"
+            // when the browser picks this (already cached) instance over the
+            // Hero in certain first-paint measurements.
+            const isFirst = i === 0;
+            return (
+              <article
+                key={product.number}
+                className={`grid grid-cols-1 items-center gap-10 md:grid-cols-12 md:gap-12 lg:gap-16 ${
+                  reversed ? "md:[direction:rtl]" : ""
+                }`}
+              >
+                {/* Image side */}
+                <ScrollReveal
+                  direction={reversed ? "left" : "right"}
+                  className="md:col-span-5 md:[direction:ltr]"
                 >
-                  <div className="relative mx-auto mb-6 h-[200px] w-full">
+                  <div className="relative flex items-center justify-center">
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-x-0 top-1/2 h-px bg-gradient-to-r from-transparent via-border to-transparent"
+                    />
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-0 -inset-x-8 rounded-[40px] bg-accent/5 blur-3xl"
+                    />
                     <Image
                       src={product.image}
                       alt={product.imageAlt}
-                      width={250}
-                      height={350}
-                      className="mx-auto h-full w-auto object-contain drop-shadow-[0_10px_25px_rgba(0,0,0,0.4)] transition-transform duration-500 group-hover:scale-105"
+                      width={420}
+                      height={620}
+                      loading={isFirst ? "eager" : "lazy"}
+                      fetchPriority={isFirst ? "high" : "auto"}
+                      sizes="(min-width: 1024px) 40vw, (min-width: 768px) 35vw, 70vw"
+                      className="relative h-[320px] w-auto object-contain drop-shadow-[0_25px_45px_oklch(0_0_0/0.45)] sm:h-[420px] md:h-[440px] lg:h-[520px]"
                     />
                   </div>
+                </ScrollReveal>
 
-                  <h3 className="font-display text-2xl font-bold text-nexo-white">
-                    {product.name}
-                  </h3>
-                  <p className="mt-1 text-sm font-medium text-nexo-gold">
+                {/* Content side */}
+                <ScrollReveal
+                  direction={reversed ? "right" : "left"}
+                  className="md:col-span-7 md:[direction:ltr]"
+                >
+                  <div className="flex items-baseline gap-4">
+                    <span className="font-mono text-sm text-accent">
+                      {product.number}
+                    </span>
+                    <span className="h-px flex-1 bg-border-soft" />
+                  </div>
+
+                  <h3 className="display-md mt-6 text-fg">{product.name}</h3>
+                  <p className="mt-3 font-medium text-accent">
                     {product.tagline}
                   </p>
 
-                  <p className="mt-4 flex-1 text-base leading-relaxed text-nexo-gray/70">
+                  <p className="mt-6 max-w-lg text-base leading-relaxed text-fg-muted">
                     {product.description}
                   </p>
 
-                  <div className="mt-6 rounded-xl bg-nexo-black/50 p-4">
-                    <p className="text-sm font-medium text-nexo-white">
-                      ✦ {product.benefit}
-                    </p>
-                  </div>
+                  <ul className="mt-8 grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
+                    {product.bullets.map((bullet) => (
+                      <li
+                        key={bullet}
+                        className="flex items-center gap-3 text-sm text-fg-muted"
+                      >
+                        <span className="h-1 w-1 shrink-0 rounded-full bg-accent" />
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
 
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-nexo-teal transition-colors group-hover:text-nexo-teal-hover">
-                    Me interesa
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </span>
-                </div>
-              </Link>
-            </ScrollReveal>
-          ))}
+                  <Link
+                    href={product.href}
+                    className="group mt-10 inline-flex items-center gap-2 font-medium text-fg transition-colors duration-200 hover:text-accent tactile"
+                  >
+                    Conocer {product.name}
+                    <ArrowUpRight
+                      className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      strokeWidth={2}
+                    />
+                  </Link>
+                </ScrollReveal>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

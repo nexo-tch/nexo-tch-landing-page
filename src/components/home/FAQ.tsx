@@ -2,80 +2,49 @@
 
 import { useState } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { ChevronDown } from "lucide-react";
-
-const faqs = [
-  {
-    question: "¿Cuánto cuesta instalar una máquina Nexo?",
-    answer:
-      "Cero. La instalación, la máquina y el mantenimiento no tienen costo para tu empresa. Nexo opera bajo un modelo de comodato donde nosotros invertimos en el equipo y tú solo disfrutas del servicio.",
-  },
-  {
-    question: "¿Qué incluye el mantenimiento?",
-    answer:
-      "Todo. Nexo se encarga del abastecimiento de insumos, limpieza técnica, mantenimiento preventivo y correctivo, y monitoreo remoto de la máquina. Si algo falla, nuestro equipo responde en menos de 24 horas.",
-  },
-  {
-    question: "¿Hay algún compromiso o contrato a largo plazo?",
-    answer:
-      "No exigimos contratos extensos ni cláusulas de permanencia complicadas. Creemos que si el servicio es bueno, te quedas porque quieres, no porque debes. Hablemos de los términos que funcionen para tu empresa.",
-  },
-  {
-    question: "¿Cuánto tarda la instalación?",
-    answer:
-      "48 horas desde que confirmamos. No necesitamos obras ni infraestructura especial. Solo un espacio con toma eléctrica y acceso a agua (para las máquinas de café). Llegamos, instalamos y configuramos todo.",
-  },
-  {
-    question: "¿Qué productos ofrecen las máquinas?",
-    answer:
-      "Depende de la línea: Nexo Café ofrece 8 bebidas calientes de especialidad (espresso, americano, cappuccino, chocolate y más). Nexo Protein tiene batidos de proteína post-entrenamiento. Nexo Snacks ofrece una selección curada de snacks premium.",
-  },
-  {
-    question: "¿En qué zonas de Medellín tienen cobertura?",
-    answer:
-      "Actualmente operamos en todo el Área Metropolitana del Valle de Aburrá: Medellín, Envigado, Sabaneta, Itagüí, Bello y La Estrella. Si estás en otra zona, contáctanos — estamos en expansión.",
-  },
-  {
-    question: "¿Cómo funciona el modelo de comodato?",
-    answer:
-      "Es simple: Nexo entrega la máquina en comodato (préstamo de uso) a tu empresa. Nosotros cubrimos la inversión del equipo, la instalación, el abastecimiento y el mantenimiento. Tu empresa no paga por la máquina ni por el servicio técnico. Los usuarios pagan por cada consumo a un precio accesible.",
-  },
-];
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { Plus } from "lucide-react";
+import { faqs } from "@/data/faqs";
 
 function FAQItem({
   question,
   answer,
   isOpen,
   onToggle,
+  index,
 }: {
   question: string;
   answer: string;
   isOpen: boolean;
   onToggle: () => void;
+  index: string;
 }) {
   return (
-    <div className="border-b border-nexo-gray/10">
+    <div className="border-b border-border-soft">
       <button
+        type="button"
         onClick={onToggle}
-        className="flex w-full items-center justify-between gap-4 py-6 text-left transition-colors hover:text-nexo-gold"
+        className="group flex w-full items-baseline gap-6 py-6 text-left tactile"
         aria-expanded={isOpen}
       >
-        <span className="font-display text-base font-semibold text-nexo-white sm:text-lg">
+        <span className="font-mono text-xs text-fg-subtle">{index}</span>
+        <span className="flex-1 font-display text-lg font-medium text-fg transition-colors duration-200 group-hover:text-accent lg:text-xl">
           {question}
         </span>
-        <ChevronDown
-          className={`h-5 w-5 shrink-0 text-nexo-gold transition-transform duration-300 ${
-            isOpen ? "rotate-180" : ""
+        <Plus
+          className={`h-5 w-5 shrink-0 text-fg-muted transition-transform duration-300 ${
+            isOpen ? "rotate-45 text-accent" : ""
           }`}
+          strokeWidth={1.75}
         />
       </button>
       <div
-        className={`grid transition-all duration-300 ease-in-out ${
+        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
           isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
         }`}
       >
         <div className="overflow-hidden">
-          <p className="pb-6 text-base leading-relaxed text-nexo-gray/70">
+          <p className="ml-12 max-w-2xl pb-6 text-base leading-relaxed text-fg-muted">
             {answer}
           </p>
         </div>
@@ -87,54 +56,42 @@ function FAQItem({
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  };
-
   return (
-    <section className="relative bg-mesh-gradient py-24 lg:py-32">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-
-      <div className="relative z-10 mx-auto max-w-3xl px-5 sm:px-8 lg:px-12">
-        <ScrollReveal>
-          <p className="mb-4 text-center text-sm font-medium uppercase tracking-widest text-nexo-gold">
-            Preguntas frecuentes
-          </p>
-        </ScrollReveal>
-
-        <ScrollReveal delay={0.1}>
-          <h2 className="mx-auto max-w-2xl text-center font-display text-3xl font-bold leading-tight text-nexo-white sm:text-4xl lg:text-5xl">
-            Todo lo que necesitas saber
-          </h2>
-        </ScrollReveal>
-
-        <ScrollReveal delay={0.2}>
-          <div className="mt-12">
-            {faqs.map((faq, i) => (
-              <FAQItem
-                key={i}
-                question={faq.question}
-                answer={faq.answer}
-                isOpen={openIndex === i}
-                onToggle={() =>
-                  setOpenIndex(openIndex === i ? null : i)
+    <section className="relative py-24 lg:py-32">
+      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-5">
+            <div className="lg:sticky lg:top-32">
+              <SectionHeader
+                index="07"
+                eyebrow="Preguntas frecuentes"
+                title={
+                  <>
+                    Todo lo que necesitas
+                    <br />
+                    <span className="text-accent">saber.</span>
+                  </>
                 }
+                description="Si tu pregunta no está aquí, escríbenos por WhatsApp y te respondemos en minutos."
               />
-            ))}
+            </div>
           </div>
-        </ScrollReveal>
+
+          <ScrollReveal className="lg:col-span-7">
+            <div className="border-t border-border-soft">
+              {faqs.map((faq, i) => (
+                <FAQItem
+                  key={faq.question}
+                  index={String(i + 1).padStart(2, "0")}
+                  question={faq.question}
+                  answer={faq.answer}
+                  isOpen={openIndex === i}
+                  onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+                />
+              ))}
+            </div>
+          </ScrollReveal>
+        </div>
       </div>
     </section>
   );

@@ -1,78 +1,90 @@
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { ArrowRight, Clock, Wrench, BadgeDollarSign } from "lucide-react";
 import Link from "next/link";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { Button } from "@/components/ui/Button";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { Magnetic } from "@/components/ui/Magnetic";
+import { MessageCircle } from "lucide-react";
+import { whatsappUrl } from "@/lib/company";
 
 const trustSignals = [
-  { icon: Clock, text: "Instalación en 48h" },
-  { icon: Wrench, text: "Mantenimiento incluido" },
-  { icon: BadgeDollarSign, text: "Sin inversión" },
+  "Sin costo de instalación",
+  "Operación incluida 24/7",
+  "Modelo comercial flexible",
+  "Respuesta en menos de 24 horas",
 ];
 
 export function CTAFinal() {
+  const wa = whatsappUrl("Hola, me interesa una máquina Nexo");
   return (
-    <section className="relative overflow-hidden bg-nexo-black py-24 lg:py-32">
-      {/* Background effects */}
-      <div className="pointer-events-none absolute inset-0 bg-mesh-gradient" />
-      <div className="pointer-events-none absolute left-1/2 top-0 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-nexo-gold/5 blur-[120px]" />
-      <div className="bg-noise pointer-events-none absolute inset-0" />
+    <section className="relative overflow-hidden border-t border-border-soft bg-bg-sunken py-24 lg:py-32">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-accent/8 blur-[140px]"
+      />
 
-      <div className="relative z-10 mx-auto max-w-4xl px-5 sm:px-8 lg:px-12 text-center">
-        <ScrollReveal>
-          <p className="mb-4 text-sm font-medium uppercase tracking-widest text-nexo-gold">
-            Da el siguiente paso
-          </p>
-        </ScrollReveal>
+      <div className="relative mx-auto max-w-5xl px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-12 lg:gap-16">
+          <div className="md:col-span-7">
+            <ScrollReveal>
+              <Eyebrow index="08">Da el siguiente paso</Eyebrow>
+            </ScrollReveal>
+            <ScrollReveal delay={0.05}>
+              <h2 className="display-lg mt-6 font-light text-fg">
+                Lleva Nexo
+                <br />
+                <span className="font-extrabold text-accent">
+                  a tu espacio.
+                </span>
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal delay={0.1}>
+              <p className="mt-6 max-w-md text-base leading-relaxed text-fg-muted md:text-lg">
+                Cuéntanos cómo es tu espacio y qué busca tu equipo. Te
+                contactamos en menos de 24 horas para iniciar la conversación.
+                Sin compromiso.
+              </p>
+            </ScrollReveal>
 
-        <ScrollReveal delay={0.1}>
-          <h2 className="font-display text-3xl font-bold leading-tight text-nexo-white sm:text-4xl lg:text-5xl xl:text-6xl">
-            Agenda tu instalación{" "}
-            <span className="text-gradient-gold">esta semana</span>
-          </h2>
-        </ScrollReveal>
-
-        <ScrollReveal delay={0.2}>
-          <p className="mx-auto mt-6 max-w-xl text-lg text-nexo-gray md:text-xl">
-            Sin costo de instalación. Sin compromiso a largo plazo.
-            Tu equipo merece energía de verdad.
-          </p>
-        </ScrollReveal>
-
-        <ScrollReveal delay={0.3}>
-          <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Link
-              href="/contacto"
-              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-nexo-teal px-10 py-4 text-base font-semibold text-nexo-black transition-all duration-300 hover:bg-nexo-teal-hover hover:shadow-[0_0_40px_rgba(0,194,160,0.25)]"
-            >
-              Quiero mi máquina
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-            <p className="text-sm text-nexo-gray/50">
-              o escríbenos directo por{" "}
-              <a
-                href="https://wa.me/573001234567"
-                className="font-medium text-nexo-teal underline-offset-4 hover:underline"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                WhatsApp
-              </a>
-            </p>
-          </div>
-        </ScrollReveal>
-
-        <ScrollReveal delay={0.4}>
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-6 sm:gap-8">
-            {trustSignals.map((signal) => (
-              <div
-                key={signal.text}
-                className="flex items-center gap-2 text-sm text-nexo-gray/60"
-              >
-                <signal.icon className="h-4 w-4 text-nexo-gold/70" />
-                <span>{signal.text}</span>
+            <ScrollReveal delay={0.15}>
+              <div className="mt-10 flex flex-wrap items-center gap-4">
+                <Magnetic strength={0.35} maxTravelPx={10}>
+                  <Button href="/contacto" variant="accent" size="lg" withArrow>
+                    Quiero mi máquina
+                  </Button>
+                </Magnetic>
+                {wa && (
+                  <Link
+                    href={wa}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-2 text-sm font-medium text-fg-muted transition-colors duration-200 hover:text-fg tactile"
+                  >
+                    <MessageCircle className="h-4 w-4" strokeWidth={1.75} />
+                    o escríbenos por WhatsApp
+                  </Link>
+                )}
               </div>
-            ))}
+            </ScrollReveal>
           </div>
-        </ScrollReveal>
+
+          <div className="md:col-span-5">
+            <ScrollReveal delay={0.2}>
+              <ul className="divide-y divide-border-soft border-y border-border-soft">
+                {trustSignals.map((signal, i) => (
+                  <li
+                    key={signal}
+                    className="flex items-baseline gap-4 py-4"
+                  >
+                    <span className="font-mono text-xs text-accent">
+                      0{i + 1}
+                    </span>
+                    <span className="text-base text-fg-muted">{signal}</span>
+                  </li>
+                ))}
+              </ul>
+            </ScrollReveal>
+          </div>
+        </div>
       </div>
     </section>
   );

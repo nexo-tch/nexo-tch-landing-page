@@ -1,12 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import Image from "next/image";
+import { Button } from "@/components/ui/Button";
+import { Magnetic } from "@/components/ui/Magnetic";
 import type { ReactNode } from "react";
 
 interface ProductHeroProps {
   badge: string;
+  index?: string;
   headline: ReactNode;
   subheadline: string;
   ctaText: string;
@@ -17,7 +19,7 @@ interface ProductHeroProps {
 
 const stagger = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.12 } },
+  show: { transition: { staggerChildren: 0.08, delayChildren: 0.15 } },
 };
 
 const fadeUp = {
@@ -25,15 +27,13 @@ const fadeUp = {
   show: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.55,
-      ease: [0.21, 0.47, 0.32, 0.98] as const,
-    },
+    transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] as const },
   },
 };
 
 export function ProductHero({
   badge,
+  index = "01",
   headline,
   subheadline,
   ctaText,
@@ -42,52 +42,59 @@ export function ProductHero({
   machineAlt,
 }: ProductHeroProps) {
   return (
-    <section className="relative pt-28 pb-20 lg:pb-32 overflow-hidden bg-noise">
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+    <section className="relative overflow-hidden pt-24 md:pt-28 lg:pt-32">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-32 top-12 h-[500px] w-[500px] rounded-full bg-accent/8 blur-[140px]"
+      />
+
+      <div className="relative mx-auto max-w-7xl px-6 pb-16 md:pb-20 lg:px-8 lg:pb-28">
+        <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-12 md:items-center md:gap-10 lg:gap-12">
           <motion.div
             variants={stagger}
             initial="hidden"
             animate="show"
-            className="flex flex-col"
+            className="md:col-span-7"
           >
-            <motion.span
+            <motion.div
               variants={fadeUp}
-              className="inline-block self-start px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-nexo-gold border border-nexo-gold/30 rounded-full mb-6"
+              className="flex items-center gap-3"
             >
-              {badge}
-            </motion.span>
+              <span className="font-mono text-xs text-accent">({index})</span>
+              <span className="h-px w-10 bg-accent/60" />
+              <span className="font-mono text-xs uppercase tracking-widest text-accent">
+                {badge}
+              </span>
+            </motion.div>
 
+            {/* Font-light base gives the hero a pull-quote feel;
+                per-page accent clauses bring the 700/800 drama. */}
             <motion.h1
               variants={fadeUp}
-              className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.08] tracking-tight mb-6"
+              className="display-xl mt-6 font-light text-fg md:mt-8"
             >
               {headline}
             </motion.h1>
 
             <motion.p
               variants={fadeUp}
-              className="text-lg lg:text-xl text-nexo-gray max-w-lg mb-8 leading-relaxed"
+              className="mt-6 max-w-xl text-base leading-relaxed text-fg-muted md:mt-8 md:text-lg lg:text-xl"
             >
               {subheadline}
             </motion.p>
 
             <motion.div
               variants={fadeUp}
-              className="flex flex-col sm:flex-row gap-4"
+              className="mt-8 flex flex-wrap items-center gap-3 md:mt-10 md:gap-4"
             >
-              <Link
-                href={ctaHref}
-                className="inline-flex items-center justify-center gap-2 bg-nexo-teal hover:bg-nexo-teal-hover text-nexo-black font-semibold rounded-xl px-8 py-4 transition-all duration-300 hover:shadow-lg hover:shadow-nexo-teal/20 hover:-translate-y-0.5 text-center"
-              >
-                {ctaText}
-              </Link>
-              <Link
-                href="/contacto"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-nexo-gray hover:text-nexo-white border border-nexo-gray/20 hover:border-nexo-gold/30 rounded-xl transition-all duration-300 text-center"
-              >
+              <Magnetic strength={0.35} maxTravelPx={10}>
+                <Button href={ctaHref} variant="accent" size="lg" withArrow>
+                  {ctaText}
+                </Button>
+              </Magnetic>
+              <Button href="/contacto" variant="ghost" size="lg">
                 Cotiza sin compromiso
-              </Link>
+              </Button>
             </motion.div>
           </motion.div>
 
@@ -95,20 +102,25 @@ export function ProductHero({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
-              duration: 0.7,
-              delay: 0.3,
-              ease: [0.21, 0.47, 0.32, 0.98],
+              duration: 0.9,
+              delay: 0.4,
+              ease: [0.19, 1, 0.22, 1],
             }}
-            className="relative flex items-center justify-center"
+            className="relative flex items-center justify-center md:col-span-5"
           >
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-nexo-gold/5 via-transparent to-transparent rounded-3xl blur-2xl" />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 -inset-x-12 rounded-[40px] bg-gradient-to-tr from-accent/10 via-transparent to-transparent blur-3xl"
+            />
             <Image
               src={machineImage}
               alt={machineAlt}
-              width={450}
-              height={650}
-              className="relative h-[350px] sm:h-[420px] lg:h-[500px] xl:h-[550px] w-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.5)]"
+              width={520}
+              height={780}
               priority
+              fetchPriority="high"
+              sizes="(min-width: 1024px) 40vw, (min-width: 768px) 35vw, 70vw"
+              className="relative h-[300px] w-auto object-contain drop-shadow-[0_30px_60px_oklch(0_0_0/0.5)] sm:h-[420px] md:h-[460px] lg:h-[600px]"
             />
           </motion.div>
         </div>

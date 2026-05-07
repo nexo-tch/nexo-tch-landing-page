@@ -12,10 +12,10 @@ interface ScrollRevealProps {
 }
 
 const directionOffset = {
-  up: { y: 40 },
-  down: { y: -40 },
-  left: { x: 40 },
-  right: { x: -40 },
+  up: { y: 24 },
+  down: { y: -24 },
+  left: { x: 24 },
+  right: { x: -24 },
 };
 
 export function ScrollReveal({
@@ -33,9 +33,9 @@ export function ScrollReveal({
       whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once, margin: "-80px" }}
       transition={{
-        duration: 0.6,
+        duration: 0.7,
         delay,
-        ease: [0.21, 0.47, 0.32, 0.98],
+        ease: [0.19, 1, 0.22, 1] as const,
       }}
       className={className}
     >

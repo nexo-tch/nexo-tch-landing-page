@@ -1,59 +1,64 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, TrendingUp, Zap, Users, Settings } from "lucide-react";
+import { Dumbbell, Zap, Users, Settings } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { ProductHero } from "@/components/product/ProductHero";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { Button } from "@/components/ui/Button";
+import { Magnetic } from "@/components/ui/Magnetic";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { DEFAULT_OG_IMAGE, absoluteUrl, productSchema } from "@/lib/seo";
+
+const PRODUCT_NAME = "Nexo Protein";
+const PRODUCT_DESCRIPTION =
+  "Máquina vending de batidos de proteína y barras funcionales para gimnasios. Whey y opciones pensadas para el post-entrenamiento. Sin costo para tu gimnasio, operación incluida.";
 
 export const metadata: Metadata = {
-  title: "Nexo Protein — Batidos de proteína para gimnasios | Medellín",
+  title: "Nexo Protein — Proteína al instante en tu gym",
   description:
-    "Batidos de proteína listos al instante en tu gimnasio. Whey protein, barras y mass gainer. Instalación en 48h, sin costo. Revenue adicional para tu gym.",
+    "Batidos de proteína listos al instante en tu gimnasio. Whey y barras proteicas. Sin costo para tu gimnasio, operación incluida.",
+  alternates: { canonical: "/proteinas" },
   openGraph: {
     title: "Nexo Protein — Proteína al instante en tu gimnasio",
     description:
-      "Máquina vending de batidos de proteína. Post-entrenamiento inmediato, nuevo revenue para tu gym, cero operación.",
+      "Batidos de whey y barras proteicas listas al instante. Post-entrenamiento inmediato, cero operación, experiencia completa para tus socios.",
+    url: absoluteUrl("/proteinas"),
+    type: "website",
+    images: [
+      {
+        url: DEFAULT_OG_IMAGE.url,
+        width: DEFAULT_OG_IMAGE.width,
+        height: DEFAULT_OG_IMAGE.height,
+        alt: "Nexo Protein — máquina de batidos de proteína para gimnasios",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nexo Protein — Proteína al instante en tu gimnasio",
+    description:
+      "Máquina vending de batidos de proteína y barras. Sin costo para tu gimnasio.",
+    images: [DEFAULT_OG_IMAGE.url],
   },
 };
 
+// Representa el tipo de productos que típicamente opera Nexo Protein. El
+// mix final se acuerda con cada gimnasio según el perfil de sus socios, por
+// eso evitamos comprometer sabores o formatos específicos como SKU cerrado.
 const products = [
-  {
-    emoji: "🥤",
-    name: "Whey Chocolate",
-    description: "30g de proteína, sabor intenso a chocolate belga",
-  },
-  {
-    emoji: "🍦",
-    name: "Whey Vainilla",
-    description: "30g de proteína, suave y cremoso al paladar",
-  },
-  {
-    emoji: "🍓",
-    name: "Whey Fresa",
-    description: "30g de proteína, frescura frutal en cada sorbo",
-  },
-  {
-    emoji: "🍫",
-    name: "Barra Proteica Chocolate",
-    description: "20g de proteína, snack perfecto post-entrenamiento",
-  },
-  {
-    emoji: "🥜",
-    name: "Barra Proteica Maní",
-    description: "20g de proteína con maní real, crujiente y saciante",
-  },
-  {
-    emoji: "💪",
-    name: "Batido Mass Gainer",
-    description: "50g de proteína + carbohidratos para fase de volumen",
-  },
+  { name: "Batido Whey Chocolate", description: "Proteína de calidad, sabor clásico y familiar." },
+  { name: "Batido Whey Vainilla", description: "Suavidad en cada sorbo, sin aromas artificiales agresivos." },
+  { name: "Batido Whey Fresa", description: "Frescura frutal para el post-entrenamiento." },
+  { name: "Barra Proteica Chocolate", description: "Snack denso y completo, ideal entre clases." },
+  { name: "Barra Proteica Maní", description: "Crujiente, saciante y con proteína real." },
 ];
 
 const benefits = [
   {
-    icon: TrendingUp,
-    title: "Revenue sin esfuerzo",
+    icon: Dumbbell,
+    title: "Coherencia con el entrenamiento",
     description:
-      "Tu gimnasio genera ingresos adicionales con cada venta. Sin inversión, sin personal extra, sin complicaciones operativas. Es revenue pasivo real.",
+      "Lo que tus instructores recomiendan al terminar la rutina — proteína en los primeros minutos — pasa de ser un consejo a ser una opción disponible en el mismo espacio. Lo que se enseña, ahora también se tiene a la mano.",
   },
   {
     icon: Zap,
@@ -71,99 +76,134 @@ const benefits = [
     icon: Settings,
     title: "Cero operación",
     description:
-      "Nexo instala, abastece, mantiene y opera la máquina. Tu equipo se enfoca en lo que sabe hacer — entrenar personas. Nosotros hacemos el resto.",
+      "Nexo instala, abastece, mantiene y opera la máquina. Tu equipo se enfoca en lo que sabe hacer, entrenar personas. Nosotros hacemos el resto.",
   },
 ];
 
 export default function ProteinPage() {
   return (
     <>
+      <JsonLd
+        data={productSchema({
+          name: PRODUCT_NAME,
+          description: PRODUCT_DESCRIPTION,
+          slug: "/proteinas",
+          image: "/images/nexo-protein-machine.png",
+          category: "Protein shake vending machine",
+          audience: "Gimnasios y centros deportivos",
+        })}
+      />
       <ProductHero
         badge="Nexo Protein"
+        index="02"
         headline={
           <>
-            El batido post-entrenamiento,{" "}
-            <span className="text-gradient-gold">listo al instante</span>
+            Proteína para tus socios,{" "}
+            <span className="font-extrabold text-accent">
+              lista cuando la necesitan.
+            </span>
           </>
         }
-        subheadline="Batidos de whey protein y barras proteicas directo en tu gimnasio. Tus socios entrenan, toman su proteína y se van. Sin espera, sin licuadora, sin excusas."
-        ctaText="Quiero Nexo Protein →"
+        subheadline="Batidos de whey y barras proteicas directo en tu gimnasio. Tus socios entrenan, toman su proteína y se van. Sin espera, sin licuadora, sin excusas."
+        ctaText="Quiero Nexo Protein"
         ctaHref="/contacto"
         machineImage="/images/nexo-protein-machine.png"
         machineAlt="Máquina Nexo Protein para gimnasios"
       />
 
-      {/* Products Grid */}
-      <section className="py-24 lg:py-32 bg-nexo-black">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <ScrollReveal>
-            <div className="text-center mb-16">
-              <span className="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-nexo-teal border border-nexo-teal/30 rounded-full mb-4">
-                Productos disponibles
-              </span>
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-                Batidos y barras de{" "}
-                <span className="text-gradient-gold">proteína</span>
-              </h2>
-              <p className="text-nexo-gray text-lg max-w-2xl mx-auto">
-                Proteína de alta calidad lista al instante. Cada producto seleccionado para el rendimiento de tus socios.
-              </p>
-            </div>
-          </ScrollReveal>
+      {/* Productos — divide-y editorial */}
+      <section className="border-t border-border-soft py-24 lg:py-32">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <SectionHeader
+            index="A"
+            eyebrow="Mix típico"
+            title={
+              <>
+                Whey y barras,
+                <br />
+                <span className="text-accent">lo que tus socios usan.</span>
+              </>
+            }
+            description="Proteína de calidad lista al instante. El mix final lo definimos contigo según el perfil de tus socios."
+            className="mb-16 lg:mb-20"
+          />
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
+          <ul className="divide-y divide-border-soft border-y border-border-soft">
             {products.map((product, i) => (
-              <ScrollReveal key={product.name} delay={i * 0.07}>
-                <div className="group bg-nexo-gray-dark rounded-xl p-5 lg:p-6 border border-white/5 hover:border-nexo-teal/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-nexo-teal/5 h-full">
-                  <span className="text-3xl lg:text-4xl block mb-3">{product.emoji}</span>
-                  <h3 className="font-display font-semibold text-base lg:text-lg mb-1">
-                    {product.name}
-                  </h3>
-                  <p className="text-nexo-gray text-sm leading-relaxed">
+              <ScrollReveal key={product.name} delay={i * 0.05}>
+                <li className="grid grid-cols-1 items-baseline gap-4 py-6 lg:grid-cols-12 lg:gap-8 lg:py-8">
+                  <div className="flex items-baseline gap-4 lg:col-span-5">
+                    <span className="font-mono text-xs text-accent">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="font-display text-xl font-medium text-fg lg:text-2xl">
+                      {product.name}
+                    </h3>
+                  </div>
+                  <p className="text-base leading-relaxed text-fg-muted lg:col-span-7">
                     {product.description}
                   </p>
-                </div>
+                </li>
               </ScrollReveal>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
-      {/* Benefits for Gyms */}
-      <section className="py-24 lg:py-32 bg-mesh-gradient">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <ScrollReveal>
-            <div className="text-center mb-16">
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-                Tu gimnasio,{" "}
-                <span className="text-gradient-gold">al siguiente nivel</span>
-              </h2>
-              <p className="text-nexo-gray text-lg max-w-2xl mx-auto">
-                Nexo Protein no solo beneficia a tus socios — transforma tu gimnasio en un espacio completo.
-              </p>
-            </div>
-          </ScrollReveal>
+      {/* Benefits — alternating zig-zag */}
+      <section className="bg-bg-sunken py-24 lg:py-32">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <SectionHeader
+            index="B"
+            eyebrow="Por qué Nexo Protein"
+            title={
+              <>
+                Tu gimnasio,
+                <br />
+                <span className="text-accent">al siguiente nivel.</span>
+              </>
+            }
+            description="Nexo Protein no solo beneficia a tus socios. Transforma tu gimnasio en un espacio completo."
+            className="mb-20 lg:mb-28"
+          />
 
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+          <div className="space-y-20 lg:space-y-28">
             {benefits.map((benefit, i) => {
               const Icon = benefit.icon;
+              const reversed = i % 2 !== 0;
               return (
-                <ScrollReveal key={benefit.title} delay={i * 0.1}>
-                  <div className="group bg-nexo-gray-dark/50 rounded-2xl p-8 lg:p-10 border border-white/5 hover:border-nexo-teal/20 transition-all duration-300 h-full">
-                    <div className="flex items-start gap-5">
-                      <div className="shrink-0 w-12 h-12 rounded-xl bg-nexo-teal/10 flex items-center justify-center group-hover:bg-nexo-teal/20 transition-colors duration-300">
-                        <Icon className="w-6 h-6 text-nexo-teal" strokeWidth={1.5} />
+                <ScrollReveal
+                  key={benefit.title}
+                  direction={reversed ? "right" : "left"}
+                >
+                  <article
+                    className={`grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-12 ${
+                      reversed ? "lg:[direction:rtl]" : ""
+                    }`}
+                  >
+                    <div className="lg:col-span-4 lg:[direction:ltr]">
+                      <div className="flex items-baseline gap-4">
+                        <span className="font-mono text-xs text-accent">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span className="h-px flex-1 bg-border-soft" />
                       </div>
-                      <div>
-                        <h3 className="font-display text-xl lg:text-2xl font-bold mb-3">
-                          {benefit.title}
-                        </h3>
-                        <p className="text-nexo-gray leading-relaxed">
-                          {benefit.description}
-                        </p>
+                      <div className="mt-6 flex h-14 w-14 items-center justify-center rounded-xl border border-border bg-bg">
+                        <Icon
+                          className="h-6 w-6 text-accent"
+                          strokeWidth={1.5}
+                        />
                       </div>
                     </div>
-                  </div>
+                    <div className="lg:col-span-8 lg:[direction:ltr]">
+                      <h3 className="font-display text-2xl font-semibold text-fg lg:text-3xl">
+                        {benefit.title}
+                      </h3>
+                      <p className="mt-4 max-w-2xl text-base leading-relaxed text-fg-muted lg:text-lg">
+                        {benefit.description}
+                      </p>
+                    </div>
+                  </article>
                 </ScrollReveal>
               );
             })}
@@ -171,49 +211,58 @@ export default function ProteinPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 lg:py-32 bg-nexo-black relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-nexo-teal/5 via-transparent to-transparent" />
-        <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <ScrollReveal>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-              Instala Nexo Protein{" "}
-              <span className="text-gradient-gold">en tu gimnasio</span>
-            </h2>
-            <p className="text-nexo-gray text-lg lg:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-              Proteína al instante para tus socios, revenue adicional para tu gimnasio. Sin inversión, sin operación, sin complicaciones.
-            </p>
-            <Link
-              href="/contacto"
-              className="inline-flex items-center gap-2 bg-nexo-teal hover:bg-nexo-teal-hover text-nexo-black font-semibold rounded-xl px-8 py-4 transition-all duration-300 hover:shadow-lg hover:shadow-nexo-teal/20 hover:-translate-y-0.5 text-lg"
-            >
-              Quiero Nexo Protein
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-            <p className="mt-4 text-sm text-nexo-gray/60">
-              Sin costo de instalación · Revenue desde el día 1 · Mantenimiento incluido
-            </p>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.2}>
-            <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6">
-              {[
-                { value: "48h", label: "Instalación express" },
-                { value: "30g+", label: "Proteína por batido" },
-                { value: "24/7", label: "Soporte y abastecimiento" },
-              ].map((stat) => (
-                <div
-                  key={stat.label}
-                  className="bg-nexo-gray-dark/50 rounded-xl p-6 border border-white/5"
-                >
-                  <div className="font-display text-2xl lg:text-3xl font-bold text-nexo-teal mb-1">
-                    {stat.value}
-                  </div>
-                  <div className="text-nexo-gray text-sm">{stat.label}</div>
+      {/* Final CTA */}
+      <section className="border-t border-border-soft py-24 lg:py-32">
+        <div className="mx-auto max-w-5xl px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-7">
+              <ScrollReveal>
+                <Eyebrow>Lleva Nexo Protein a tu gimnasio</Eyebrow>
+              </ScrollReveal>
+              <ScrollReveal delay={0.05}>
+                <h2 className="display-lg mt-6 text-fg">
+                  Un gimnasio más completo,
+                  <br />
+                  <span className="text-accent">desde el primer día.</span>
+                </h2>
+              </ScrollReveal>
+              <ScrollReveal delay={0.1}>
+                <p className="mt-6 max-w-md text-base leading-relaxed text-fg-muted md:text-lg">
+                  Proteína al instante para tus socios. Sin inversión, sin
+                  operación, sin complicaciones. Te contactamos en menos de 24
+                  horas.
+                </p>
+              </ScrollReveal>
+              <ScrollReveal delay={0.15}>
+                <div className="mt-10">
+                  <Magnetic strength={0.35} maxTravelPx={10}>
+                    <Button href="/contacto" variant="accent" size="lg" withArrow>
+                      Quiero Nexo Protein
+                    </Button>
+                  </Magnetic>
                 </div>
-              ))}
+              </ScrollReveal>
             </div>
-          </ScrollReveal>
+            <ScrollReveal delay={0.2} className="lg:col-span-5">
+              <ul className="divide-y divide-border-soft border-y border-border-soft">
+                {[
+                  "Respuesta en menos de 24 horas",
+                  "Proteína disponible desde el día uno",
+                  "Operación y soporte incluidos 24/7",
+                ].map((signal, i) => (
+                  <li
+                    key={signal}
+                    className="flex items-baseline gap-4 py-4"
+                  >
+                    <span className="font-mono text-xs text-accent">
+                      0{i + 1}
+                    </span>
+                    <span className="text-base text-fg-muted">{signal}</span>
+                  </li>
+                ))}
+              </ul>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
     </>

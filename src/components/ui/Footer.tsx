@@ -1,9 +1,21 @@
 import Link from "next/link";
-import { Coffee, Dumbbell, Cookie, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
+import { company, whatsappUrl, mailtoUrl } from "@/lib/company";
 
-function InstagramIcon({ size = 18 }: { size?: number }) {
+function InstagramIcon({ size = 16 }: { size?: number }) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
       <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
       <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
@@ -11,9 +23,20 @@ function InstagramIcon({ size = 18 }: { size?: number }) {
   );
 }
 
-function LinkedinIcon({ size = 18 }: { size?: number }) {
+function LinkedinIcon({ size = 16 }: { size?: number }) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
       <rect width="4" height="12" x="2" y="9" />
       <circle cx="4" cy="4" r="2" />
@@ -22,68 +45,82 @@ function LinkedinIcon({ size = 18 }: { size?: number }) {
 }
 
 const productLinks = [
-  { href: "/cafe", label: "Nexo Café", icon: Coffee },
-  { href: "/proteinas", label: "Nexo Protein", icon: Dumbbell },
-  { href: "/snacks", label: "Nexo Snacks", icon: Cookie },
+  { href: "/cafe", label: "Nexo Café" },
+  { href: "/proteinas", label: "Nexo Protein" },
+  { href: "/snacks", label: "Nexo Snacks" },
 ];
 
 const companyLinks = [
   { href: "/nosotros", label: "Nosotros" },
   { href: "/contacto", label: "Contacto" },
+  { href: "/privacidad", label: "Privacidad y datos" },
 ];
 
 export function Footer() {
+  const wa = whatsappUrl("Hola, me interesa una máquina Nexo");
+  const waDisplay = company.contact.whatsapp.display;
+
   return (
-    <footer className="bg-nexo-black border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+    <footer className="border-t border-border-soft bg-bg">
+      <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
+        {/* Top — oversized brand statement */}
+        <div className="border-b border-border-soft pb-16">
+          <p className="font-display text-3xl font-medium leading-tight text-fg sm:text-4xl lg:text-5xl">
+            Energía en cada taza,
+            <br />
+            <span className="text-accent">para cada espacio.</span>
+          </p>
+          <p className="mt-6 max-w-md text-base text-fg-muted">
+            Máquinas vending de café, proteína y snacks para empresas en
+            Medellín. Operación y mantenimiento incluidos.
+          </p>
+        </div>
+
+        {/* Middle — links grid */}
+        <div className="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-nexo-gold to-nexo-gold-bright flex items-center justify-center font-display font-extrabold text-nexo-black text-lg">
-                N
-              </div>
-              <span className="font-display font-bold text-xl tracking-tight">
-                Nexo<span className="text-nexo-gold">.</span>
+            <Link
+              href="/"
+              className="group inline-flex items-center gap-2 tactile"
+            >
+              <span className="font-display text-xl font-semibold leading-none text-fg">
+                {company.brandName}
               </span>
+              <span className="h-1.5 w-1.5 rounded-full bg-accent transition-transform duration-200 group-hover:scale-125" />
             </Link>
-            <p className="text-nexo-gray/70 text-sm leading-relaxed mb-6 max-w-xs">
-              Energía en cada taza. Máquinas vending de café premium, proteína y
-              snacks para empresas en Medellín.
-            </p>
-            <div className="flex gap-3">
+            <div className="mt-6 flex gap-3">
               <a
-                href="https://instagram.com/nexovending"
+                href={company.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-nexo-gray-dark flex items-center justify-center text-nexo-gray hover:text-nexo-gold hover:bg-nexo-gold/10 transition-all duration-300"
+                className="flex h-10 w-10 items-center justify-center rounded-lg border border-border-soft text-fg-muted transition-[color,border-color] duration-200 hover:border-accent/40 hover:text-accent tactile"
                 aria-label="Instagram"
               >
-                <InstagramIcon size={18} />
+                <InstagramIcon />
               </a>
               <a
-                href="https://linkedin.com/company/nexovending"
+                href={company.social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-nexo-gray-dark flex items-center justify-center text-nexo-gray hover:text-nexo-gold hover:bg-nexo-gold/10 transition-all duration-300"
+                className="flex h-10 w-10 items-center justify-center rounded-lg border border-border-soft text-fg-muted transition-[color,border-color] duration-200 hover:border-accent/40 hover:text-accent tactile"
                 aria-label="LinkedIn"
               >
-                <LinkedinIcon size={18} />
+                <LinkedinIcon />
               </a>
             </div>
           </div>
 
           <div>
-            <h3 className="font-display font-bold text-sm uppercase tracking-wider text-nexo-gold mb-6">
+            <h3 className="font-mono text-xs uppercase tracking-wider text-accent">
               Productos
             </h3>
-            <ul className="space-y-4">
+            <ul className="mt-6 space-y-3">
               {productLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="flex items-center gap-3 text-nexo-gray/70 hover:text-nexo-white transition-colors text-sm"
+                    className="text-sm text-fg-muted transition-colors duration-200 hover:text-fg"
                   >
-                    <link.icon size={16} />
                     {link.label}
                   </Link>
                 </li>
@@ -92,15 +129,15 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-display font-bold text-sm uppercase tracking-wider text-nexo-gold mb-6">
+            <h3 className="font-mono text-xs uppercase tracking-wider text-accent">
               Empresa
             </h3>
-            <ul className="space-y-4">
+            <ul className="mt-6 space-y-3">
               {companyLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-nexo-gray/70 hover:text-nexo-white transition-colors text-sm"
+                    className="text-sm text-fg-muted transition-colors duration-200 hover:text-fg"
                   >
                     {link.label}
                   </Link>
@@ -110,45 +147,53 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-display font-bold text-sm uppercase tracking-wider text-nexo-gold mb-6">
+            <h3 className="font-mono text-xs uppercase tracking-wider text-accent">
               Contacto
             </h3>
-            <ul className="space-y-4">
+            <ul className="mt-6 space-y-3">
               <li>
                 <a
-                  href="mailto:hola@nexovending.com"
-                  className="flex items-center gap-3 text-nexo-gray/70 hover:text-nexo-white transition-colors text-sm"
+                  href={mailtoUrl()}
+                  className="group flex items-center gap-3 text-sm text-fg-muted transition-colors duration-200 hover:text-fg"
                 >
-                  <Mail size={16} />
-                  hola@nexovending.com
+                  <Mail className="h-4 w-4" strokeWidth={1.5} />
+                  {company.contact.email}
                 </a>
               </li>
-              <li>
-                <a
-                  href="https://wa.me/573001234567"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-nexo-gray/70 hover:text-nexo-white transition-colors text-sm"
-                >
-                  <Phone size={16} />
-                  +57 300 123 4567
-                </a>
-              </li>
-              <li className="flex items-start gap-3 text-nexo-gray/70 text-sm">
-                <MapPin size={16} className="mt-0.5 shrink-0" />
-                Medellín, Colombia
+              {wa && waDisplay && (
+                <li>
+                  <a
+                    href={wa}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-3 text-sm text-fg-muted transition-colors duration-200 hover:text-fg"
+                  >
+                    <Phone className="h-4 w-4" strokeWidth={1.5} />
+                    {waDisplay}
+                  </a>
+                </li>
+              )}
+              <li className="flex items-start gap-3 text-sm text-fg-muted">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0" strokeWidth={1.5} />
+                {company.city}, {company.country}
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-nexo-gray/40 text-xs">
-            © {new Date().getFullYear()} Nexo Technologies. Todos los derechos
-            reservados.
-          </p>
-          <p className="text-nexo-gray/40 text-xs">
-            Hecho con ☕ en Medellín, Colombia
+        {/* Bottom — legal */}
+        <div className="space-y-4 border-t border-border-soft pt-8">
+          <div className="flex flex-col items-start justify-between gap-3 md:flex-row md:items-center">
+            <p className="font-mono text-xs uppercase tracking-wider text-fg-subtle">
+              © {new Date().getFullYear()} {company.legalName}. Todos los
+              derechos reservados.
+            </p>
+            <p className="font-mono text-xs uppercase tracking-wider text-fg-subtle">
+              Hecho en {company.city}, {company.country}
+            </p>
+          </div>
+          <p className="font-mono text-[11px] uppercase tracking-wider text-fg-subtle">
+            NIT {company.nit} · Operación 100% digital
           </p>
         </div>
       </div>

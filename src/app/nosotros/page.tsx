@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import {
   Lightbulb,
   Minimize2,
@@ -11,15 +10,41 @@ import {
   Fingerprint,
   Cpu,
   Zap,
-  ArrowRight,
-  Quote,
 } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { Button } from "@/components/ui/Button";
+import { Magnetic } from "@/components/ui/Magnetic";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { DEFAULT_OG_IMAGE, absoluteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Nosotros — Nexo Technologies | Innovación en vending",
+  title: "Nosotros — No vendemos café, vendemos energía",
   description:
-    "Conoce a Nexo Technologies. No vendemos café, vendemos energía. Soluciones de vending premium con tecnología, diseño y calidad para empresas en Medellín.",
+    "Conoce a Nexo Technologies. Soluciones de vending con tecnología, diseño y calidad para empresas en Medellín.",
+  alternates: { canonical: "/nosotros" },
+  openGraph: {
+    title: "Nosotros — Nexo Technologies",
+    description:
+      "No vendemos café, vendemos energía. Tecnología, diseño y operación impecable para empresas en Medellín.",
+    url: absoluteUrl("/nosotros"),
+    type: "website",
+    images: [
+      {
+        url: DEFAULT_OG_IMAGE.url,
+        width: DEFAULT_OG_IMAGE.width,
+        height: DEFAULT_OG_IMAGE.height,
+        alt: DEFAULT_OG_IMAGE.alt,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nosotros — Nexo Technologies",
+    description:
+      "No vendemos café, vendemos energía. Tecnología, diseño y operación impecable.",
+    images: [DEFAULT_OG_IMAGE.url],
+  },
 };
 
 const values = [
@@ -45,17 +70,17 @@ const values = [
     icon: Heart,
     title: "Cercanía y calidez",
     description:
-      "La tecnología no reemplaza lo humano — lo potencia. Somos cercanos, accesibles y comprometidos.",
+      "La tecnología no reemplaza lo humano. Lo potencia. Somos cercanos, accesibles y comprometidos.",
   },
   {
     icon: ShieldCheck,
     title: "Calidad y confiabilidad",
     description:
-      "Operamos con estándares premium. Tu equipo merece lo mejor y nosotros lo garantizamos.",
+      "Operamos con estándares altos, de principio a fin. Tu equipo merece lo mejor y nosotros lo garantizamos.",
   },
   {
     icon: Rocket,
-    title: "Escalabilidad y visión de futuro",
+    title: "Escalabilidad y futuro",
     description:
       "Pensamos en grande. Cada producto está diseñado para crecer con tu empresa.",
   },
@@ -64,207 +89,237 @@ const values = [
 const differentiators = [
   {
     icon: Gem,
-    title: "Producto premium, no genérico",
+    title: "Producto con criterio",
     description:
-      "Café de especialidad, proteína de calidad, snacks curados. Nada de lo que encuentras en una máquina convencional.",
+      "Café de calidad, proteína confiable, snacks seleccionados. Cada producto elegido para acompañar el día a día de tu equipo, no para llenar una máquina.",
   },
   {
     icon: Fingerprint,
-    title: "Diseño e identidad de marca",
+    title: "Diseño e identidad",
     description:
-      "Nuestras máquinas son un statement. Elevan la imagen de tu espacio con estética minimalista y materiales premium.",
+      "Nuestras máquinas son parte del lenguaje visual de tu espacio. Estética minimalista, materiales cuidados, detalles que se notan.",
   },
   {
     icon: Cpu,
-    title: "Tecnología como diferenciador",
+    title: "Tecnología como diferencia",
     description:
-      "Monitoreo remoto, abastecimiento inteligente y datos de consumo. No solo vendemos producto — optimizamos la experiencia.",
+      "Monitoreo remoto, abastecimiento inteligente, datos de consumo. No solo entregamos producto, optimizamos la experiencia completa.",
   },
   {
     icon: Zap,
     title: "Cero complejidad operativa",
     description:
-      "Instalamos, operamos, mantenemos y abastecemos. Tu empresa solo disfruta. Sin contratos largos, sin inversión.",
+      "Instalamos, operamos, mantenemos y abastecemos. Tu empresa solo disfruta. Modelo comercial flexible, sin inversión.",
   },
 ];
 
 export default function NosotrosPage() {
   return (
-    <div className="bg-nexo-black">
+    <>
       {/* Hero */}
-      <section className="relative overflow-hidden pt-28 pb-24 lg:pb-32">
-        <div className="bg-noise pointer-events-none absolute inset-0" />
-        <div className="pointer-events-none absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-nexo-gold/5 blur-[120px]" />
+      <section className="relative overflow-hidden pt-28 lg:pt-32">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-32 top-12 h-[500px] w-[500px] rounded-full bg-accent/8 blur-[140px]"
+        />
 
-        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-6 pb-24 lg:px-8 lg:pb-32">
           <ScrollReveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-nexo-gold/40 bg-nexo-gold/10 px-4 py-1.5 text-sm font-medium text-nexo-gold">
-              Nexo Technologies
-            </span>
+            <Eyebrow>Nexo Technologies</Eyebrow>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.1}>
-            <h1 className="mt-6 max-w-3xl font-display text-5xl font-bold leading-[1.08] tracking-tight text-nexo-white lg:text-6xl">
+          <ScrollReveal delay={0.05}>
+            <h1 className="display-xl mt-8 max-w-4xl font-light text-fg">
               No vendemos café.{" "}
-              <span className="text-gradient-gold">Vendemos energía.</span>
+              <span className="font-extrabold text-accent">
+                Vendemos energía.
+              </span>
             </h1>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.2}>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-nexo-gray md:text-xl">
-              Somos el nexo entre tu empresa y la experiencia premium que tu
-              equipo merece.
+          <ScrollReveal delay={0.1}>
+            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-fg-muted md:text-xl">
+              Somos el nexo entre tu empresa y la experiencia que tu equipo
+              merece. Tecnología, diseño y operación impecable, en un solo
+              servicio.
             </p>
           </ScrollReveal>
         </div>
       </section>
 
       {/* Mission / Vision */}
-      <section className="py-24 lg:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-6 md:grid-cols-2">
-            <ScrollReveal delay={0.1}>
-              <div className="group h-full rounded-2xl border border-nexo-gold/10 bg-nexo-gray-dark p-8 transition-all duration-500 hover:border-nexo-gold/30 lg:p-10">
-                <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-nexo-gold/10">
-                  <span className="font-display text-xl font-bold text-nexo-gold">
-                    M
-                  </span>
-                </div>
-                <h2 className="mb-4 font-display text-2xl font-bold text-nexo-white">
+      <section className="border-t border-border-soft py-24 lg:py-32">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <SectionHeader
+            index="01"
+            eyebrow="Por qué existimos"
+            title={
+              <>
+                Misión clara,
+                <br />
+                <span className="text-accent">visión a largo plazo.</span>
+              </>
+            }
+            className="mb-16"
+          />
+
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+            <ScrollReveal>
+              <article className="border-l border-border pl-8">
+                <span className="font-mono text-xs uppercase tracking-wider text-accent">
                   Misión
-                </h2>
-                <p className="text-base leading-relaxed text-nexo-gray">
-                  Creamos soluciones tecnológicas inteligentes que simplifican la
-                  vida de las personas y optimizan procesos, combinando
+                </span>
+                <h3 className="display-md mt-4 text-fg">
+                  Simplificar lo complejo con tecnología.
+                </h3>
+                <p className="mt-6 text-base leading-relaxed text-fg-muted lg:text-lg">
+                  Creamos soluciones tecnológicas inteligentes que simplifican
+                  la vida de las personas y optimizan procesos, combinando
                   innovación, diseño y funcionalidad.
                 </p>
-              </div>
+              </article>
             </ScrollReveal>
 
-            <ScrollReveal delay={0.2}>
-              <div className="group h-full rounded-2xl border border-nexo-teal/10 bg-nexo-gray-dark p-8 transition-all duration-500 hover:border-nexo-teal/30 lg:p-10">
-                <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-nexo-teal/10">
-                  <span className="font-display text-xl font-bold text-nexo-teal">
-                    V
-                  </span>
-                </div>
-                <h2 className="mb-4 font-display text-2xl font-bold text-nexo-white">
+            <ScrollReveal delay={0.1}>
+              <article className="border-l border-border pl-8">
+                <span className="font-mono text-xs uppercase tracking-wider text-accent">
                   Visión
-                </h2>
-                <p className="text-base leading-relaxed text-nexo-gray">
+                </span>
+                <h3 className="display-md mt-4 text-fg">
+                  Ser el nexo entre las personas y el futuro.
+                </h3>
+                <p className="mt-6 text-base leading-relaxed text-fg-muted lg:text-lg">
                   Convertirnos en el nexo entre las personas y el futuro
-                  tecnológico, creando soluciones que redefinan la manera en que
-                  interactuamos con el mundo.
+                  tecnológico, creando soluciones que redefinan la manera en
+                  que interactuamos con el mundo.
                 </p>
-              </div>
+              </article>
             </ScrollReveal>
           </div>
         </div>
       </section>
 
       {/* Manifesto */}
-      <section className="relative py-24 lg:py-32">
-        <div className="pointer-events-none absolute inset-0 bg-mesh-gradient" />
-        <div className="relative z-10 mx-auto max-w-4xl px-6 lg:px-8">
+      <section className="bg-bg-sunken py-24 lg:py-32">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <ScrollReveal>
-            <div className="relative rounded-3xl border border-nexo-gold/10 bg-nexo-black/60 p-10 backdrop-blur-sm lg:p-16">
-              <Quote className="mb-8 h-12 w-12 text-nexo-gold/30" />
-              <blockquote className="font-display text-xl font-medium leading-relaxed text-nexo-white md:text-2xl lg:text-3xl lg:leading-snug">
-                No creemos en la tecnología como fin. La vemos como herramienta:
-                para simplificar, para optimizar, para conectar.
-                <br />
-                <br />
-                <span className="text-nexo-gray">
-                  El mundo está lleno de procesos innecesariamente complejos.
-                  Nosotros trabajamos para que funcionen mejor.
-                </span>
-                <br />
-                <br />
-                No buscamos hacer más. Buscamos hacerlo{" "}
-                <span className="text-gradient-gold">mejor</span>.
-                <br />
-                <br />
-                <span className="text-nexo-gray">
-                  Somos el nexo entre una necesidad concreta y una solución
-                  inteligente.
-                </span>
-              </blockquote>
-              <div className="absolute -bottom-px -right-px h-24 w-24 rounded-br-3xl border-b-2 border-r-2 border-nexo-gold/20" />
-              <div className="absolute -left-px -top-px h-24 w-24 rounded-tl-3xl border-l-2 border-t-2 border-nexo-gold/20" />
-            </div>
+            <Eyebrow index="02">Manifiesto</Eyebrow>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.05}>
+            <blockquote className="mt-10 font-display text-2xl font-medium leading-relaxed text-fg md:text-3xl lg:text-4xl lg:leading-snug">
+              No creemos en la tecnología como fin. La vemos como herramienta:
+              para simplificar, para optimizar, para conectar.
+            </blockquote>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.1}>
+            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-fg-muted">
+              El mundo está lleno de procesos innecesariamente complejos.
+              Nosotros trabajamos para que funcionen mejor.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.15}>
+            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-fg-muted">
+              No buscamos hacer más. Buscamos hacerlo{" "}
+              <span className="font-medium text-accent">mejor</span>. Somos el
+              nexo entre una necesidad concreta y una solución inteligente.
+            </p>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* Values */}
+      {/* Values — divide-y editorial */}
       <section className="py-24 lg:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <ScrollReveal>
-            <div className="mb-16 max-w-2xl">
-              <span className="mb-4 inline-block font-display text-sm font-semibold uppercase tracking-wider text-nexo-gold">
-                Nuestros valores
-              </span>
-              <h2 className="font-display text-3xl font-bold text-nexo-white md:text-4xl">
-                Lo que nos define
-              </h2>
-            </div>
-          </ScrollReveal>
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <SectionHeader
+            index="03"
+            eyebrow="Nuestros valores"
+            title={
+              <>
+                Seis principios
+                <br />
+                <span className="text-accent">que nos definen.</span>
+              </>
+            }
+            className="mb-16 lg:mb-20"
+          />
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <ul className="divide-y divide-border-soft border-y border-border-soft">
             {values.map((value, i) => (
-              <ScrollReveal key={value.title} delay={i * 0.08}>
-                <div className="group h-full rounded-2xl border border-white/5 bg-nexo-gray-dark p-8 transition-all duration-500 hover:border-nexo-gold/20 hover:shadow-[0_0_30px_rgba(194,139,83,0.06)]">
-                  <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-nexo-gold/10 text-nexo-gold transition-colors duration-300 group-hover:bg-nexo-gold/20">
-                    <value.icon className="h-5 w-5" />
+              <ScrollReveal
+                key={value.title}
+                delay={i * 0.06}
+                className="block"
+              >
+                <li className="grid grid-cols-1 items-start gap-6 py-8 lg:grid-cols-12 lg:gap-10 lg:py-10">
+                  <div className="flex items-center gap-4 lg:col-span-4">
+                    <span className="font-mono text-xs text-fg-subtle">
+                      0{i + 1}
+                    </span>
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-bg-elevated">
+                      <value.icon
+                        className="h-4 w-4 text-accent"
+                        strokeWidth={1.75}
+                      />
+                    </div>
+                    <h3 className="font-display text-xl font-semibold text-fg lg:text-2xl">
+                      {value.title}
+                    </h3>
                   </div>
-                  <h3 className="mb-3 font-display text-lg font-bold text-nexo-white">
-                    {value.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-nexo-gray/80">
+                  <p className="max-w-2xl text-base leading-relaxed text-fg-muted lg:col-span-8">
                     {value.description}
                   </p>
-                </div>
+                </li>
               </ScrollReveal>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
-      {/* Differentiators */}
-      <section className="relative py-24 lg:py-32">
-        <div className="bg-noise pointer-events-none absolute inset-0" />
-        <div className="pointer-events-none absolute -left-40 bottom-0 h-[400px] w-[400px] rounded-full bg-nexo-teal/5 blur-[100px]" />
+      {/* Differentiators — 2 col grid pero más editorial, sin cards */}
+      <section className="border-t border-border-soft py-24 lg:py-32">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <SectionHeader
+            index="04"
+            eyebrow="Diferenciadores"
+            title={
+              <>
+                Por qué Nexo,
+                <br />
+                <span className="text-accent">no otro vending.</span>
+              </>
+            }
+            className="mb-16 lg:mb-20"
+          />
 
-        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
-          <ScrollReveal>
-            <div className="mb-16 text-center">
-              <span className="mb-4 inline-block font-display text-sm font-semibold uppercase tracking-wider text-nexo-teal">
-                Diferenciadores
-              </span>
-              <h2 className="font-display text-3xl font-bold text-nexo-white md:text-4xl lg:text-5xl">
-                ¿Por qué Nexo?
-              </h2>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-x-12 gap-y-12 md:grid-cols-2 lg:gap-x-16">
             {differentiators.map((diff, i) => (
-              <ScrollReveal key={diff.title} delay={i * 0.1}>
-                <div className="group flex h-full gap-5 rounded-2xl border border-white/5 bg-nexo-gray-dark p-8 transition-all duration-500 hover:border-nexo-teal/20">
-                  <div className="shrink-0">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-nexo-teal/10 text-nexo-teal transition-colors duration-300 group-hover:bg-nexo-teal/20">
-                      <diff.icon className="h-5 w-5" />
-                    </div>
+              <ScrollReveal
+                key={diff.title}
+                delay={i * 0.08}
+              >
+                <article className="border-t border-border-soft pt-8">
+                  <div className="flex items-baseline gap-4">
+                    <span className="font-mono text-xs text-accent">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="h-px flex-1 bg-border-soft" />
                   </div>
-                  <div>
-                    <h3 className="mb-2 font-display text-lg font-bold text-nexo-white">
-                      {diff.title}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-nexo-gray/80">
-                      {diff.description}
-                    </p>
+                  <div className="mt-6 flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-bg">
+                    <diff.icon
+                      className="h-5 w-5 text-accent"
+                      strokeWidth={1.5}
+                    />
                   </div>
-                </div>
+                  <h3 className="mt-6 font-display text-2xl font-semibold text-fg">
+                    {diff.title}
+                  </h3>
+                  <p className="mt-4 max-w-md text-base leading-relaxed text-fg-muted">
+                    {diff.description}
+                  </p>
+                </article>
               </ScrollReveal>
             ))}
           </div>
@@ -272,37 +327,39 @@ export default function NosotrosPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 lg:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <ScrollReveal>
-            <div className="relative overflow-hidden rounded-3xl border border-nexo-gold/10 bg-nexo-gray-dark p-12 text-center lg:p-20">
-              <div className="pointer-events-none absolute -right-20 -top-20 h-60 w-60 rounded-full bg-nexo-gold/10 blur-[80px]" />
-              <div className="pointer-events-none absolute -bottom-20 -left-20 h-60 w-60 rounded-full bg-nexo-teal/10 blur-[80px]" />
-
-              <div className="relative z-10">
-                <h2 className="font-display text-3xl font-bold text-nexo-white md:text-4xl lg:text-5xl">
-                  ¿Listo para la experiencia{" "}
-                  <span className="text-gradient-gold">Nexo</span>?
+      <section className="border-t border-border-soft bg-bg-sunken py-24 lg:py-32">
+        <div className="mx-auto max-w-5xl px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-7">
+              <ScrollReveal>
+                <Eyebrow>Trabajemos juntos</Eyebrow>
+              </ScrollReveal>
+              <ScrollReveal delay={0.05}>
+                <h2 className="display-lg mt-6 text-fg">
+                  ¿Listo para la
+                  <br />
+                  <span className="text-accent">experiencia Nexo?</span>
                 </h2>
-                <p className="mx-auto mt-5 max-w-lg text-lg text-nexo-gray">
-                  Instala una máquina premium en tu empresa. Sin costo, sin
+              </ScrollReveal>
+              <ScrollReveal delay={0.1}>
+                <p className="mt-6 max-w-md text-base leading-relaxed text-fg-muted md:text-lg">
+                  Instala una máquina Nexo en tu empresa. Sin costo, sin
                   obras, sin complicaciones.
                 </p>
-                <Link
-                  href="/contacto"
-                  className="mt-8 inline-flex items-center gap-2 rounded-xl bg-nexo-teal px-8 py-4 text-base font-semibold text-nexo-black transition-all duration-300 hover:bg-nexo-teal-hover hover:shadow-[0_0_30px_rgba(0,194,160,0.3)]"
-                >
-                  Agenda tu instalación
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <p className="mt-4 text-sm text-nexo-gray/60">
-                  Sin costo de instalación · Sin compromiso a largo plazo
-                </p>
-              </div>
+              </ScrollReveal>
+              <ScrollReveal delay={0.15}>
+                <div className="mt-10">
+                  <Magnetic strength={0.35} maxTravelPx={10}>
+                    <Button href="/contacto" variant="accent" size="lg" withArrow>
+                      Agenda tu instalación
+                    </Button>
+                  </Magnetic>
+                </div>
+              </ScrollReveal>
             </div>
-          </ScrollReveal>
+          </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }
