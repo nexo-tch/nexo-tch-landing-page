@@ -7,38 +7,47 @@ import { Button } from "@/components/ui/Button";
 import { Magnetic } from "@/components/ui/Magnetic";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { DEFAULT_OG_IMAGE, absoluteUrl, productSchema } from "@/lib/seo";
+import { Breadcrumb } from "@/components/seo/Breadcrumb";
+import { ProductSeo } from "@/components/product/ProductSeo";
+import { FAQ } from "@/components/home/FAQ";
+import { snacksFaqs } from "@/data/faqs";
+import {
+  PAGE_OG_IMAGES,
+  absoluteUrl,
+  breadcrumbSchema,
+  faqPageSchema,
+  productSchema,
+  serviceSchema,
+} from "@/lib/seo";
 
 const PRODUCT_NAME = "Nexo Snacks";
 const PRODUCT_DESCRIPTION =
-  "Máquina vending de snacks seleccionados para oficinas y coworkings. Opciones saludables y antojos de calidad, con rotación según el consumo real de tu equipo. Sin costo para tu empresa.";
+  "Máquina vending de snacks para oficinas y coworkings en Medellín. Selección curada, rotación según consumo, sin inversión para tu empresa.";
+
+const snacksCrumbs = [
+  { name: "Inicio", path: "/" },
+  { name: "Nexo Snacks", path: "/snacks" },
+] as const;
 
 export const metadata: Metadata = {
-  title: "Nexo Snacks — Snacks seleccionados para oficinas",
+  title: "Máquina vending de snacks para oficinas en Medellín",
   description:
-    "Snacks seleccionados con criterio para tu oficina. Opciones saludables y antojos de calidad. Sin costo para tu empresa — nosotros operamos todo.",
+    "Máquina vending de snacks para oficinas en Medellín. Selección curada, rotación según consumo. Sin inversión: Nexo instala, opera y abastece.",
   alternates: { canonical: "/snacks" },
   openGraph: {
-    title: "Nexo Snacks — Snacks que tu equipo realmente quiere",
+    title: "Máquina vending de snacks para oficinas | Nexo Snacks",
     description:
-      "Snacks seleccionados con criterio, pensados para oficinas y coworkings en Medellín.",
+      "Snacks y bebidas para oficinas y coworkings en Medellín. Portafolio personalizable, operación incluida.",
     url: absoluteUrl("/snacks"),
     type: "website",
-    images: [
-      {
-        url: DEFAULT_OG_IMAGE.url,
-        width: DEFAULT_OG_IMAGE.width,
-        height: DEFAULT_OG_IMAGE.height,
-        alt: "Nexo Snacks — máquina vending de snacks para oficinas",
-      },
-    ],
+    images: [PAGE_OG_IMAGES.snacks],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nexo Snacks — Snacks seleccionados para oficinas",
+    title: "Máquina vending de snacks para oficinas | Nexo Snacks",
     description:
-      "Snacks seleccionados con criterio. Sin costo para tu empresa.",
-    images: [DEFAULT_OG_IMAGE.url],
+      "Snacks seleccionados para tu oficina. Sin inversión. Nexo opera todo.",
+    images: [PAGE_OG_IMAGES.snacks.url],
   },
 };
 
@@ -64,6 +73,16 @@ const nexoAdvantages = [
 export default function SnacksPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema(snacksCrumbs)} />
+      <JsonLd
+        data={serviceSchema({
+          name: "Nexo Snacks — máquina vending de snacks para oficinas",
+          description: PRODUCT_DESCRIPTION,
+          slug: "/snacks",
+          serviceType: "Vending de snacks corporativo",
+        })}
+      />
+      <JsonLd data={faqPageSchema(snacksFaqs)} />
       <JsonLd
         data={productSchema({
           name: PRODUCT_NAME,
@@ -74,22 +93,24 @@ export default function SnacksPage() {
           audience: "Oficinas, coworkings y espacios corporativos",
         })}
       />
+      <Breadcrumb items={snacksCrumbs} />
       <ProductHero
         badge="Nexo Snacks"
         index="03"
+        compactTop
         headline={
           <>
-            Snacks seleccionados,{" "}
+            Máquina vending de snacks,{" "}
             <span className="font-extrabold text-accent">
-              al alcance del día a día.
+              para tu oficina.
             </span>
           </>
         }
-        subheadline="Una selección propia con opciones saludables y antojos de calidad, que rota según lo que tu equipo realmente consume. Todo al alcance en tu propio espacio."
+        subheadline="Selección curada para oficinas y coworkings en Medellín: saludables y antojos, con rotación según el consumo real. Sin inversión — Nexo opera y abastece."
         ctaText="Quiero Nexo Snacks"
         ctaHref="/contacto"
         machineImage="/images/nexo-snacks-machine.webp"
-        machineAlt="Máquina Nexo Snacks"
+        machineAlt="Máquina vending Nexo Snacks para oficinas en Medellín"
       />
 
       {/* Snacks — divide-y editorial */}
@@ -174,6 +195,37 @@ export default function SnacksPage() {
           </ScrollReveal>
         </div>
       </section>
+
+      <ProductSeo
+        index="C"
+        eyebrow="Vending de snacks en Medellín"
+        title={
+          <>
+            Snacks de oficina sin
+            <br />
+            <span className="text-accent">cargar la operación.</span>
+          </>
+        }
+      >
+        <p>
+          Nexo Snacks es una máquina vending de snacks y bebidas para oficinas
+          y espacios corporativos en Medellín. El portafolio no es genérico: lo
+          armamos contigo y lo rotamos según lo que tu equipo realmente consume.
+        </p>
+        <p>
+          En comodato no hay costo de máquina ni de instalación. Nexo abastece,
+          limpia y da soporte. Tus colaboradores pagan en efectivo, datáfono o
+          QR — o configuras un subsidio corporativo por producto, horario o
+          equipo.
+        </p>
+        <p>
+          Tres tamaños según el flujo (Mini, Plus y Max). Cobertura en Medellín
+          y el Valle de Aburrá. Te contactamos en menos de 24 horas para
+          dimensionar el punto.
+        </p>
+      </ProductSeo>
+
+      <FAQ items={snacksFaqs} index="D" />
 
       {/* Final CTA */}
       <section className="border-t border-border-soft py-24 lg:py-32">

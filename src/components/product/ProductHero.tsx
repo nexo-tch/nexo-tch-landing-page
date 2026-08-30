@@ -15,6 +15,8 @@ interface ProductHeroProps {
   ctaHref: string;
   machineImage: string;
   machineAlt: string;
+  /** Use when a breadcrumb already clears the fixed navbar. */
+  compactTop?: boolean;
 }
 
 const stagger = {
@@ -40,9 +42,14 @@ export function ProductHero({
   ctaHref,
   machineImage,
   machineAlt,
+  compactTop = false,
 }: ProductHeroProps) {
   return (
-    <section className="relative overflow-hidden pt-24 md:pt-28 lg:pt-32">
+    <section
+      className={`relative overflow-hidden ${
+        compactTop ? "pt-6 md:pt-8" : "pt-24 md:pt-28 lg:pt-32"
+      }`}
+    >
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -right-32 top-12 h-[500px] w-[500px] rounded-full bg-accent/8 blur-[140px]"

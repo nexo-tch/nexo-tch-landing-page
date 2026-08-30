@@ -154,10 +154,10 @@ export function CommercialModel() {
             También trabajamos arrendamiento (renta fija) y revenue sharing
             (% de ventas) para casos específicos.{" "}
             <Link
-              href="/contacto"
+              href="/comodato-maquinas-vending"
               className="text-accent transition-colors duration-200 hover:text-accent-bright"
             >
-              Lo conversamos en la primera llamada →
+              Cómo funciona el comodato →
             </Link>
           </p>
         </ScrollReveal>

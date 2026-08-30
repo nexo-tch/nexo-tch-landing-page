@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Sparkles, Clock, ShieldCheck, Award } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { ProductHero } from "@/components/product/ProductHero";
@@ -7,38 +8,48 @@ import { Button } from "@/components/ui/Button";
 import { Magnetic } from "@/components/ui/Magnetic";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { DEFAULT_OG_IMAGE, absoluteUrl, productSchema } from "@/lib/seo";
+import { Breadcrumb } from "@/components/seo/Breadcrumb";
+import { ProductSeo } from "@/components/product/ProductSeo";
+import { FAQ } from "@/components/home/FAQ";
+import { RelatedLinks } from "@/components/seo/RelatedLinks";
+import { cafeFaqs } from "@/data/faqs";
+import {
+  PAGE_OG_IMAGES,
+  absoluteUrl,
+  breadcrumbSchema,
+  faqPageSchema,
+  productSchema,
+  serviceSchema,
+} from "@/lib/seo";
 
 const PRODUCT_NAME = "Nexo Café";
 const PRODUCT_DESCRIPTION =
-  "Máquina vending de café de calidad para oficinas y coworkings. Bebidas clásicas al instante, sin costo para tu empresa, operación y mantenimiento incluidos.";
+  "Máquina vending de café para oficinas y coworkings en Medellín. Bebidas clásicas al instante, sin inversión, operación y mantenimiento incluidos.";
+
+const cafeCrumbs = [
+  { name: "Inicio", path: "/" },
+  { name: "Nexo Café", path: "/cafe" },
+] as const;
 
 export const metadata: Metadata = {
-  title: "Nexo Café — Café de calidad para oficinas",
+  title: "Máquina de café para oficinas en Medellín",
   description:
-    "Café de calidad en tu oficina. Bebidas clásicas al instante, sin costo para tu empresa. Eleva la cultura de tu equipo.",
+    "Máquina vending de café para oficinas en Medellín. Espresso, americano, cappuccino y más. Sin inversión: Nexo instala, opera y abastece.",
   alternates: { canonical: "/cafe" },
   openGraph: {
-    title: "Nexo Café — Café de calidad en tu oficina",
+    title: "Máquina de café para oficinas en Medellín | Nexo Café",
     description:
-      "Bebidas clásicas al instante, calidad en cada taza. Sin costo para tu empresa — nosotros operamos todo.",
+      "Vending de café corporativo: bebidas clásicas al instante, cero obras, operación incluida.",
     url: absoluteUrl("/cafe"),
     type: "website",
-    images: [
-      {
-        url: DEFAULT_OG_IMAGE.url,
-        width: DEFAULT_OG_IMAGE.width,
-        height: DEFAULT_OG_IMAGE.height,
-        alt: "Nexo Café — máquina de café de calidad para oficinas",
-      },
-    ],
+    images: [PAGE_OG_IMAGES.cafe],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nexo Café — Café de calidad en tu oficina",
+    title: "Máquina de café para oficinas en Medellín | Nexo Café",
     description:
-      "Bebidas clásicas al instante. Sin costo para tu empresa — nosotros operamos todo.",
-    images: [DEFAULT_OG_IMAGE.url],
+      "Café de calidad en tu oficina. Sin inversión. Nexo opera todo.",
+    images: [PAGE_OG_IMAGES.cafe.url],
   },
 };
 
@@ -107,6 +118,16 @@ const features = [
 export default function CafePage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema(cafeCrumbs)} />
+      <JsonLd
+        data={serviceSchema({
+          name: "Nexo Café — máquina de café para oficinas",
+          description: PRODUCT_DESCRIPTION,
+          slug: "/cafe",
+          serviceType: "Vending de café corporativo",
+        })}
+      />
+      <JsonLd data={faqPageSchema(cafeFaqs)} />
       <JsonLd
         data={productSchema({
           name: PRODUCT_NAME,
@@ -117,22 +138,24 @@ export default function CafePage() {
           audience: "Oficinas, coworkings y universidades",
         })}
       />
+      <Breadcrumb items={cafeCrumbs} />
       <ProductHero
         badge="Nexo Café"
         index="01"
+        compactTop
         headline={
           <>
-            Café de calidad,{" "}
+            Máquina de café para oficinas,{" "}
             <span className="font-extrabold text-accent">
-              al alcance de tu equipo.
+              al instante.
             </span>
           </>
         }
-        subheadline="Bebidas clásicas al instante: espresso, americano, cappuccino y más. Calidad real en cada taza, disponible cuando tu equipo la necesita. Sin obras, sin inversión."
+        subheadline="Vending de café en Medellín: espresso, americano, cappuccino y más. Calidad real en cada taza. Sin obras, sin inversión — Nexo opera, mantiene y abastece."
         ctaText="Quiero mi máquina"
         ctaHref="/contacto"
         machineImage="/images/nexo-cafe-machine.webp"
-        machineAlt="Máquina Nexo Café"
+        machineAlt="Máquina vending Nexo Café para oficinas en Medellín"
       />
 
       {/* Beverages — editorial divide-y instead of card grid */}
@@ -263,6 +286,75 @@ export default function CafePage() {
           </div>
         </div>
       </section>
+
+      <ProductSeo
+        index="C"
+        eyebrow="Café vending en Medellín"
+        title={
+          <>
+            Café de oficina sin
+            <br />
+            <span className="text-accent">comprar la máquina.</span>
+          </>
+        }
+      >
+        <p>
+          Nexo Café es una máquina vending de café para oficinas, coworkings y
+          universidades en Medellín y el Valle de Aburrá. No vendemos el equipo:
+          lo instalamos, lo operamos y lo abastecemos. Tu empresa no asume la
+          compra ni la logística diaria.
+        </p>
+        <p>
+          El menú se configura contigo: tinto, espresso, americano, cappuccino,
+          latte, chocolate y más. Los colaboradores pagan en la máquina — o
+          puedes subsidiar bebidas por horario o de forma permanente. Mezcladores,
+          vasos y azúcar van incluidos en el servicio.
+        </p>
+        <p>
+          La modalidad más usada es el{" "}
+          <Link
+            href="/comodato-maquinas-vending"
+            className="text-fg underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent"
+          >
+            comodato
+          </Link>
+          : cero capex en la máquina. Forma parte del{" "}
+          <Link
+            href="/vending-corporativo-medellin"
+            className="text-fg underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent"
+          >
+            vending corporativo
+          </Link>{" "}
+          de Nexo en Medellín, Envigado, Sabaneta, Itagüí, Bello y La Estrella.
+          Te contactamos en menos de 24 horas para validar el punto.
+        </p>
+      </ProductSeo>
+
+      <FAQ items={cafeFaqs} index="D" />
+
+      <RelatedLinks
+        index="E"
+        links={[
+          {
+            href: "/vending-corporativo-medellin",
+            label: "Vending corporativo en Medellín",
+            description:
+              "Café, snacks y proteína para empresas. Una sola operación.",
+          },
+          {
+            href: "/comodato-maquinas-vending",
+            label: "Comodato de máquinas vending",
+            description:
+              "Por qué no hace falta comprar el equipo ni montar una cafetería.",
+          },
+          {
+            href: "/snacks",
+            label: "Máquina de snacks para oficinas",
+            description:
+              "Complementa el café con un portafolio curado en el mismo espacio.",
+          },
+        ]}
+      />
 
       {/* Final CTA */}
       <section className="border-t border-border-soft py-24 lg:py-32">

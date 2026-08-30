@@ -18,13 +18,43 @@ export function absoluteUrl(path: string): string {
   return `${base}${p}`;
 }
 
+export type OgImage = {
+  url: string;
+  width: number;
+  height: number;
+  alt: string;
+};
+
 /** Default OG image shipped in /public. Replace with real photography when available. */
-export const DEFAULT_OG_IMAGE = {
+export const DEFAULT_OG_IMAGE: OgImage = {
   url: "/og-image.jpg",
   width: 1200,
   height: 630,
-  alt: "Nexo Vending — máquina de café para oficinas en Medellín",
-} as const;
+  alt: "Nexo Vending — máquinas de café, proteína y snacks para empresas en Medellín",
+};
+
+/** Per-page OG images so each URL has a distinct social preview. */
+export const PAGE_OG_IMAGES = {
+  home: DEFAULT_OG_IMAGE,
+  cafe: {
+    url: "/images/nexo-cafe-machine.webp",
+    width: 577,
+    height: 1024,
+    alt: "Máquina vending Nexo Café para oficinas en Medellín",
+  },
+  snacks: {
+    url: "/images/nexo-snacks-machine.webp",
+    width: 577,
+    height: 1024,
+    alt: "Máquina vending Nexo Snacks para oficinas en Medellín",
+  },
+  protein: {
+    url: "/images/nexo-protein-machine.webp",
+    width: 577,
+    height: 1024,
+    alt: "Máquina vending Nexo Protein para gimnasios en Medellín",
+  },
+} as const satisfies Record<string, OgImage>;
 
 /**
  * Escapes JSON for safe embedding inside a <script> tag.
@@ -192,5 +222,78 @@ export function productSchema(input: ProductSchemaInput) {
       audienceType: input.audience,
     },
     manufacturer: { "@id": `${absoluteUrl("/")}#organization` },
+  } as const;
+}
+
+export interface BreadcrumbItem {
+  name: string;
+  path: string;
+}
+
+/** BreadcrumbList — visible trail + rich result support. */
+export function breadcrumbSchema(items: readonly BreadcrumbItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: absoluteUrl(item.path),
+    })),
+  } as const;
+}
+
+export interface ServiceSchemaInput {
+  name: string;
+  description: string;
+  slug: string;
+  serviceType: string;
+}
+
+/**
+ * Service schema — B2B vending is a service (comodato / operación),
+ * not a priced retail SKU. Complements Product on line pages.
+ */
+export function serviceSchema(input: ServiceSchemaInput) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${absoluteUrl(input.slug)}#service`,
+    name: input.name,
+    description: input.description,
+    serviceType: input.serviceType,
+    url: absoluteUrl(input.slug),
+    provider: { "@id": `${absoluteUrl("/")}#organization` },
+    areaServed: [
+      { "@type": "City", name: "Medellín" },
+      { "@type": "City", name: "Envigado" },
+      { "@type": "City", name: "Sabaneta" },
+      { "@type": "City", name: "Itagüí" },
+      { "@type": "City", name: "Bello" },
+      { "@type": "City", name: "La Estrella" },
+    ],
+    audience: {
+      "@type": "BusinessAudience",
+      audienceType: "Empresas, oficinas, coworkings y gimnasios",
+    },
+  } as const;
+}
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+/** FAQPage schema — reuse on home and product URLs. */
+export function faqPageSchema(faqs: readonly FaqItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
   } as const;
 }

@@ -18,7 +18,7 @@ const products = [
     ],
     href: "/cafe",
     image: "/images/nexo-cafe-machine.webp",
-    imageAlt: "Máquina Nexo Café",
+    imageAlt: "Máquina vending Nexo Café para oficinas en Medellín",
   },
   {
     number: "02",
@@ -34,7 +34,7 @@ const products = [
     ],
     href: "/proteinas",
     image: "/images/nexo-protein-machine.webp",
-    imageAlt: "Máquina Nexo Protein",
+    imageAlt: "Máquina vending Nexo Protein para gimnasios en Medellín",
   },
   {
     number: "03",
@@ -50,7 +50,7 @@ const products = [
     ],
     href: "/snacks",
     image: "/images/nexo-snacks-machine.webp",
-    imageAlt: "Máquina Nexo Snacks",
+    imageAlt: "Máquina vending Nexo Snacks para oficinas en Medellín",
   },
 ];
 
@@ -175,6 +175,14 @@ export function Products() {
             );
           })}
         </div>
+        <p className="mt-16 text-center text-sm text-fg-muted lg:mt-20">
+          <Link
+            href="/vending-corporativo-medellin"
+            className="text-fg underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent"
+          >
+            Cómo funciona el vending corporativo en Medellín
+          </Link>
+        </p>
       </div>
     </section>
   );

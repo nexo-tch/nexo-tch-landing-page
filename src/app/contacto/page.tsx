@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ContactForm } from "@/components/ContactForm";
-import { DEFAULT_OG_IMAGE, absoluteUrl } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { DEFAULT_OG_IMAGE, absoluteUrl, breadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Contacto — Solicita tu máquina Nexo",
+  title: "Contacto — solicita tu máquina vending en Medellín",
   description:
-    "Solicita tu máquina Nexo. Completa el formulario y te contactamos en menos de 24 horas. Modelo comercial flexible para empresas en Medellín.",
+    "Solicita una máquina vending Nexo para tu oficina o gimnasio en Medellín. Te contactamos en menos de 24 horas. Sin compromiso.",
   alternates: { canonical: "/contacto" },
   openGraph: {
     title: "Contacto — Solicita tu máquina Nexo",
@@ -36,6 +37,12 @@ export const metadata: Metadata = {
 export default function ContactoPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Inicio", path: "/" },
+          { name: "Contacto", path: "/contacto" },
+        ])}
+      />
       {/* Hero */}
       <section className="relative overflow-hidden pt-28 lg:pt-32">
         <div

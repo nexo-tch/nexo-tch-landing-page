@@ -45,12 +45,14 @@ function LinkedinIcon({ size = 16 }: { size?: number }) {
 }
 
 const productLinks = [
-  { href: "/cafe", label: "Nexo Café" },
-  { href: "/proteinas", label: "Nexo Protein" },
-  { href: "/snacks", label: "Nexo Snacks" },
+  { href: "/cafe", label: "Máquina de café para oficinas" },
+  { href: "/proteinas", label: "Vending de proteína para gyms" },
+  { href: "/snacks", label: "Máquina de snacks para oficinas" },
 ];
 
 const companyLinks = [
+  { href: "/vending-corporativo-medellin", label: "Vending corporativo Medellín" },
+  { href: "/comodato-maquinas-vending", label: "Comodato de máquinas vending" },
   { href: "/nosotros", label: "Nosotros" },
   { href: "/contacto", label: "Contacto" },
   { href: "/privacidad", label: "Privacidad y datos" },

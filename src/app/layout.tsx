@@ -52,11 +52,12 @@ import {
 export const metadata: Metadata = {
   metadataBase: new URL(company.site.url),
   title: {
-    default: "Nexo Vending — Café, proteína y snacks para tu empresa | Medellín",
+    default:
+      "Nexo Vending — Máquinas de café, proteína y snacks para empresas | Medellín",
     template: "%s | Nexo Vending",
   },
   description:
-    "Máquinas vending de café, proteína y snacks de calidad para oficinas, coworkings y gimnasios en Medellín. Sin costo para tu empresa, operación y mantenimiento incluidos.",
+    "Máquinas vending de café, proteína y snacks para oficinas, coworkings y gimnasios en Medellín. Sin inversión: Nexo instala, opera y abastece.",
   applicationName: "Nexo Vending",
   authors: [{ name: company.legalName, url: company.site.url }],
   creator: company.legalName,
@@ -71,13 +72,11 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
-    title: "Nexo Vending — Productos de calidad al alcance de tu equipo",
+    title:
+      "Nexo Vending — Máquinas de café, proteína y snacks para tu empresa",
     description:
-      "Máquinas de café, proteína y snacks de calidad para tu empresa. Sin costo de instalación — nosotros operamos, mantenemos y abastecemos todo.",
+      "Vending corporativo en Medellín: café, proteína y snacks. Sin costo de instalación — Nexo opera, mantiene y abastece.",
     url: absoluteUrl("/"),
     siteName: "Nexo Vending",
     locale: "es_CO",
@@ -94,9 +93,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nexo Vending — Café, proteína y snacks para tu empresa",
+    title:
+      "Nexo Vending — Máquinas de café, proteína y snacks para tu empresa",
     description:
-      "Máquinas de café, proteína y snacks de calidad en tu oficina. Sin costo para tu empresa.",
+      "Vending corporativo en Medellín. Sin costo de instalación. Nexo opera todo.",
     images: [DEFAULT_OG_IMAGE.url],
   },
   // Icons are auto-injected from file-based convention:

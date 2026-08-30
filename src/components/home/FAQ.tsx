@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Plus } from "lucide-react";
-import { faqs } from "@/data/faqs";
+import { faqs as defaultFaqs, type Faq } from "@/data/faqs";
 
 function FAQItem({
   question,
@@ -53,7 +53,13 @@ function FAQItem({
   );
 }
 
-export function FAQ() {
+export function FAQ({
+  items = defaultFaqs,
+  index = "07",
+}: {
+  items?: ReadonlyArray<Faq>;
+  index?: string;
+}) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -63,7 +69,7 @@ export function FAQ() {
           <div className="lg:col-span-5">
             <div className="lg:sticky lg:top-32">
               <SectionHeader
-                index="07"
+                index={index}
                 eyebrow="Preguntas frecuentes"
                 title={
                   <>
@@ -79,7 +85,7 @@ export function FAQ() {
 
           <ScrollReveal className="lg:col-span-7">
             <div className="border-t border-border-soft">
-              {faqs.map((faq, i) => (
+              {items.map((faq, i) => (
                 <FAQItem
                   key={faq.question}
                   index={String(i + 1).padStart(2, "0")}

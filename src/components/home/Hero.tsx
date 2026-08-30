@@ -51,16 +51,16 @@ export function Hero() {
               - base weight 300 (airy, editorial) for the setup
               - 800 on the accent clause for a single punchy moment */}
           <h1 className="display-xl font-light text-fg">
-            Productos de calidad,{" "}
+            Máquinas vending para tu empresa,{" "}
             <span className="font-extrabold text-accent">
-              al alcance de tu equipo.
+              en Medellín.
             </span>
           </h1>
 
           <p className="mt-6 max-w-xl text-base leading-relaxed text-fg-muted md:mt-8 md:text-lg lg:text-xl">
-            Café, proteína y snacks de calidad, disponibles cuando tu equipo
-            los necesita, en su propio espacio. Nosotros operamos, mantenemos
-            y abastecemos todo. Tu empresa solo disfruta.
+            Café, proteína y snacks de calidad en tu oficina, coworking o
+            gimnasio. Nexo instala la máquina, la opera, la mantiene y la
+            abastece. Tu empresa no invierte: solo disfruta.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 md:mt-10">

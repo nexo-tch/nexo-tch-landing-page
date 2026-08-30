@@ -43,6 +43,8 @@ Diferencial: calidad real en café, proteína y snacks; diseño cuidado; experie
 ## Páginas principales
 
 - [Inicio](${absoluteUrl("/")}): Propuesta de valor completa, las tres líneas de producto, proceso de instalación y FAQ.
+- [Vending corporativo en Medellín](${absoluteUrl("/vending-corporativo-medellin")}): Hub del servicio B2B — café, snacks y proteína para empresas en el Valle de Aburrá.
+- [Comodato de máquinas vending](${absoluteUrl("/comodato-maquinas-vending")}): Cómo funciona no comprar el equipo; comparación con renta, suministros y compra.
 - [Nosotros](${absoluteUrl("/nosotros")}): Misión, visión, valores y diferenciadores de ${company.legalName}.
 - [Contacto](${absoluteUrl("/contacto")}): Formulario para solicitar instalación. Respuesta en menos de 24 horas.
 - [Política de privacidad](${absoluteUrl("/privacidad")}): Tratamiento de datos conforme a Ley 1581 de 2012 (Habeas Data Colombia).

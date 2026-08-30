@@ -16,12 +16,13 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Button } from "@/components/ui/Button";
 import { Magnetic } from "@/components/ui/Magnetic";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { DEFAULT_OG_IMAGE, absoluteUrl } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { DEFAULT_OG_IMAGE, absoluteUrl, breadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Nosotros — No vendemos café, vendemos energía",
+  title: "Quiénes somos — vending corporativo en Medellín",
   description:
-    "Conoce a Nexo Technologies. Soluciones de vending con tecnología, diseño y calidad para empresas en Medellín.",
+    "Nexo Technologies opera máquinas vending de café, proteína y snacks para empresas en Medellín. Tecnología, diseño y operación incluida.",
   alternates: { canonical: "/nosotros" },
   openGraph: {
     title: "Nosotros — Nexo Technologies",
@@ -116,6 +117,12 @@ const differentiators = [
 export default function NosotrosPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Inicio", path: "/" },
+          { name: "Nosotros", path: "/nosotros" },
+        ])}
+      />
       {/* Hero */}
       <section className="relative overflow-hidden pt-28 lg:pt-32">
         <div

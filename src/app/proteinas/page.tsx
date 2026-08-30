@@ -7,38 +7,47 @@ import { Button } from "@/components/ui/Button";
 import { Magnetic } from "@/components/ui/Magnetic";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { DEFAULT_OG_IMAGE, absoluteUrl, productSchema } from "@/lib/seo";
+import { Breadcrumb } from "@/components/seo/Breadcrumb";
+import { ProductSeo } from "@/components/product/ProductSeo";
+import { FAQ } from "@/components/home/FAQ";
+import { proteinFaqs } from "@/data/faqs";
+import {
+  PAGE_OG_IMAGES,
+  absoluteUrl,
+  breadcrumbSchema,
+  faqPageSchema,
+  productSchema,
+  serviceSchema,
+} from "@/lib/seo";
 
 const PRODUCT_NAME = "Nexo Protein";
 const PRODUCT_DESCRIPTION =
-  "Máquina vending de batidos de proteína y barras funcionales para gimnasios. Whey y opciones pensadas para el post-entrenamiento. Sin costo para tu gimnasio, operación incluida.";
+  "Máquina vending de proteína para gimnasios en Medellín. Batidos y barras al instante, sin inversión ni operación para el gym.";
+
+const proteinCrumbs = [
+  { name: "Inicio", path: "/" },
+  { name: "Nexo Protein", path: "/proteinas" },
+] as const;
 
 export const metadata: Metadata = {
-  title: "Nexo Protein — Proteína al instante en tu gym",
+  title: "Vending de proteína para gimnasios en Medellín",
   description:
-    "Batidos de proteína listos al instante en tu gimnasio. Whey y barras proteicas. Sin costo para tu gimnasio, operación incluida.",
+    "Máquina vending de proteína para gimnasios en Medellín. Batidos whey y barras al instante. Sin inversión: Nexo instala, opera y abastece.",
   alternates: { canonical: "/proteinas" },
   openGraph: {
-    title: "Nexo Protein — Proteína al instante en tu gimnasio",
+    title: "Vending de proteína para gimnasios | Nexo Protein",
     description:
-      "Batidos de whey y barras proteicas listas al instante. Post-entrenamiento inmediato, cero operación, experiencia completa para tus socios.",
+      "Batidos y barras post-entreno en tu gym. Cero operación para el gimnasio. Cobertura Medellín.",
     url: absoluteUrl("/proteinas"),
     type: "website",
-    images: [
-      {
-        url: DEFAULT_OG_IMAGE.url,
-        width: DEFAULT_OG_IMAGE.width,
-        height: DEFAULT_OG_IMAGE.height,
-        alt: "Nexo Protein — máquina de batidos de proteína para gimnasios",
-      },
-    ],
+    images: [PAGE_OG_IMAGES.protein],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nexo Protein — Proteína al instante en tu gimnasio",
+    title: "Vending de proteína para gimnasios | Nexo Protein",
     description:
-      "Máquina vending de batidos de proteína y barras. Sin costo para tu gimnasio.",
-    images: [DEFAULT_OG_IMAGE.url],
+      "Proteína al instante en tu gimnasio. Sin inversión. Nexo opera todo.",
+    images: [PAGE_OG_IMAGES.protein.url],
   },
 };
 
@@ -83,6 +92,16 @@ const benefits = [
 export default function ProteinPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema(proteinCrumbs)} />
+      <JsonLd
+        data={serviceSchema({
+          name: "Nexo Protein — vending de proteína para gimnasios",
+          description: PRODUCT_DESCRIPTION,
+          slug: "/proteinas",
+          serviceType: "Vending de proteína para gimnasios",
+        })}
+      />
+      <JsonLd data={faqPageSchema(proteinFaqs)} />
       <JsonLd
         data={productSchema({
           name: PRODUCT_NAME,
@@ -93,22 +112,24 @@ export default function ProteinPage() {
           audience: "Gimnasios y centros deportivos",
         })}
       />
+      <Breadcrumb items={proteinCrumbs} />
       <ProductHero
         badge="Nexo Protein"
         index="02"
+        compactTop
         headline={
           <>
-            Proteína para tus socios,{" "}
+            Vending de proteína,{" "}
             <span className="font-extrabold text-accent">
-              lista cuando la necesitan.
+              en tu gimnasio.
             </span>
           </>
         }
-        subheadline="Batidos de whey y barras proteicas directo en tu gimnasio. Tus socios entrenan, toman su proteína y se van. Sin espera, sin licuadora, sin excusas."
+        subheadline="Batidos whey y barras al instante en gimnasios de Medellín. Tus socios entrenan, toman proteína y se van. Sin barra, sin espera — Nexo opera todo."
         ctaText="Quiero Nexo Protein"
         ctaHref="/contacto"
         machineImage="/images/nexo-protein-machine.webp"
-        machineAlt="Máquina Nexo Protein para gimnasios"
+        machineAlt="Máquina vending Nexo Protein para gimnasios en Medellín"
       />
 
       {/* Productos — divide-y editorial */}
@@ -210,6 +231,36 @@ export default function ProteinPage() {
           </div>
         </div>
       </section>
+
+      <ProductSeo
+        index="C"
+        eyebrow="Proteína vending en Medellín"
+        title={
+          <>
+            Post-entreno inmediato,
+            <br />
+            <span className="text-accent">cero operación para el gym.</span>
+          </>
+        }
+      >
+        <p>
+          Nexo Protein es una máquina vending de proteína para gimnasios en
+          Medellín y el Valle de Aburrá. Los socios compran batidos y barras al
+          instante — en la ventana post-entreno, sin filas ni licuadora.
+        </p>
+        <p>
+          El gimnasio no compra el equipo ni lo opera. En comodato, Nexo instala,
+          abastece y mantiene. En espacios de alto flujo también evaluamos
+          revenue sharing, para que el gym participe de las ventas.
+        </p>
+        <p>
+          El mix (whey, sabores, barras) se acuerda con cada sede. Te
+          contactamos en menos de 24 horas para validar flujo, ubicación y
+          modalidad comercial.
+        </p>
+      </ProductSeo>
+
+      <FAQ items={proteinFaqs} index="D" />
 
       {/* Final CTA */}
       <section className="border-t border-border-soft py-24 lg:py-32">
