@@ -21,18 +21,18 @@ import {
 
 const crumbs = [
   { name: "Inicio", path: "/" },
-  { name: "Vending corporativo Medellín", path: "/vending-corporativo-medellin" },
+  { name: "Máquinas expendedoras Medellín", path: "/vending-corporativo-medellin" },
 ] as const;
 
 export const metadata: Metadata = {
-  title: "Vending corporativo en Medellín",
+  title: "Máquinas expendedoras en Medellín",
   description:
-    "Vending corporativo en Medellín: máquinas de café, snacks y proteína para empresas. Sin inversión. Nexo instala, opera y abastece en el Valle de Aburrá.",
+    "Máquinas expendedoras en Medellín para empresas: café, snacks y proteína. Vending corporativo sin inversión. Nexo instala, opera y abastece en el Valle de Aburrá.",
   alternates: { canonical: "/vending-corporativo-medellin" },
   openGraph: {
-    title: "Vending corporativo en Medellín | Nexo Vending",
+    title: "Máquinas expendedoras en Medellín | Nexo Vending",
     description:
-      "Café, proteína y snacks en tu empresa. Operación incluida. Cobertura Valle de Aburrá.",
+      "Vending corporativo: café, proteína y snacks en tu empresa. Operación incluida. Valle de Aburrá.",
     url: absoluteUrl("/vending-corporativo-medellin"),
     type: "website",
     images: [DEFAULT_OG_IMAGE],
@@ -88,11 +88,11 @@ export default function VendingCorporativoPage() {
       <JsonLd data={breadcrumbSchema(crumbs)} />
       <JsonLd
         data={serviceSchema({
-          name: "Vending corporativo en Medellín",
+          name: "Máquinas expendedoras en Medellín — Nexo Vending",
           description:
-            "Servicio de máquinas vending B2B en Medellín y el Valle de Aburrá: café, snacks y proteína, con instalación, operación y abastecimiento incluidos.",
+            "Máquinas expendedoras (vending corporativo) en Medellín y el Valle de Aburrá: café, snacks y proteína, con instalación, operación y abastecimiento incluidos.",
           slug: "/vending-corporativo-medellin",
-          serviceType: "Vending corporativo B2B",
+          serviceType: "Máquinas expendedoras para empresas",
         })}
       />
       <JsonLd data={faqPageSchema(vendingCorporativoFaqs)} />
@@ -102,11 +102,11 @@ export default function VendingCorporativoPage() {
         eyebrow="Nexo Vending · Valle de Aburrá"
         title={
           <>
-            Vending corporativo en{" "}
+            Máquinas expendedoras en{" "}
             <span className="font-extrabold text-accent">Medellín.</span>
           </>
         }
-        subtitle="Máquinas de café, proteína y snacks para empresas. Sin obras y sin comprar el equipo: Nexo instala, opera y abastece."
+        subtitle="Vending corporativo de café, proteína y snacks para empresas. Sin obras y sin comprar el equipo: Nexo instala, opera y abastece."
       />
 
       <section className="border-t border-border-soft py-24 lg:py-32">
@@ -125,10 +125,10 @@ export default function VendingCorporativoPage() {
           />
           <div className="max-w-3xl space-y-5 text-base leading-relaxed text-fg-muted lg:text-lg">
             <p>
-              El vending corporativo pone café, snacks o proteína donde tu
-              equipo ya está: la oficina, el coworking o el gimnasio. Deja de
-              depender del horario de una cafetería o de que alguien salga del
-              edificio.
+              Las máquinas expendedoras de Nexo (vending corporativo) ponen
+              café, snacks o proteína donde tu equipo ya está: la oficina, el
+              coworking o el gimnasio. Deja de depender del horario de una
+              cafetería o de que alguien salga del edificio.
             </p>
             <p>
               Nexo opera en Medellín y el Valle de Aburrá (Envigado, Sabaneta,

@@ -81,7 +81,7 @@ export function organizationSchema() {
     name: company.legalName,
     alternateName: "Nexo Vending",
     description:
-      "Nexo Technologies S.A.S. opera máquinas vending corporativas de café, proteína y snacks de calidad para empresas en Medellín y el Valle de Aburrá.",
+      "Nexo Technologies S.A.S. opera máquinas expendedoras (vending corporativo) de café, proteína y snacks para empresas en Medellín y el Valle de Aburrá.",
     url: absoluteUrl("/"),
     logo: {
       "@type": "ImageObject",
@@ -118,7 +118,7 @@ export function localBusinessSchema() {
     "@id": `${absoluteUrl("/")}#localbusiness`,
     name: "Nexo Vending",
     description:
-      "Soluciones vending B2B en Medellín: máquinas de café, proteína y snacks de calidad para oficinas, coworkings y gimnasios. Operación, mantenimiento y abastecimiento incluidos.",
+      "Máquinas expendedoras B2B en Medellín: café, proteína y snacks para oficinas, coworkings y gimnasios. Operación, mantenimiento y abastecimiento incluidos.",
     image: {
       "@type": "ImageObject",
       url: absoluteUrl("/og-image.jpg"),

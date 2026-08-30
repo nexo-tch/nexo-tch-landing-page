@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     template: "%s | Nexo Vending",
   },
   description:
-    "Máquinas vending de café, proteína y snacks para oficinas, coworkings y gimnasios en Medellín. Sin inversión: Nexo instala, opera y abastece.",
+    "Máquinas expendedoras en Medellín: café, proteína y snacks para oficinas, coworkings y gimnasios. Vending corporativo sin inversión. Nexo instala y opera.",
   applicationName: "Nexo Vending",
   authors: [{ name: company.legalName, url: company.site.url }],
   creator: company.legalName,

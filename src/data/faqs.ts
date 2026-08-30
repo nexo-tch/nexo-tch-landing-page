@@ -73,9 +73,9 @@ export const cafeFaqs: ReadonlyArray<Faq> = [
 
 export const vendingCorporativoFaqs: ReadonlyArray<Faq> = [
   {
-    question: "¿Qué es el vending corporativo?",
+    question: "¿Qué es el vending corporativo o las máquinas expendedoras para empresas?",
     answer:
-      "Es un servicio de máquinas vending instaladas en empresas: café, snacks o proteína, con operación a cargo del proveedor. En Nexo la empresa no compra el equipo: nosotros instalamos, abastecemos y mantenemos.",
+      "Es el mismo servicio: máquinas expendedoras (vending) instaladas en empresas — café, snacks o proteína — con la operación a cargo del proveedor. En Nexo la empresa no compra el equipo: nosotros instalamos, abastecemos y mantenemos.",
   },
   {
     question: "¿El vending corporativo tiene costo para la empresa?",

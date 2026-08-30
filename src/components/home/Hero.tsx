@@ -58,9 +58,9 @@ export function Hero() {
           </h1>
 
           <p className="mt-6 max-w-xl text-base leading-relaxed text-fg-muted md:mt-8 md:text-lg lg:text-xl">
-            Café, proteína y snacks de calidad en tu oficina, coworking o
-            gimnasio. Nexo instala la máquina, la opera, la mantiene y la
-            abastece. Tu empresa no invierte: solo disfruta.
+            Máquinas expendedoras de café, proteína y snacks en tu oficina,
+            coworking o gimnasio. Nexo instala, opera, mantiene y abastece.
+            Tu empresa no invierte: solo disfruta.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 md:mt-10">

@@ -51,7 +51,7 @@ const productLinks = [
 ];
 
 const companyLinks = [
-  { href: "/vending-corporativo-medellin", label: "Vending corporativo Medellín" },
+  { href: "/vending-corporativo-medellin", label: "Máquinas expendedoras Medellín" },
   { href: "/comodato-maquinas-vending", label: "Comodato de máquinas vending" },
   { href: "/nosotros", label: "Nosotros" },
   { href: "/contacto", label: "Contacto" },
