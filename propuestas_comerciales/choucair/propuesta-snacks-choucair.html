@@ -1,0 +1,1126 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Propuesta Comercial Nexo Snacks · Choucair S.A.</title>
+  <meta name="description" content="Propuesta comercial — Servicio de vending de snacks y bebidas para Choucair S.A." />
+  <meta name="author" content="Nexo Technologies S.A.S." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =========================================================
+       NEXO · Sistema de marca para propuestas comerciales PDF
+       ========================================================= */
+    :root {
+      --nexo-black: #0D0D0D;
+      --nexo-ink: #1A1A1A;
+      --nexo-ink-soft: #5A5A5A;
+      --nexo-gold: #C28B53;
+      --nexo-gold-bright: #FFD700;
+      --nexo-cream: #FAFAF7;
+      --nexo-line: #E5E2DA;
+      --nexo-line-strong: #1A1A1A;
+      --nexo-white: #FFFFFF;
+    }
+
+    @page { size: Letter; margin: 0; }
+
+    @media print {
+      html, body { background: var(--nexo-cream); }
+      .page { box-shadow: none !important; margin: 0 !important; }
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      color: var(--nexo-ink);
+      background: #2a2a2a;
+      font-feature-settings: 'ss01', 'cv11';
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ---- Hoja base tamaño Carta ---- */
+    .page {
+      width: 8.5in;
+      height: 11in;
+      background: var(--nexo-cream);
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+      margin: 24px auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+    .page:last-child { page-break-after: auto; }
+    .page--dark { background: var(--nexo-black); color: var(--nexo-white); }
+
+    /* ---- Header / Footer comunes ---- */
+    .page__header,
+    .page__footer {
+      position: absolute;
+      left: 0.55in;
+      right: 0.55in;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 8pt;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--nexo-ink-soft);
+    }
+    .page__header { top: 0.35in; }
+    .page__footer { bottom: 0.35in; }
+
+    .page__header .logo,
+    .page__footer .logo { display: flex; align-items: center; gap: 8px; }
+    .logo-mark { width: 16px; height: 16px; display: inline-block; }
+    .logo-text {
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      font-size: 8.5pt;
+      color: var(--nexo-ink);
+    }
+    .page--dark .logo-text { color: var(--nexo-white); }
+    .page--dark .page__header,
+    .page--dark .page__footer { color: rgba(255,255,255,0.55); }
+
+    .page__num {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 8pt;
+      letter-spacing: 0.08em;
+    }
+
+    /* ---- Body interno ---- */
+    .page__body {
+      position: absolute;
+      top: 0.7in;
+      bottom: 0.7in;
+      left: 0.55in;
+      right: 0.55in;
+      overflow: hidden;
+    }
+
+    /* ---- Tipografía ---- */
+    .eyebrow {
+      font-size: 17pt;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      text-transform: none;
+      color: var(--nexo-ink);
+      margin: 0 0 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      line-height: 1.18;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 32px;
+      height: 2px;
+      background: var(--nexo-gold);
+      flex-shrink: 0;
+    }
+
+    h1, h2, h3, h4 { margin: 0; font-weight: 600; color: var(--nexo-ink); }
+    .page--dark h1, .page--dark h2, .page--dark h3 { color: var(--nexo-white); }
+
+    h1.section-title {
+      font-size: 13pt;
+      line-height: 1.4;
+      letter-spacing: 0;
+      font-weight: 500;
+      color: var(--nexo-ink-soft);
+      margin-bottom: 8px;
+    }
+    h2.subsection {
+      font-size: 13pt;
+      line-height: 1.25;
+      font-weight: 600;
+      margin: 18px 0 8px 0;
+    }
+    h3.minor {
+      font-size: 10pt;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--nexo-ink-soft);
+      font-weight: 600;
+      margin: 16px 0 6px 0;
+    }
+    h4.label {
+      font-size: 10.5pt;
+      font-weight: 600;
+      color: var(--nexo-ink);
+      margin: 14px 0 6px 0;
+    }
+
+    p, li {
+      font-size: 10pt;
+      line-height: 1.5;
+      color: var(--nexo-ink);
+      margin: 0 0 9px 0;
+    }
+    .page--dark p, .page--dark li { color: rgba(255,255,255,0.85); }
+
+    .lead {
+      font-size: 10.5pt;
+      line-height: 1.45;
+      color: var(--nexo-ink-soft);
+      font-weight: 400;
+      margin: 8px 0 14px 0;
+    }
+
+    strong { font-weight: 600; color: var(--nexo-ink); }
+    .page--dark strong { color: var(--nexo-white); }
+
+    /* ---- Tablas ---- */
+    table.nexo {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5pt;
+      margin: 8px 0 12px 0;
+    }
+    table.nexo thead th {
+      text-align: left;
+      font-size: 7.5pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--nexo-ink-soft);
+      font-weight: 600;
+      padding: 8px 10px 8px 0;
+      border-bottom: 1px solid var(--nexo-line-strong);
+      vertical-align: bottom;
+    }
+    table.nexo tbody td {
+      padding: 8px 10px 8px 0;
+      border-bottom: 1px solid var(--nexo-line);
+      vertical-align: top;
+      line-height: 1.4;
+    }
+    table.nexo tbody tr:last-child td { border-bottom: 0; }
+    table.nexo td:last-child,
+    table.nexo th:last-child { padding-right: 0; }
+
+    /* ---- Tabla metadata portada ---- */
+    table.meta {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9pt;
+    }
+    table.meta td {
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      vertical-align: top;
+      line-height: 1.45;
+      color: rgba(255,255,255,0.85);
+    }
+    table.meta td:first-child {
+      width: 32%;
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.5);
+      font-weight: 600;
+      padding-right: 14px;
+    }
+    table.meta tr:last-child td { border-bottom: 0; }
+
+    /* ---- Página completa por opción ---- */
+    .option-feature {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 32px;
+      margin-top: 18px;
+      align-items: center;
+    }
+    .option-feature__media {
+      margin: 0;
+      display: block;
+    }
+    .option-feature__media img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .option-feature__specs h2 {
+      font-size: 18pt;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin: 0;
+      line-height: 1.2;
+    }
+    .option-feature__specs .option-tag {
+      display: inline-block;
+      font-size: 8pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--nexo-gold);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .option-feature__specs .lead-mini {
+      font-size: 10pt;
+      line-height: 1.5;
+      color: var(--nexo-ink-soft);
+      margin: 8px 0 0 0;
+    }
+    .option-feature__specs table.spec {
+      margin-top: 18px;
+    }
+    .option-feature__specs table.spec td {
+      padding: 7px 0;
+      font-size: 9.5pt;
+    }
+
+    table.spec {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5pt;
+    }
+    table.spec td {
+      padding: 4px 0;
+      vertical-align: top;
+      line-height: 1.4;
+      border-bottom: 1px dotted var(--nexo-line);
+    }
+    table.spec td:first-child {
+      width: 35%;
+      font-weight: 600;
+      color: var(--nexo-ink);
+      padding-right: 16px;
+    }
+    table.spec td:last-child { color: var(--nexo-ink); }
+    table.spec tr:last-child td { border-bottom: 0; }
+
+    /* ---- Listas ---- */
+    ul.bullet-clean,
+    ol.steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    ul.bullet-clean li {
+      position: relative;
+      padding-left: 16px;
+      margin-bottom: 6px;
+      font-size: 9.5pt;
+      line-height: 1.45;
+    }
+    ul.bullet-clean li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.65em;
+      width: 8px;
+      height: 1.5px;
+      background: var(--nexo-gold);
+    }
+
+    ol.steps { counter-reset: step; }
+    ol.steps li {
+      counter-increment: step;
+      position: relative;
+      padding-left: 36px;
+      margin-bottom: 12px;
+      font-size: 10.5pt;
+      line-height: 1.5;
+    }
+    ol.steps li::before {
+      content: counter(step, decimal-leading-zero);
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9pt;
+      color: var(--nexo-gold);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    /* ---- Portada ---- */
+    .cover {
+      padding: 0.55in 0.55in;
+      height: 100%;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+    .cover__head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .cover__center { align-self: center; padding-bottom: 40px; }
+    .cover__eyebrow {
+      font-size: 9pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--nexo-gold);
+      font-weight: 600;
+      margin: 0 0 18px 0;
+    }
+    .cover__title {
+      font-size: 44pt;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      font-weight: 500;
+      color: var(--nexo-white);
+      margin: 0;
+    }
+    .cover__subtitle {
+      font-size: 14pt;
+      line-height: 1.4;
+      color: rgba(255,255,255,0.7);
+      font-weight: 400;
+      margin: 14px 0 0 0;
+    }
+    .cover__divider {
+      width: 80px;
+      height: 2px;
+      background: var(--nexo-gold);
+      margin: 26px 0;
+    }
+    .cover__client {
+      font-size: 16pt;
+      color: var(--nexo-gold);
+      font-weight: 400;
+      margin: 0;
+      letter-spacing: 0.01em;
+    }
+    .cover__client strong { color: var(--nexo-gold); font-weight: 600; }
+
+    /* ---- Contraportada ---- */
+    .closing {
+      padding: 0.7in 0.55in;
+      height: 100%;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      color: var(--nexo-white);
+    }
+    .closing__msg {
+      align-self: center;
+      max-width: 5.5in;
+    }
+    .closing__msg p.kicker {
+      font-size: 9pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--nexo-gold);
+      margin: 0 0 18px 0;
+      font-weight: 600;
+    }
+    .closing__msg h2 {
+      font-size: 30pt;
+      line-height: 1.1;
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      color: var(--nexo-white);
+      margin: 0 0 22px 0;
+    }
+    .closing__msg p.note {
+      font-size: 11pt;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.7);
+      margin: 0;
+    }
+    .closing__contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      font-size: 9.5pt;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .closing__contact strong {
+      color: var(--nexo-white);
+      display: block;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 8pt;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    /* ---- Helpers ---- */
+    .mt-0 { margin-top: 0 !important; }
+    .mt-8 { margin-top: 8px; }
+    .mt-16 { margin-top: 16px; }
+    .mt-24 { margin-top: 24px; }
+    .mb-0 { margin-bottom: 0 !important; }
+    .text-mono { font-family: 'JetBrains Mono', monospace; font-feature-settings: 'tnum'; }
+    .text-gold { color: var(--nexo-gold); }
+    .text-soft { color: var(--nexo-ink-soft); }
+    .text-sm { font-size: 9pt; }
+    .nowrap { white-space: nowrap; }
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+
+    /* ---- Print toolbar ---- */
+    .print-bar {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 100;
+      background: var(--nexo-black);
+      color: var(--nexo-white);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .print-bar button {
+      background: var(--nexo-gold);
+      color: var(--nexo-black);
+      border: 0;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 12px;
+    }
+    @media print { .print-bar { display: none !important; } }
+  </style>
+</head>
+<body>
+
+  <div class="print-bar">
+    Vista propuesta · listo para imprimir a PDF
+    <button onclick="window.print()">Exportar PDF</button>
+  </div>
+
+  <!-- ============================================================
+       PÁGINA 1 · PORTADA
+       ============================================================ -->
+  <section class="page page--dark">
+    <div class="cover">
+      <header class="cover__head">
+        <div class="logo" style="display:flex; align-items:center; gap:12px;">
+          <svg class="logo-mark" viewBox="0 0 512 512" aria-label="Nexo" style="width:28px; height:28px;">
+            <rect width="512" height="512" fill="#0D0D0D"/>
+            <g fill="#FFFFFF">
+              <rect x="126" y="106" width="68" height="300"/>
+              <rect x="318" y="106" width="68" height="300"/>
+              <polygon points="194,106 262,106 386,406 318,406"/>
+            </g>
+          </svg>
+          <span class="logo-text" style="color:#fff; font-size:13pt; letter-spacing:0.2em;">NEXO</span>
+        </div>
+        <div class="text-mono" style="font-size:8pt; letter-spacing:0.1em; color:rgba(255,255,255,0.45);">
+          NX-2026-0143
+        </div>
+      </header>
+
+      <div class="cover__center">
+        <p class="cover__eyebrow">Propuesta comercial · Nexo Snacks</p>
+        <h1 class="cover__title">Servicio de vending<br/>de snacks y bebidas.</h1>
+        <p class="cover__subtitle">Nexo Technologies S.A.S.</p>
+        <div class="cover__divider"></div>
+        <p class="cover__client">Presentada a <strong>Choucair S.A.</strong></p>
+      </div>
+
+      <table class="meta">
+        <tr><td>Fecha</td><td>Medellín, mayo de 2026</td></tr>
+        <tr><td>Elaborado por</td><td>Nexo Technologies S.A.S. · NIT 902.041.808</td></tr>
+        <tr><td>Para</td><td>Choucair S.A. — Sede Medellín</td></tr>
+        <tr><td>Confidencialidad</td><td>Documento confidencial para uso exclusivo del destinatario</td></tr>
+        <tr><td>Vigencia propuesta</td><td>30 días hábiles a partir de la fecha de emisión</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PÁGINA 2 · QUIÉNES SOMOS
+       ============================================================ -->
+  <section class="page">
+    <header class="page__header">
+      <div class="logo">
+        <svg class="logo-mark" viewBox="0 0 512 512">
+          <rect width="512" height="512" fill="#0D0D0D"/>
+          <g fill="#FFFFFF">
+            <rect x="126" y="106" width="68" height="300"/>
+            <rect x="318" y="106" width="68" height="300"/>
+            <polygon points="194,106 262,106 386,406 318,406"/>
+          </g>
+        </svg>
+        <span class="logo-text">NEXO</span>
+      </div>
+      <span>NX-2026-0143 · Choucair S.A.</span>
+    </header>
+
+    <div class="page__body">
+      <p class="eyebrow">01 · Quiénes somos</p>
+      <h1 class="section-title">Una solución moderna de vending para<br/>snacks y bebidas en espacios corporativos.</h1>
+
+      <p class="mt-16">Nexo Technologies S.A.S. es una empresa colombiana enfocada en facilitar el acceso a productos de consumo dentro de los espacios de trabajo, mediante soluciones de vending corporativo modernas, flexibles y adaptadas a las necesidades de cada empresa.</p>
+
+      <p>Nuestra línea <strong>Nexo Snacks</strong> ofrece máquinas inteligentes de snacks y bebidas que operan bajo modalidad de comodato, permitiendo que la empresa cliente no tenga que realizar inversión en equipos ni asumir la operación del servicio. Nosotros instalamos la máquina, configuramos el portafolio de productos, realizamos el abastecimiento, mantenimiento y monitoreo continuo del servicio.</p>
+
+      <p>El modelo está diseñado para oficinas, coworkings, salas de espera, plantas operativas y espacios con flujo constante de personas, brindando una experiencia moderna, práctica y de autoservicio para colaboradores y visitantes.</p>
+
+      <p class="eyebrow" style="margin-top:32px;">02 · Propuesta de valor</p>
+      <h1 class="section-title">Diseñada según las necesidades operativas<br/>y de bienestar corporativo de Choucair.</h1>
+
+      <table class="nexo">
+        <thead>
+          <tr>
+            <th style="width:42%;">Requerimiento empresa</th>
+            <th>Solución Nexo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Acceso rápido a snacks y bebidas.</strong></td>
+            <td>Máquina vending de autoservicio con abastecimiento programado.</td>
+          </tr>
+          <tr>
+            <td><strong>Pago electrónico prioritario.</strong></td>
+            <td>Datáfono integrado y/o código QR.</td>
+          </tr>
+          <tr>
+            <td><strong>Portafolio personalizado.</strong></td>
+            <td>Configuración de snacks, bebidas y productos saludables.</td>
+          </tr>
+          <tr>
+            <td><strong>Control y flexibilidad.</strong></td>
+            <td>Configuración de productos, categorías y precios.</td>
+          </tr>
+          <tr>
+            <td><strong>Beneficios para colaboradores.</strong></td>
+            <td>Subsidio corporativo configurable.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer class="page__footer">
+      <span>Propuesta comercial · Choucair S.A.</span>
+      <span class="page__num">02 / 10</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================
+       PÁGINA 3 · SUBSIDIO CORPORATIVO
+       ============================================================ -->
+  <section class="page">
+    <header class="page__header">
+      <div class="logo">
+        <svg class="logo-mark" viewBox="0 0 512 512">
+          <rect width="512" height="512" fill="#0D0D0D"/>
+          <g fill="#FFFFFF">
+            <rect x="126" y="106" width="68" height="300"/>
+            <rect x="318" y="106" width="68" height="300"/>
+            <polygon points="194,106 262,106 386,406 318,406"/>
+          </g>
+        </svg>
+        <span class="logo-text">NEXO</span>
+      </div>
+      <span>NX-2026-0143 · Choucair S.A.</span>
+    </header>
+
+    <div class="page__body">
+      <p class="eyebrow">03 · Subsidio corporativo para colaboradores</p>
+      <h1 class="section-title">Configurable según las políticas<br/>internas de la empresa.</h1>
+
+      <p class="mt-16">Como valor agregado, Nexo permite implementar esquemas de subsidio corporativo para consumo dentro de las máquinas vending.</p>
+
+      <p>La empresa puede asignar un monto mensual por colaborador para ser utilizado en la compra de snacks y bebidas dentro de la máquina. Este beneficio puede configurarse según las políticas internas de la compañía y aplicarse sobre productos específicos o sobre el portafolio completo.</p>
+
+      <h4 class="label" style="margin-top:22px;">Ejemplos de configuración</h4>
+      <ul class="bullet-clean">
+        <li>Subsidio parcial sobre ciertos productos (un porcentaje del valor final del producto).</li>
+        <li>Productos gratuitos en horarios específicos.</li>
+        <li>Beneficios exclusivos para determinadas áreas o equipos.</li>
+      </ul>
+
+      <p style="margin-top:18px;">El consumo subsidiado puede ser consolidado y facturado mensualmente a la empresa según el uso real registrado por la máquina, permitiendo trazabilidad completa y control del beneficio entregado a los colaboradores.</p>
+    </div>
+
+    <footer class="page__footer">
+      <span>Propuesta comercial · Choucair S.A.</span>
+      <span class="page__num">03 / 10</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================
+       PÁGINA 4 · OPCIÓN A · NX SNACK MINI
+       ============================================================ -->
+  <section class="page">
+    <header class="page__header">
+      <div class="logo">
+        <svg class="logo-mark" viewBox="0 0 512 512">
+          <rect width="512" height="512" fill="#0D0D0D"/>
+          <g fill="#FFFFFF">
+            <rect x="126" y="106" width="68" height="300"/>
+            <rect x="318" y="106" width="68" height="300"/>
+            <polygon points="194,106 262,106 386,406 318,406"/>
+          </g>
+        </svg>
+        <span class="logo-text">NEXO</span>
+      </div>
+      <span>NX-2026-0143 · Choucair S.A.</span>
+    </header>
+
+    <div class="page__body">
+      <p class="eyebrow">04 · Opciones de máquina disponibles · Opción A</p>
+      <h1 class="section-title">Tres configuraciones según capacidad<br/>y espacio disponible.</h1>
+      <p class="lead">Presentamos tres opciones de máquinas vending inteligentes, todas compatibles con snacks, bebidas y productos saludables. Las tres cuentan con las mismas funcionalidades tecnológicas y permiten personalizar completamente el portafolio según los requerimientos de la empresa.</p>
+
+      <div class="option-feature">
+        <figure class="option-feature__media">
+          <img src="../fotos/snacks/nexo-snack-mini.png" alt="Máquina Nexo Snack Mini — Opción A" />
+        </figure>
+        <div class="option-feature__specs">
+          <span class="option-tag">Opción A</span>
+          <h2>NX Snack Mini.</h2>
+          <p class="lead-mini">Ideal para oficinas con espacios reducidos o menor volumen de consumo.</p>
+
+          <table class="spec">
+            <tr><td>Modelo</td><td>NX Snack Mini</td></tr>
+            <tr><td>Dimensiones</td><td>1940 × 731 × 790 mm</td></tr>
+            <tr><td>Peso</td><td>215 kg</td></tr>
+            <tr><td>Capacidad</td><td>Aproximadamente 180 productos</td></tr>
+            <tr><td>Selecciones</td><td>Hasta 36 referencias</td></tr>
+            <tr><td>Bandejas</td><td>6 bandejas configurables</td></tr>
+            <tr><td>Temperatura</td><td>4–25 °C ajustable</td></tr>
+            <tr><td>Métodos de pago</td><td>Efectivo, datáfono y/o QR integrado</td></tr>
+            <tr><td>Conectividad</td><td>WIFI o 4G</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <p class="text-sm text-soft" style="margin-top:18px; font-style:italic; line-height:1.5;">
+        <strong style="color:var(--nexo-gold); text-transform:uppercase; letter-spacing:0.1em; font-size:7.5pt; font-style:normal;">Nota</strong>
+        &nbsp;Las imágenes, configuraciones y referencias de productos incluidas en esta propuesta son ilustrativas. El portafolio final podrá variar según disponibilidad, rotación, preferencias de consumo y acuerdos definidos con la empresa cliente.
+      </p>
+    </div>
+
+    <footer class="page__footer">
+      <span>Propuesta comercial · Choucair S.A.</span>
+      <span class="page__num">04 / 10</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================
+       PÁGINA 5 · OPCIÓN B · NX SNACK PLUS
+       ============================================================ -->
+  <section class="page">
+    <header class="page__header">
+      <div class="logo">
+        <svg class="logo-mark" viewBox="0 0 512 512">
+          <rect width="512" height="512" fill="#0D0D0D"/>
+          <g fill="#FFFFFF">
+            <rect x="126" y="106" width="68" height="300"/>
+            <rect x="318" y="106" width="68" height="300"/>
+            <polygon points="194,106 262,106 386,406 318,406"/>
+          </g>
+        </svg>
+        <span class="logo-text">NEXO</span>
+      </div>
+      <span>NX-2026-0143 · Choucair S.A.</span>
+    </header>
+
+    <div class="page__body">
+      <p class="eyebrow">04 · Opciones de máquina disponibles · Opción B</p>
+      <h1 class="section-title">Balance ideal entre capacidad<br/>y espacio ocupado.</h1>
+
+      <div class="option-feature">
+        <figure class="option-feature__media">
+          <img src="../fotos/snacks/nexo-snack-plus.png" alt="Máquina Nexo Snack Plus — Opción B" />
+        </figure>
+        <div class="option-feature__specs">
+          <span class="option-tag">Opción B</span>
+          <h2>NX Snack Plus.</h2>
+          <p class="lead-mini">Equilibrio entre capacidad ampliada y huella de instalación moderada para espacios corporativos medianos.</p>
+
+          <table class="spec">
+            <tr><td>Modelo</td><td>NX Snack Plus</td></tr>
+            <tr><td>Dimensiones</td><td>1940 × 885 × 790 mm</td></tr>
+            <tr><td>Peso</td><td>240 kg</td></tr>
+            <tr><td>Capacidad</td><td>Aproximadamente 240 productos</td></tr>
+            <tr><td>Selecciones</td><td>Hasta 48 referencias</td></tr>
+            <tr><td>Bandejas</td><td>6 bandejas configurables</td></tr>
+            <tr><td>Temperatura</td><td>4–25 °C ajustable</td></tr>
+            <tr><td>Métodos de pago</td><td>Efectivo, datáfono y/o QR integrado</td></tr>
+            <tr><td>Conectividad</td><td>WIFI o 4G</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <p class="text-sm text-soft" style="margin-top:18px; font-style:italic; line-height:1.5;">
+        <strong style="color:var(--nexo-gold); text-transform:uppercase; letter-spacing:0.1em; font-size:7.5pt; font-style:normal;">Nota</strong>
+        &nbsp;Las imágenes, configuraciones y referencias de productos incluidas en esta propuesta son ilustrativas. El portafolio final podrá variar según disponibilidad, rotación, preferencias de consumo y acuerdos definidos con la empresa cliente.
+      </p>
+    </div>
+
+    <footer class="page__footer">
+      <span>Propuesta comercial · Choucair S.A.</span>
+      <span class="page__num">05 / 10</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================
+       PÁGINA 6 · OPCIÓN C · NX SNACK MAX (RECOMENDADA)
+       ============================================================ -->
+  <section class="page">
+    <header class="page__header">
+      <div class="logo">
+        <svg class="logo-mark" viewBox="0 0 512 512">
+          <rect width="512" height="512" fill="#0D0D0D"/>
+          <g fill="#FFFFFF">
+            <rect x="126" y="106" width="68" height="300"/>
+            <rect x="318" y="106" width="68" height="300"/>
+            <polygon points="194,106 262,106 386,406 318,406"/>
+          </g>
+        </svg>
+        <span class="logo-text">NEXO</span>
+      </div>
+      <span>NX-2026-0143 · Choucair S.A.</span>
+    </header>
+
+    <div class="page__body">
+      <p class="eyebrow">04 · Opciones de máquina disponibles · Opción C</p>
+      <h1 class="section-title">Recomendada para empresas con<br/>alto flujo de colaboradores.</h1>
+
+      <div class="option-feature">
+        <figure class="option-feature__media">
+          <img src="../fotos/snacks/nexo-snack-max.png" alt="Máquina Nexo Snack Max — Opción C" />
+        </figure>
+        <div class="option-feature__specs">
+          <span class="option-tag">Opción C · recomendada</span>
+          <h2>NX Snack Max.</h2>
+          <p class="lead-mini">Máxima capacidad y variedad de portafolio para sedes con alto flujo y consumo sostenido durante toda la jornada.</p>
+
+          <table class="spec">
+            <tr><td>Modelo</td><td>NX Snack Max</td></tr>
+            <tr><td>Dimensiones</td><td>1940 × 1036 × 790 mm</td></tr>
+            <tr><td>Peso</td><td>265 kg</td></tr>
+            <tr><td>Capacidad</td><td>Aproximadamente 300 productos</td></tr>
+            <tr><td>Selecciones</td><td>Hasta 60 referencias</td></tr>
+            <tr><td>Bandejas</td><td>6 bandejas configurables</td></tr>
+            <tr><td>Temperatura</td><td>4–25 °C ajustable</td></tr>
+            <tr><td>Métodos de pago</td><td>Efectivo, datáfono y/o QR integrado</td></tr>
+            <tr><td>Conectividad</td><td>WIFI o 4G</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <p class="text-sm text-soft" style="margin-top:18px; font-style:italic; line-height:1.5;">
+        <strong style="color:var(--nexo-gold); text-transform:uppercase; letter-spacing:0.1em; font-size:7.5pt; font-style:normal;">Nota</strong>
+        &nbsp;Las imágenes, configuraciones y referencias de productos incluidas en esta propuesta son ilustrativas. El portafolio final podrá variar según disponibilidad, rotación, preferencias de consumo y acuerdos definidos con la empresa cliente.
+      </p>
+    </div>
+
+    <footer class="page__footer">
+      <span>Propuesta comercial · Choucair S.A.</span>
+      <span class="page__num">06 / 10</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================
+       PÁGINA 7 · 5.1 SOPORTE TÉCNICO
+       ============================================================ -->
+  <section class="page">
+    <header class="page__header">
+      <div class="logo">
+        <svg class="logo-mark" viewBox="0 0 512 512">
+          <rect width="512" height="512" fill="#0D0D0D"/>
+          <g fill="#FFFFFF">
+            <rect x="126" y="106" width="68" height="300"/>
+            <rect x="318" y="106" width="68" height="300"/>
+            <polygon points="194,106 262,106 386,406 318,406"/>
+          </g>
+        </svg>
+        <span class="logo-text">NEXO</span>
+      </div>
+      <span>NX-2026-0143 · Choucair S.A.</span>
+    </header>
+
+    <div class="page__body">
+      <p class="eyebrow">05 · Plan de soporte y abastecimiento</p>
+      <h1 class="section-title">Continuidad operativa garantizada.</h1>
+
+      <p class="mt-16">Nexo garantiza la continuidad operativa del servicio mediante un plan estructurado de soporte técnico, monitoreo remoto y abastecimiento programado, asegurando que las máquinas permanezcan disponibles y en óptimas condiciones de funcionamiento.</p>
+
+      <h4 class="label" style="margin-top:22px;">5.1 · Soporte técnico</h4>
+
+      <table class="nexo">
+        <thead>
+          <tr>
+            <th style="width:18%;">Tipo</th>
+            <th style="width:24%;">Frecuencia</th>
+            <th style="width:22%;">Horario de atención</th>
+            <th>Contenido</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Preventivo</strong></td>
+            <td>Cada seis meses, coordinado con la empresa</td>
+            <td>Lun. – Vie. 7:00 a.m. – 5:00 p.m.</td>
+            <td>Limpieza interna, revisión del sistema de pago, verificación de sensores, calibración y actualización de configuración (si aplica).</td>
+          </tr>
+          <tr>
+            <td><strong>Correctivo</strong></td>
+            <td>Ante fallo reportado</td>
+            <td>Lun. – Vie. 7:00 a.m. – 6:00 p.m.</td>
+            <td>Atención de incidentes técnicos, reemplazo de piezas y restauración del servicio.</td>
+          </tr>
+          <tr>
+            <td><strong>Monitoreo remoto</strong></td>
+            <td>Continuo 24/7</td>
+            <td>Automático</td>
+            <td>Monitoreo de conectividad, estado de operación, niveles de inventario y funcionamiento del sistema de pago.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer class="page__footer">
+      <span>Propuesta comercial · Choucair S.A.</span>
+      <span class="page__num">07 / 10</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================
+       PÁGINA 8 · 5.2 VISITAS OPERATIVAS + 5.3 PORTAFOLIO
+       ============================================================ -->
+  <section class="page">
+    <header class="page__header">
+      <div class="logo">
+        <svg class="logo-mark" viewBox="0 0 512 512">
+          <rect width="512" height="512" fill="#0D0D0D"/>
+          <g fill="#FFFFFF">
+            <rect x="126" y="106" width="68" height="300"/>
+            <rect x="318" y="106" width="68" height="300"/>
+            <polygon points="194,106 262,106 386,406 318,406"/>
+          </g>
+        </svg>
+        <span class="logo-text">NEXO</span>
+      </div>
+      <span>NX-2026-0143 · Choucair S.A.</span>
+    </header>
+
+    <div class="page__body">
+      <p class="eyebrow">05 · Plan de soporte y abastecimiento · cont.</p>
+      <h4 class="label mt-0">5.2 · Visitas operativas (abastecimiento, limpieza y verificación general)</h4>
+      <p class="text-sm text-soft" style="margin-bottom:6px;">Cada visita operativa incluye abastecimiento de productos, limpieza de la máquina y validación general de funcionamiento, garantizando una experiencia adecuada para los usuarios.</p>
+
+      <table class="nexo">
+        <thead>
+          <tr>
+            <th style="width:24%;">Parámetro</th>
+            <th style="width:36%;">Valor</th>
+            <th>Observación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Actividades por visita</strong></td>
+            <td>Reposición de productos, limpieza general y verificación técnica básica.</td>
+            <td>Una sola visita integra operación y mantenimiento preventivo básico.</td>
+          </tr>
+          <tr>
+            <td><strong>Frecuencia inicial</strong></td>
+            <td>1 a 3 visitas semanales según consumo esperado.</td>
+            <td>La frecuencia podrá ajustarse según el comportamiento real de consumo.</td>
+          </tr>
+          <tr>
+            <td><strong>Horario de visita</strong></td>
+            <td>Coordinado con la empresa.</td>
+            <td>Preferiblemente en horarios de bajo flujo para evitar interrupciones.</td>
+          </tr>
+          <tr>
+            <td><strong>Gestión de inventario</strong></td>
+            <td>Monitoreo continuo de productos y rotación.</td>
+            <td>Permite mantener disponibilidad y controlar agotados.</td>
+          </tr>
+          <tr>
+            <td><strong>Canal de soporte</strong></td>
+            <td>WhatsApp y correo electrónico.</td>
+            <td>Nexo asignará un contacto directo desde la instalación.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="label" style="margin-top:22px;">5.3 · Gestión del portafolio de productos</h4>
+      <p class="text-sm text-soft" style="margin-bottom:6px;">El portafolio podrá actualizarse periódicamente de acuerdo con:</p>
+
+      <ul class="bullet-clean">
+        <li>Preferencias de consumo de los colaboradores.</li>
+        <li>Nivel de rotación de productos.</li>
+        <li>Solicitudes específicas de la empresa.</li>
+        <li>Incorporación de nuevas categorías o productos saludables.</li>
+      </ul>
+
+      <p class="text-sm" style="margin-top:12px;">Nexo realizará recomendaciones periódicas para optimizar el surtido y mejorar la experiencia de consumo dentro de la empresa.</p>
+    </div>
+
+    <footer class="page__footer">
+      <span>Propuesta comercial · Choucair S.A.</span>
+      <span class="page__num">08 / 10</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================
+       PÁGINA 9 · 6 · CONDICIONES COMERCIALES
+       ============================================================ -->
+  <section class="page">
+    <header class="page__header">
+      <div class="logo">
+        <svg class="logo-mark" viewBox="0 0 512 512">
+          <rect width="512" height="512" fill="#0D0D0D"/>
+          <g fill="#FFFFFF">
+            <rect x="126" y="106" width="68" height="300"/>
+            <rect x="318" y="106" width="68" height="300"/>
+            <polygon points="194,106 262,106 386,406 318,406"/>
+          </g>
+        </svg>
+        <span class="logo-text">NEXO</span>
+      </div>
+      <span>NX-2026-0143 · Choucair S.A.</span>
+    </header>
+
+    <div class="page__body">
+      <p class="eyebrow">06 · Condiciones comerciales</p>
+      <h1 class="section-title">Términos del servicio y consideraciones operativas.</h1>
+
+      <table class="nexo" style="margin-top:14px;">
+        <thead>
+          <tr>
+            <th style="width:32%;">Concepto</th>
+            <th>Condición</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Modelo comercial</td>
+            <td>Modalidad comodato. La máquina es propiedad de Nexo Technologies S.A.S.</td>
+          </tr>
+          <tr>
+            <td>Inversión inicial</td>
+            <td>La empresa no realiza inversión en equipos.</td>
+          </tr>
+          <tr>
+            <td>Instalación</td>
+            <td>Incluida y coordinada por Nexo.</td>
+          </tr>
+          <tr>
+            <td>Mantenimiento</td>
+            <td>Incluido sin costo adicional.</td>
+          </tr>
+          <tr>
+            <td>Soporte técnico</td>
+            <td>Preventivo y correctivo incluidos.</td>
+          </tr>
+          <tr>
+            <td>Abastecimiento</td>
+            <td>Operado directamente por Nexo.</td>
+          </tr>
+          <tr>
+            <td>Medios de pago</td>
+            <td>Realizado directamente por los colaboradores mediante efectivo, datáfono y/o QR.</td>
+          </tr>
+          <tr>
+            <td>Subsidio corporativo</td>
+            <td>Opcional. La empresa puede asignar un subsidio parcial para consumo de colaboradores. Los consumos subsidiados se consolidan y facturan mensualmente según el consumo real.</td>
+          </tr>
+          <tr>
+            <td>Conectividad</td>
+            <td>WIFI o conexión 4G según disponibilidad del punto.</td>
+          </tr>
+          <tr>
+            <td>Vigencia del contrato<sup style="color:var(--nexo-gold); font-weight:600;">*</sup></td>
+            <td>12 meses renovables automáticamente.</td>
+          </tr>
+          <tr>
+            <td>Tiempo de implementación</td>
+            <td>Coordinado según disponibilidad de equipo y adecuación del punto.</td>
+          </tr>
+          <tr>
+            <td>Espacio requerido</td>
+            <td>Área interior con punto eléctrico estable y acceso operativo para abastecimiento.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="text-sm text-soft" style="margin-top:14px; font-style:italic; line-height:1.5;">
+        <span style="color:var(--nexo-gold); font-weight:600;">*</span>
+        Si durante la vigencia del contrato la máquina no alcanza un mínimo de ventas mensuales acordado entre las partes, Nexo Technologies S.A.S. queda facultada para retirar el equipo dentro del tiempo establecido en el contrato, previa notificación a Choucair S.A.
+      </p>
+    </div>
+
+    <footer class="page__footer">
+      <span>Propuesta comercial · Choucair S.A.</span>
+      <span class="page__num">09 / 10</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================
+       PÁGINA 10 · CONSIDERACIONES + PRÓXIMOS PASOS + CIERRE
+       ============================================================ -->
+  <section class="page page--dark">
+    <div class="closing">
+      <header style="display:flex; justify-content:space-between; align-items:center;">
+        <div class="logo" style="display:flex; align-items:center; gap:10px;">
+          <svg class="logo-mark" viewBox="0 0 512 512">
+            <rect width="512" height="512" fill="#0D0D0D"/>
+            <g fill="#FFFFFF">
+              <rect x="126" y="106" width="68" height="300"/>
+              <rect x="318" y="106" width="68" height="300"/>
+              <polygon points="194,106 262,106 386,406 318,406"/>
+            </g>
+          </svg>
+          <span class="logo-text" style="color:#fff;">NEXO</span>
+        </div>
+        <span class="text-mono" style="font-size:8pt; letter-spacing:0.1em; color:rgba(255,255,255,0.45);">NX-2026-0143</span>
+      </header>
+
+      <div class="closing__msg">
+        <p class="kicker">07 · Próximos pasos</p>
+        <h2>Activamos el servicio<br/>en cinco pasos.</h2>
+
+        <ol class="steps" style="margin-top:24px;">
+          <li><strong>Choucair S.A.</strong> confirma la opción de máquina preferida (Mini, Plus o Max).</li>
+          <li><strong>Nexo y Choucair</strong> firman el contrato de servicio y condiciones comerciales acordadas.</li>
+          <li><strong>Nexo</strong> realiza visita previa al punto de instalación para validar conexión eléctrica, espacio físico y acceso logístico.</li>
+          <li><strong>Configuración del portafolio inicial</strong> en conjunto con el equipo de Choucair, definición de subsidio (si aplica) y calibración del sistema de pago.</li>
+          <li><strong>Instalación, activación y arranque de operación</strong> con monitoreo cercano durante el primer mes.</li>
+        </ol>
+
+        <p class="note" style="margin-top:24px;">Quedamos atentos a cualquier duda o ajuste sobre esta propuesta.</p>
+      </div>
+
+      <div class="closing__contact">
+        <div>
+          <strong>Contacto comercial</strong>
+          Camilo Álvarez · Founder<br/>
+          WhatsApp +57 301 930 7252<br/>
+          contacto@nexotech.io
+        </div>
+        <div>
+          <strong>Nexo Technologies S.A.S.</strong>
+          NIT 902.041.808<br/>
+          Medellín, Colombia<br/>
+          www.nexotech.io
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

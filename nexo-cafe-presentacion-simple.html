@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nexo Café · Presentación corta</title>
+  <meta name="description" content="Presentación corta de Nexo Café — vending corporativo de bebidas calientes." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =========================================================
+       NEXO CAFÉ · Presentación corta (6 slides)
+       Mismo sistema visual que nexo-cafe-presentacion.html
+       ========================================================= */
+    :root {
+      --nexo-black: #0D0D0D;
+      --nexo-ink: #1A1A1A;
+      --nexo-ink-soft: #6B6B6B;
+      --nexo-accent: #B5E285;
+      --nexo-accent-bright: #D8F5BA;
+      --nexo-cream: #FAFAF7;
+      --nexo-line-soft: rgba(255, 255, 255, 0.08);
+      --nexo-white: #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      color: var(--nexo-cream);
+      background: var(--nexo-black);
+      font-feature-settings: 'ss01', 'cv11';
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      letter-spacing: -0.005em;
+    }
+
+    /* ---------- Slide base ---------- */
+    .slide {
+      min-height: 100vh;
+      width: 100%;
+      position: relative;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: 48px clamp(40px, 6vw, 96px);
+      border-bottom: 1px solid var(--nexo-line-soft);
+    }
+    .slide--light { background: var(--nexo-cream); color: var(--nexo-ink); }
+
+    .slide__head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+      font-weight: 500;
+    }
+    .slide--light .slide__head { color: var(--nexo-ink-soft); }
+
+    .slide__brand { display: flex; align-items: center; gap: 10px; }
+    .slide__brand svg { width: 18px; height: 18px; }
+    .slide__brand-text {
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      font-size: 11px;
+      color: var(--nexo-cream);
+    }
+    .slide--light .slide__brand-text { color: var(--nexo-ink); }
+
+    .slide__num {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+    }
+
+    .slide__body {
+      display: grid;
+      align-content: center;
+      padding: clamp(40px, 6vw, 80px) 0;
+    }
+
+    .slide__foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: rgba(255, 255, 255, 0.25);
+    }
+    .slide--light .slide__foot { color: var(--nexo-ink-soft); }
+    .slide__foot__divider {
+      flex: 1;
+      height: 1px;
+      background: var(--nexo-line-soft);
+      margin: 0 24px;
+    }
+    .slide--light .slide__foot__divider { background: rgba(0, 0, 0, 0.08); }
+
+    /* ---------- Tipografía ---------- */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--nexo-accent);
+      font-weight: 500;
+      margin: 0 0 28px 0;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--nexo-accent);
+    }
+
+    h1, h2, h3, h4 { margin: 0; font-weight: 500; color: var(--nexo-cream); }
+    .slide--light h1, .slide--light h2, .slide--light h3, .slide--light h4 { color: var(--nexo-ink); }
+
+    h1.hero {
+      font-size: clamp(44px, 6.4vw, 92px);
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+      max-width: 18ch;
+      font-weight: 400;
+    }
+    h1.hero strong { color: var(--nexo-accent); font-weight: 500; }
+
+    h2.section {
+      font-size: clamp(36px, 4.8vw, 60px);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      max-width: 22ch;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+    h2.section strong { color: var(--nexo-accent); font-weight: 500; }
+
+    p.lead {
+      font-size: clamp(17px, 1.6vw, 22px);
+      line-height: 1.45;
+      max-width: 40ch;
+      color: rgba(250, 250, 247, 0.75);
+      font-weight: 400;
+      margin: 0 0 32px 0;
+    }
+    .slide--light p.lead { color: var(--nexo-ink-soft); }
+
+    p.copy {
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(250, 250, 247, 0.7);
+      max-width: 52ch;
+      margin: 0 0 16px 0;
+    }
+    .slide--light p.copy { color: var(--nexo-ink-soft); }
+
+    p.note {
+      font-size: 12px;
+      line-height: 1.5;
+      color: rgba(250, 250, 247, 0.4);
+      font-style: italic;
+      max-width: 60ch;
+      margin: 24px 0 0 0;
+    }
+    .slide--light p.note { color: var(--nexo-ink-soft); }
+
+    /* ---------- Layouts ---------- */
+    .layout-split {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: clamp(32px, 5vw, 80px);
+      align-items: center;
+    }
+    .layout-split--reverse { grid-template-columns: 1fr 1.1fr; }
+
+    .layout-row4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+      position: relative;
+    }
+    .step { position: relative; }
+    .step__num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--nexo-accent);
+      font-weight: 500;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .step__line {
+      position: absolute;
+      top: 6px;
+      left: 28px;
+      right: -24px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--nexo-accent), transparent);
+      opacity: 0.3;
+    }
+    .step:last-child .step__line { display: none; }
+    .step h3 {
+      font-size: 18px;
+      line-height: 1.2;
+      letter-spacing: -0.012em;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .step p {
+      font-size: 13px;
+      line-height: 1.5;
+      color: rgba(250, 250, 247, 0.6);
+      margin: 0;
+    }
+
+    /* ---------- Cards (modelo comodato) ---------- */
+    .card {
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid var(--nexo-line-soft);
+      border-radius: 12px;
+      padding: 28px 26px;
+    }
+    .card--accent {
+      border-color: rgba(181, 226, 133, 0.4);
+      background: linear-gradient(180deg, rgba(181, 226, 133, 0.05), rgba(181, 226, 133, 0));
+    }
+    .card__num {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--nexo-accent);
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+    .card h3 {
+      font-size: 18px;
+      line-height: 1.25;
+      letter-spacing: -0.012em;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .card p {
+      font-size: 13px;
+      line-height: 1.5;
+      color: rgba(250, 250, 247, 0.65);
+      margin: 0;
+    }
+
+    /* ---------- Hero photo ---------- */
+    .hero-photo {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 70vh;
+      object-fit: contain;
+    }
+    .hero-photo-frame {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-photo-frame::before {
+      content: "";
+      position: absolute;
+      inset: -16px;
+      border: 1px solid var(--nexo-line-soft);
+      border-radius: 16px;
+      pointer-events: none;
+    }
+
+    /* ---------- Stats (Quiénes somos) ---------- */
+    .stat-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      margin-top: 16px;
+    }
+    .stat__num {
+      font-size: clamp(48px, 5.5vw, 72px);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      color: var(--nexo-accent);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .stat__label {
+      font-size: 14px;
+      color: rgba(250, 250, 247, 0.6);
+      line-height: 1.4;
+    }
+
+    /* ---------- Spec table (slide especificaciones) ---------- */
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+    }
+    .spec-table tr { border-bottom: 1px solid var(--nexo-line-soft); }
+    .spec-table tr:last-child { border-bottom: 0; }
+    .spec-table td {
+      padding: 16px 0;
+      vertical-align: top;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+    .spec-table td:first-child {
+      width: 36%;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--nexo-accent);
+      font-weight: 500;
+      padding-right: 24px;
+    }
+    .spec-table td:last-child { color: var(--nexo-cream); }
+    .spec-table td:last-child strong { color: var(--nexo-cream); font-weight: 600; }
+
+    /* ---------- Price table ---------- */
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 28px;
+      font-feature-settings: 'tnum';
+      font-variant-numeric: tabular-nums;
+    }
+    .price-table thead th {
+      text-align: left;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--nexo-accent);
+      font-weight: 500;
+      padding: 12px 16px 12px 0;
+      border-bottom: 1px solid var(--nexo-line-soft);
+      vertical-align: bottom;
+    }
+    .price-table thead th.num { text-align: right; padding-right: 0; }
+    .price-table thead th small {
+      display: block;
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: none;
+      color: rgba(250, 250, 247, 0.4);
+      font-weight: 400;
+      margin-top: 4px;
+      font-family: 'Inter', sans-serif;
+      font-style: italic;
+    }
+    .price-table tbody td {
+      padding: 11px 16px 11px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      font-size: 14px;
+      color: var(--nexo-cream);
+      vertical-align: middle;
+    }
+    .price-table tbody td.num {
+      text-align: right;
+      padding-right: 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      letter-spacing: -0.005em;
+    }
+    .price-table tbody td.num.consumer {
+      color: var(--nexo-accent);
+      font-weight: 500;
+    }
+    .price-table tbody tr:last-child td { border-bottom: 0; }
+    .price-table tbody tr:hover td { background: rgba(181, 226, 133, 0.03); }
+
+    /* ---------- Helpers ---------- */
+    .text-mono { font-family: 'JetBrains Mono', monospace; }
+    .text-accent { color: var(--nexo-accent); }
+    .text-soft { color: rgba(250, 250, 247, 0.55); }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      .slide { padding: 32px 24px; }
+      .layout-split,
+      .layout-split--reverse { grid-template-columns: 1fr; gap: 32px; }
+      .layout-row4,
+      .steps,
+      .stat-row { grid-template-columns: 1fr; }
+      .step__line { display: none; }
+      h1.hero { font-size: 40px; }
+      h2.section { font-size: 32px; }
+    }
+
+    /* ---------- Print ---------- */
+    @media print {
+      @page { size: A4 landscape; margin: 0; }
+      body { background: var(--nexo-black); }
+      .slide {
+        min-height: 100vh;
+        page-break-after: always;
+        border: 0;
+      }
+      .slide:last-child { page-break-after: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       SLIDE 01 · HOOK / PORTADA
+       ============================================================ -->
+  <section class="slide" id="s01">
+    <header class="slide__head">
+      <div class="slide__brand">
+        <svg viewBox="0 0 512 512" aria-label="Nexo">
+          <rect width="512" height="512" fill="#0D0D0D"/>
+          <g fill="#FAFAF7">
+            <rect x="126" y="106" width="68" height="300"/>
+            <rect x="318" y="106" width="68" height="300"/>
+            <polygon points="194,106 262,106 386,406 318,406"/>
+          </g>
+        </svg>
+        <span class="slide__brand-text">NEXO CAFÉ</span>
+      </div>
+      <span class="slide__num">01 / 06</span>
+    </header>
+
+    <div class="slide__body layout-split">
+      <div>
+        <p class="eyebrow">Presentación · 2026</p>
+        <h1 class="hero">Café para tu oficina, sin que tengas que <strong>comprar la máquina</strong>.</h1>
+        <p class="lead">Operamos vending corporativo de bebidas calientes bajo modalidad de comodato. Tú aportas el espacio; nosotros aportamos máquina, insumos, operación y mantenimiento.</p>
+      </div>
+      <div class="hero-photo-frame">
+        <img class="hero-photo" src="propuestas_comerciales/fotos/cafe/nexo-cafe-fl505.png" alt="Máquina Nexo Café Essential" />
+      </div>
+    </div>
+
+    <footer class="slide__foot">
+      <span>Nexo Technologies S.A.S. · NIT 902.041.808</span>
+      <div class="slide__foot__divider"></div>
+      <span>contacto@nexotech.io</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 02 · QUIÉNES SOMOS
+       ============================================================ -->
+  <section class="slide" id="s02">
+    <header class="slide__head">
+      <div class="slide__brand">
+        <svg viewBox="0 0 512 512"><rect width="512" height="512" fill="#0D0D0D"/><g fill="#FAFAF7"><rect x="126" y="106" width="68" height="300"/><rect x="318" y="106" width="68" height="300"/><polygon points="194,106 262,106 386,406 318,406"/></g></svg>
+        <span class="slide__brand-text">NEXO CAFÉ</span>
+      </div>
+      <span class="slide__num">02 / 06</span>
+    </header>
+
+    <div class="slide__body layout-split">
+      <div>
+        <p class="eyebrow">Quiénes somos</p>
+        <h2 class="section">Una empresa colombiana que <strong>opera el café de tu oficina</strong>.</h2>
+        <p class="copy">Nexo Technologies S.A.S. es una empresa colombiana enfocada en facilitar el acceso a buenos productos dentro de los espacios de trabajo. Nuestra primera línea es <strong>Nexo Café</strong>: vending corporativo de bebidas calientes.</p>
+        <p class="copy">Operamos un modelo integral: tú no asumes ni la compra ni la operación. Nosotros instalamos, abastecemos, mantenemos y operamos. Tú te enfocas en <strong>disfrutar del servicio</strong>.</p>
+      </div>
+
+      <div>
+        <div class="stat-row">
+          <div>
+            <div class="stat__num">$0</div>
+            <div class="stat__label">Inversión inicial<br/>en equipos</div>
+          </div>
+          <div>
+            <div class="stat__num">24/7</div>
+            <div class="stat__label">Monitoreo remoto<br/>de la máquina</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="slide__foot">
+      <span>Sobre Nexo</span>
+      <div class="slide__foot__divider"></div>
+      <span>nexotech.io</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 03 · MODELO COMODATO
+       ============================================================ -->
+  <section class="slide slide--light" id="s03">
+    <header class="slide__head">
+      <div class="slide__brand">
+        <svg viewBox="0 0 512 512"><rect width="512" height="512" fill="#0D0D0D"/><g fill="#FAFAF7"><rect x="126" y="106" width="68" height="300"/><rect x="318" y="106" width="68" height="300"/><polygon points="194,106 262,106 386,406 318,406"/></g></svg>
+        <span class="slide__brand-text">NEXO CAFÉ</span>
+      </div>
+      <span class="slide__num">03 / 06</span>
+    </header>
+
+    <div class="slide__body">
+      <p class="eyebrow">Comodato y suministros</p>
+      <h2 class="section">Modelo comodato. <strong>Sin inversión, sin operación interna</strong>.</h2>
+      <p class="lead">Nexo aporta la máquina, los insumos, la operación y el mantenimiento. Tú decides cuánto subsidias a tu equipo, si es que quieres subsidiar algo.</p>
+
+      <div class="layout-row4">
+        <div class="card">
+          <span class="card__num">01</span>
+          <h3>Sin inversión</h3>
+          <p>La máquina la pone Nexo. La empresa cliente no compra equipo ni asume costos de capital.</p>
+        </div>
+        <div class="card">
+          <span class="card__num">02</span>
+          <h3>Insumos incluidos</h3>
+          <p>Café, leche, chocolate, vasos. Nosotros nos encargamos del abastecimiento programado.</p>
+        </div>
+        <div class="card">
+          <span class="card__num">03</span>
+          <h3>Mantenimiento incluido</h3>
+          <p>Soporte preventivo y correctivo a cargo de Nexo. Monitoreo remoto continuo del equipo.</p>
+        </div>
+        <div class="card card--accent">
+          <span class="card__num">04</span>
+          <h3>Pago electrónico</h3>
+          <p>Datáfono y/o código QR habilitados desde la instalación. Trazabilidad total del consumo.</p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="slide__foot">
+      <span>Modelo Nexo Café</span>
+      <div class="slide__foot__divider"></div>
+      <span>Comodato + operación integral</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 04 · ESPECIFICACIONES DEL EQUIPO
+       ============================================================ -->
+  <section class="slide" id="s04">
+    <header class="slide__head">
+      <div class="slide__brand">
+        <svg viewBox="0 0 512 512"><rect width="512" height="512" fill="#0D0D0D"/><g fill="#FAFAF7"><rect x="126" y="106" width="68" height="300"/><rect x="318" y="106" width="68" height="300"/><polygon points="194,106 262,106 386,406 318,406"/></g></svg>
+        <span class="slide__brand-text">NEXO CAFÉ</span>
+      </div>
+      <span class="slide__num">04 / 06</span>
+    </header>
+
+    <div class="slide__body layout-split--reverse">
+      <div>
+        <p class="eyebrow">Especificaciones del equipo</p>
+        <h2 class="section">Nexo Café <strong>Essential</strong>.</h2>
+        <p class="copy">Equipo configurado para arrancar rápido, con pago electrónico, hasta 21 bebidas y monitoreo remoto continuo.</p>
+
+        <table class="spec-table">
+          <tr>
+            <td>Tiempo de instalación</td>
+            <td>Aproximadamente <strong>2 semanas</strong> a partir de la aceptación.</td>
+          </tr>
+          <tr>
+            <td>Tipos de café</td>
+            <td>Café <strong>en polvo de alta calidad</strong> (sin opción de café molido).</td>
+          </tr>
+          <tr>
+            <td>Tamaño de bebida</td>
+            <td>El tamaño de bebida es de <strong>8 oz</strong>.</td>
+          </tr>
+          <tr>
+            <td>Vasos</td>
+            <td>Vaso obligatorio dispensado por la máquina. <strong>No configurable</strong> para operar sin vaso.</td>
+          </tr>
+          <tr>
+            <td>Métodos de pago</td>
+            <td><strong>Efectivo, datáfono y/o QR</strong> integrado.</td>
+          </tr>
+          <tr>
+            <td>Pantalla</td>
+            <td><strong>Táctil 32" HD</strong>, interfaz personalizable.</td>
+          </tr>
+          <tr>
+            <td>Bebidas configurables</td>
+            <td>Hasta <strong>21 bebidas</strong> según menú acordado.</td>
+          </tr>
+          <tr>
+            <td>Dimensiones</td>
+            <td><strong>650 × 670 × 1750 mm</strong>.</td>
+          </tr>
+          <tr>
+            <td>Conexión</td>
+            <td><strong>WIFI o 4G</strong>.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="hero-photo-frame">
+        <img class="hero-photo" src="propuestas_comerciales/fotos/cafe/nexo-cafe-fl505.png" alt="Máquina Nexo Café Essential" />
+      </div>
+    </div>
+
+    <footer class="slide__foot">
+      <span>Equipo</span>
+      <div class="slide__foot__divider"></div>
+      <span>Configuración Nexo Café Essential</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 05 · PRECIOS
+       ============================================================ -->
+  <section class="slide" id="s05">
+    <header class="slide__head">
+      <div class="slide__brand">
+        <svg viewBox="0 0 512 512"><rect width="512" height="512" fill="#0D0D0D"/><g fill="#FAFAF7"><rect x="126" y="106" width="68" height="300"/><rect x="318" y="106" width="68" height="300"/><polygon points="194,106 262,106 386,406 318,406"/></g></svg>
+        <span class="slide__brand-text">NEXO CAFÉ</span>
+      </div>
+      <span class="slide__num">05 / 06</span>
+    </header>
+
+    <div class="slide__body">
+      <p class="eyebrow">Lista de precios · Essential</p>
+      <h2 class="section">Precio empresa + precio al <strong>consumidor final</strong>.</h2>
+      <p class="lead">Tarifas de referencia para la máquina Nexo Café Essential (7 oz). Los valores finales se ajustan según volumen y configuración acordada con cada cliente.</p>
+
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th style="width:40%;">Bebida</th>
+            <th class="num" style="width:10%;">Onzas</th>
+            <th class="num" style="width:25%;">Empresa con vaso<small>sin IVA</small></th>
+            <th class="num" style="width:25%;">Consumidor final<small>con IVA incluido</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Café fuerte liofilizado</td><td class="num">7</td><td class="num">$ 1.393</td><td class="num consumer">$ 2.300</td></tr>
+          <tr><td>Café suave liofilizado</td><td class="num">7</td><td class="num">$ 1.393</td><td class="num consumer">$ 2.300</td></tr>
+          <tr><td>Café con leche</td><td class="num">7</td><td class="num">$ 1.871</td><td class="num consumer">$ 3.300</td></tr>
+          <tr><td>Chocolate con leche</td><td class="num">7</td><td class="num">$ 1.871</td><td class="num consumer">$ 3.300</td></tr>
+          <tr><td>Chocolate en agua fuerte</td><td class="num">7</td><td class="num">$ 1.547</td><td class="num consumer">$ 2.300</td></tr>
+          <tr><td>Chocolate en agua suave</td><td class="num">7</td><td class="num">$ 1.369</td><td class="num consumer">$ 2.300</td></tr>
+          <tr><td>Leche caliente</td><td class="num">7</td><td class="num">$ 1.466</td><td class="num consumer">$ 1.800</td></tr>
+          <tr><td>Capuchino</td><td class="num">7</td><td class="num">$ 1.952</td><td class="num consumer">$ 3.300</td></tr>
+          <tr><td>Capuchino vainilla</td><td class="num">7</td><td class="num">$ 2.114</td><td class="num consumer">$ 3.300</td></tr>
+          <tr><td>Mocaccino</td><td class="num">7</td><td class="num">$ 2.033</td><td class="num consumer">$ 3.300</td></tr>
+          <tr><td>Moca</td><td class="num">7</td><td class="num">$ 1.952</td><td class="num consumer">$ 3.300</td></tr>
+        </tbody>
+      </table>
+
+      <p class="note">Valores en pesos colombianos. La columna <strong>Empresa con vaso</strong> es lo que le facturamos a la empresa por cada bebida subsidiada. La columna <strong>Consumidor final</strong> aplica al modelo de pago directo del colaborador.</p>
+    </div>
+
+    <footer class="slide__foot">
+      <span>Lista de precios</span>
+      <div class="slide__foot__divider"></div>
+      <span>Referencia · ajustable por contrato</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 06 · CÓMO FUNCIONA (4 movimientos)
+       ============================================================ -->
+  <section class="slide" id="s06">
+    <header class="slide__head">
+      <div class="slide__brand">
+        <svg viewBox="0 0 512 512"><rect width="512" height="512" fill="#0D0D0D"/><g fill="#FAFAF7"><rect x="126" y="106" width="68" height="300"/><rect x="318" y="106" width="68" height="300"/><polygon points="194,106 262,106 386,406 318,406"/></g></svg>
+        <span class="slide__brand-text">NEXO CAFÉ</span>
+      </div>
+      <span class="slide__num">06 / 06</span>
+    </header>
+
+    <div class="slide__body">
+      <p class="eyebrow">Cómo funciona</p>
+      <h2 class="section">El servicio en cuatro <strong>movimientos</strong>.</h2>
+      <p class="lead">Desde el primer mensaje hasta la primera taza, todo el proceso está diseñado para que tú no cargues con nada operativo.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step__line"></div>
+          <span class="step__num">01 · Punto físico</span>
+          <h3>Tú nos das un punto.</h3>
+          <p>Definimos juntos la ubicación dentro de tu oficina, validamos la conexión eléctrica y el acceso operativo.</p>
+        </div>
+        <div class="step">
+          <div class="step__line"></div>
+          <span class="step__num">02 · Instalación</span>
+          <h3>Nexo instala la máquina.</h3>
+          <p>Sin costo para la empresa. Configuramos el menú, el sistema de pago y dejamos el equipo operativo.</p>
+        </div>
+        <div class="step">
+          <div class="step__line"></div>
+          <span class="step__num">03 · Consumo</span>
+          <h3>Tu equipo consume.</h3>
+          <p>Pagan con QR o datáfono cada bebida que toman. Si quieres subsidiar alguna categoría, también se configura.</p>
+        </div>
+        <div class="step">
+          <span class="step__num">04 · Operación</span>
+          <h3>Nexo opera de fondo.</h3>
+          <p>Abastecimiento, soporte, limpieza y monitoreo 24/7. Tú no tienes que pensar en la máquina nunca más.</p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="slide__foot">
+      <span>Camilo Álvarez · Nexo Technologies S.A.S.</span>
+      <div class="slide__foot__divider"></div>
+      <span>contacto@nexotech.io · +57 301 930 7252</span>
+    </footer>
+  </section>
+
+</body>
+</html>

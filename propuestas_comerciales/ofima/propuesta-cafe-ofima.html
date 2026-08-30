@@ -1,0 +1,1339 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Propuesta Comercial Nexo · Ofima Software</title>
+  <meta name="description" content="Propuesta comercial — Servicio de vending de bebidas calientes para Ofima Software." />
+  <meta name="author" content="Nexo Technologies S.A.S." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =========================================================
+       NEXO · Sistema de marca para propuestas comerciales PDF
+       ========================================================= */
+    :root {
+      --nexo-black: #0D0D0D;
+      --nexo-ink: #1A1A1A;
+      --nexo-ink-soft: #5A5A5A;
+      --nexo-gold: #C28B53;
+      --nexo-gold-bright: #FFD700;
+      --nexo-cream: #FAFAF7;
+      --nexo-line: #E5E2DA;
+      --nexo-line-strong: #1A1A1A;
+      --nexo-white: #FFFFFF;
+    }
+
+    @page { size: Letter; margin: 0; }
+
+    @media print {
+      html, body { background: var(--nexo-cream); }
+      .page { box-shadow: none !important; margin: 0 !important; }
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      color: var(--nexo-ink);
+      background: #2a2a2a;
+      font-feature-settings: 'ss01', 'cv11';
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ---- Hoja base tamaño Carta ---- */
+    .page {
+      width: 8.5in;
+      height: 11in;
+      background: var(--nexo-cream);
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+      margin: 24px auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+    .page:last-child { page-break-after: auto; }
+    .page--dark { background: var(--nexo-black); color: var(--nexo-white); }
+
+    /* ---- Header / Footer comunes ---- */
+    .page__header,
+    .page__footer {
+      position: absolute;
+      left: 0.55in;
+      right: 0.55in;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 8pt;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--nexo-ink-soft);
+    }
+    .page__header { top: 0.35in; }
+    .page__footer { bottom: 0.35in; }
+
+    .page__header .logo,
+    .page__footer .logo { display: flex; align-items: center; gap: 8px; }
+    .logo-mark { width: 16px; height: 16px; display: inline-block; }
+    .logo-text {
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      font-size: 8.5pt;
+      color: var(--nexo-ink);
+    }
+    .page--dark .logo-text { color: var(--nexo-white); }
+    .page--dark .page__header,
+    .page--dark .page__footer { color: rgba(255,255,255,0.55); }
+
+    .page__num {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 8pt;
+      letter-spacing: 0.08em;
+    }
+
+    /* ---- Body interno ---- */
+    .page__body {
+      position: absolute;
+      top: 0.7in;
+      bottom: 0.7in;
+      left: 0.55in;
+      right: 0.55in;
+      overflow: hidden;
+    }
+
+    /* ---- Tipografía ---- */
+    .eyebrow {
+      font-size: 17pt;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      text-transform: none;
+      color: var(--nexo-ink);
+      margin: 0 0 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      line-height: 1.18;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 32px;
+      height: 2px;
+      background: var(--nexo-gold);
+      flex-shrink: 0;
+    }
+    .section-num {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9pt;
+      color: var(--nexo-gold);
+      letter-spacing: 0.1em;
+    }
+
+    h1, h2, h3, h4 { margin: 0; font-weight: 600; color: var(--nexo-ink); }
+    .page--dark h1, .page--dark h2, .page--dark h3 { color: var(--nexo-white); }
+
+    h1.section-title {
+      font-size: 13pt;
+      line-height: 1.4;
+      letter-spacing: 0;
+      font-weight: 500;
+      color: var(--nexo-ink-soft);
+      margin-bottom: 8px;
+    }
+    h2.subsection {
+      font-size: 13pt;
+      line-height: 1.25;
+      font-weight: 600;
+      margin: 18px 0 8px 0;
+    }
+    h3.minor {
+      font-size: 10pt;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--nexo-ink-soft);
+      font-weight: 600;
+      margin: 16px 0 6px 0;
+    }
+    h4.label {
+      font-size: 10.5pt;
+      font-weight: 600;
+      color: var(--nexo-ink);
+      margin: 14px 0 6px 0;
+    }
+
+    p, li {
+      font-size: 10pt;
+      line-height: 1.5;
+      color: var(--nexo-ink);
+      margin: 0 0 9px 0;
+    }
+    .page--dark p, .page--dark li { color: rgba(255,255,255,0.85); }
+
+    .lead {
+      font-size: 10.5pt;
+      line-height: 1.45;
+      color: var(--nexo-ink-soft);
+      font-weight: 400;
+      margin: 8px 0 14px 0;
+    }
+
+    strong { font-weight: 600; color: var(--nexo-ink); }
+    .page--dark strong { color: var(--nexo-white); }
+
+    /* ---- Tablas ---- */
+    table.nexo {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5pt;
+      margin: 8px 0 12px 0;
+    }
+    table.nexo thead th {
+      text-align: left;
+      font-size: 7.5pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--nexo-ink-soft);
+      font-weight: 600;
+      padding: 8px 10px 8px 0;
+      border-bottom: 1px solid var(--nexo-line-strong);
+      vertical-align: bottom;
+    }
+    table.nexo tbody td {
+      padding: 8px 10px 8px 0;
+      border-bottom: 1px solid var(--nexo-line);
+      vertical-align: top;
+      line-height: 1.4;
+    }
+    table.nexo tbody tr:last-child td { border-bottom: 0; }
+    table.nexo td:last-child,
+    table.nexo th:last-child { padding-right: 0; }
+    table.nexo td.num,
+    table.nexo th.num {
+      text-align: right;
+      font-feature-settings: 'tnum';
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    table.nexo th.num { padding-right: 0; }
+
+    table.nexo th small {
+      display: block;
+      font-size: 7pt;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0.02em;
+      color: var(--nexo-gold);
+      margin-top: 3px;
+      font-style: italic;
+    }
+
+    /* ---- Tabla metadata portada ---- */
+    table.meta {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9pt;
+    }
+    table.meta td {
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      vertical-align: top;
+      line-height: 1.45;
+      color: rgba(255,255,255,0.85);
+    }
+    table.meta td:first-child {
+      width: 32%;
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.5);
+      font-weight: 600;
+      padding-right: 14px;
+    }
+    table.meta tr:last-child td { border-bottom: 0; }
+
+    /* ---- Bloques específicos ---- */
+    .callout-soft {
+      background: #fff;
+      border: 1px solid var(--nexo-line);
+      border-left: 3px solid var(--nexo-gold);
+      padding: 10px 14px;
+      border-radius: 4px;
+      margin: 10px 0;
+      font-size: 9.5pt;
+      line-height: 1.45;
+      color: var(--nexo-ink);
+    }
+    .callout-soft strong.kicker {
+      display: inline-block;
+      font-size: 7.5pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--nexo-gold);
+      margin-right: 8px;
+    }
+
+    /* ---- Cards de beneficios ---- */
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .benefit-card {
+      background: #fff;
+      border: 1px solid var(--nexo-line);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .benefit-card h4 {
+      font-size: 10.5pt;
+      font-weight: 600;
+      color: var(--nexo-ink);
+      margin: 0 0 5px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .benefit-card h4::before {
+      content: "";
+      width: 10px;
+      height: 2px;
+      background: var(--nexo-gold);
+      flex-shrink: 0;
+    }
+    .benefit-card p {
+      font-size: 9pt;
+      line-height: 1.45;
+      color: var(--nexo-ink-soft);
+      margin: 0;
+    }
+    .tag-soon {
+      display: inline-block;
+      font-size: 6.5pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--nexo-gold);
+      border: 1px solid var(--nexo-gold);
+      border-radius: 999px;
+      padding: 1px 6px;
+      font-weight: 600;
+      vertical-align: middle;
+      margin-left: 4px;
+    }
+
+    /* ---- Cards de opciones ---- */
+    .option-card {
+      background: #fff;
+      border: 1px solid var(--nexo-line);
+      border-radius: 6px;
+      padding: 14px 18px 14px 18px;
+      margin-bottom: 10px;
+    }
+    .option-card--with-media {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 14px 18px;
+    }
+    .option-card__media {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      width: 100%;
+    }
+    .option-card__media img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .option-card__content { min-width: 0; }
+    .option-card__head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+    .option-card__title {
+      font-size: 11pt;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      color: var(--nexo-ink);
+    }
+    .option-card__title small {
+      display: block;
+      font-size: 7.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--nexo-gold);
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+    .option-card__time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5pt;
+      color: var(--nexo-ink-soft);
+      letter-spacing: 0.04em;
+    }
+
+    /* ---- Página completa por opción ---- */
+    .option-feature {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 36px;
+      margin-top: 22px;
+      align-items: center;
+    }
+    .option-feature__media {
+      margin: 0;
+      display: block;
+    }
+    .option-feature__media img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .option-feature__specs h2 {
+      font-size: 18pt;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin: 0;
+      line-height: 1.2;
+    }
+    .option-feature__specs .option-tag {
+      display: inline-block;
+      font-size: 8pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--nexo-gold);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .option-feature__specs .time-pill {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 10px;
+      border: 1px solid var(--nexo-line);
+      border-radius: 999px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5pt;
+      color: var(--nexo-ink-soft);
+      letter-spacing: 0.04em;
+    }
+    .option-feature__specs table.spec {
+      margin-top: 22px;
+    }
+    .option-feature__specs table.spec td {
+      padding: 8px 0;
+      font-size: 10pt;
+    }
+    .option-feature__specs .consumo-strip {
+      margin-top: 14px;
+      padding-top: 12px;
+    }
+
+    table.spec {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5pt;
+    }
+    table.spec td {
+      padding: 4px 0;
+      vertical-align: top;
+      line-height: 1.4;
+      border-bottom: 1px dotted var(--nexo-line);
+    }
+    table.spec td:first-child {
+      width: 35%;
+      font-weight: 600;
+      color: var(--nexo-ink);
+      padding-right: 16px;
+    }
+    table.spec td:last-child { color: var(--nexo-ink); }
+    table.spec tr:last-child td { border-bottom: 0; }
+
+    .consumo-strip {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid var(--nexo-line);
+      font-size: 9pt;
+      color: var(--nexo-ink-soft);
+    }
+    .consumo-strip strong { color: var(--nexo-ink); font-size: 9.5pt; }
+    .consumo-strip .mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5pt;
+    }
+
+    ul.bullet-clean,
+    ol.steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    ul.bullet-clean li {
+      position: relative;
+      padding-left: 16px;
+      margin-bottom: 6px;
+      font-size: 9.5pt;
+      line-height: 1.45;
+    }
+    ul.bullet-clean li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.65em;
+      width: 8px;
+      height: 1.5px;
+      background: var(--nexo-gold);
+    }
+
+    ol.steps { counter-reset: step; }
+    ol.steps li {
+      counter-increment: step;
+      position: relative;
+      padding-left: 36px;
+      margin-bottom: 12px;
+      font-size: 10.5pt;
+      line-height: 1.5;
+    }
+    ol.steps li::before {
+      content: counter(step, decimal-leading-zero);
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9pt;
+      color: var(--nexo-gold);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    /* ---- Portada ---- */
+    .cover {
+      padding: 0.55in 0.55in;
+      height: 100%;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+    .cover__head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .cover__center { align-self: center; padding-bottom: 40px; }
+    .cover__eyebrow {
+      font-size: 9pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--nexo-gold);
+      font-weight: 600;
+      margin: 0 0 18px 0;
+    }
+    .cover__title {
+      font-size: 44pt;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      font-weight: 500;
+      color: var(--nexo-white);
+      margin: 0;
+    }
+    .cover__subtitle {
+      font-size: 14pt;
+      line-height: 1.4;
+      color: rgba(255,255,255,0.7);
+      font-weight: 400;
+      margin: 14px 0 0 0;
+    }
+    .cover__divider {
+      width: 80px;
+      height: 2px;
+      background: var(--nexo-gold);
+      margin: 26px 0;
+    }
+    .cover__client {
+      font-size: 16pt;
+      color: var(--nexo-gold);
+      font-weight: 400;
+      margin: 0;
+      letter-spacing: 0.01em;
+    }
+    .cover__client strong { color: var(--nexo-gold); font-weight: 600; }
+
+    /* ---- Contraportada ---- */
+    .closing {
+      padding: 0.7in 0.55in;
+      height: 100%;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      color: var(--nexo-white);
+    }
+    .closing__msg {
+      align-self: center;
+      max-width: 5.5in;
+    }
+    .closing__msg p.kicker {
+      font-size: 9pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--nexo-gold);
+      margin: 0 0 18px 0;
+      font-weight: 600;
+    }
+    .closing__msg h2 {
+      font-size: 30pt;
+      line-height: 1.1;
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      color: var(--nexo-white);
+      margin: 0 0 22px 0;
+    }
+    .closing__msg p.note {
+      font-size: 11pt;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.7);
+      margin: 0;
+    }
+    .closing__contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      font-size: 9.5pt;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .closing__contact strong {
+      color: var(--nexo-white);
+      display: block;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 8pt;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    /* ---- Helpers ---- */
+    .mt-0 { margin-top: 0 !important; }
+    .mt-8 { margin-top: 8px; }
+    .mt-16 { margin-top: 16px; }
+    .mt-24 { margin-top: 24px; }
+    .mb-0 { margin-bottom: 0 !important; }
+    .text-mono { font-family: 'JetBrains Mono', monospace; font-feature-settings: 'tnum'; }
+    .text-gold { color: var(--nexo-gold); }
+    .text-soft { color: var(--nexo-ink-soft); }
+    .text-sm { font-size: 9pt; }
+    .nowrap { white-space: nowrap; }
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+
+    /* ---- Print toolbar ---- */
+    .print-bar {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 100;
+      background: var(--nexo-black);
+      color: var(--nexo-white);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .print-bar button {
+      background: var(--nexo-gold);
+      color: var(--nexo-black);
+      border: 0;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 12px;
+    }
+    @media print { .print-bar { display: none !important; } }
+  </style>
+</head>
+<body>
+
+  <div class="print-bar">
+    Vista propuesta · listo para imprimir a PDF
+    <button onclick="window.print()">Exportar PDF</button>
+  </div>
+
+  <!-- ============================================================
+       PÁGINA 1 · PORTADA
+       ============================================================ -->
+  <section class="page page--dark">
+    <div class="cover">
+      <header class="cover__head">
+        <div class="logo" style="display:flex; align-items:center; gap:12px;">
+          <svg class="logo-mark" viewBox="0 0 512 512" aria-label="Nexo" style="width:28px; height:28px;">
+            <rect width="512" height="512" fill="#0D0D0D"/>
+            <g fill="#FFFFFF">
+              <rect x="126" y="106" width="68" height="300"/>
+              <rect x="318" y="106" width="68" height="300"/>
+              <polygon points="194,106 262,106 386,406 318,406"/>
+            </g>
+          </svg>
+          <span class="logo-text" style="color:#fff; font-size:13pt; letter-spacing:0.2em;">NEXO</span>
+        </div>
+        <div class="text-mono" style="font-size:8pt; letter-spacing:0.1em; color:rgba(255,255,255,0.45);">
+          NX-2026-0152
+        </div>
+      </header>
+
+      <div class="cover__center">
+        <p class="cover__eyebrow">Propuesta comercial</p>
+        <h1 class="cover__title">Servicio de vending<br/>de bebidas calientes.</h1>
+        <p class="cover__subtitle">Nexo Technologies S.A.S.</p>
+        <div class="cover__divider"></div>
+        <p class="cover__client">Presentada a <strong>Ofima Software</strong></p>
+      </div>
+
+      <table class="meta">
+        <tr><td>Fecha</td><td>Medellín, julio de 2026</td></tr>
+        <tr><td>Elaborado por</td><td>Nexo Technologies S.A.S. · NIT 902.041.808</td></tr>
+        <tr><td>Para</td><td>Ofima Software</td></tr>
+        <tr><td>Confidencialidad</td><td>Documento confidencial para uso exclusivo del destinatario</td></tr>
+        <tr><td>Vigencia propuesta</td><td>30 días hábiles a partir de la fecha de emisión</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PÁGINA 2 · QUIÉNES SOMOS + PROPUESTA DE VALOR
+       ============================================================ -->
+  <section class="page">
+    <header class="page__header">
+      <div class="logo">
+        <svg class="logo-mark" viewBox="0 0 512 512">
+          <rect width="512" height="512" fill="#0D0D0D"/>
+          <g fill="#FFFFFF">
+            <rect x="126" y="106" width="68" height="300"/>
+            <rect x="318" y="106" width="68" height="300"/>
+            <polygon points="194,106 262,106 386,406 318,406"/>
+          </g>
+        </svg>
+        <span class="logo-text">NEXO</span>
+      </div>
+      <span>NX-2026-0152 · Ofima Software</span>
+    </header>
+
+    <div class="page__body">
+      <p class="eyebrow">01 · Quiénes somos</p>
+      <h1 class="section-title">Una empresa colombiana que opera<br/>el café de tu oficina.</h1>
+
+      <p class="mt-16">Nexo Technologies S.A.S. es una empresa colombiana enfocada en facilitar el acceso a buenos productos dentro de los espacios de trabajo. Nuestra primera línea de servicio es <strong>Nexo Café</strong>, una solución de vending corporativo que opera bajo distintas modalidades comerciales según las necesidades de cada cliente: comodato, contrato de suministro, revenue sharing, entre otras.</p>
+
+      <p>Operamos un modelo integral en el que la empresa cliente no asume la compra del equipo ni la carga operativa: nosotros instalamos la máquina, la abastecemos, la mantenemos y la operamos. La empresa se enfoca en lo que importa: <strong>disfrutar del servicio</strong>.</p>
+
+      <p>Estamos diseñando este servicio pensando en oficinas, salas de espera, coworkings y espacios con flujo constante de personas, con un enfoque en calidad, experiencia de uso y flexibilidad de modelo comercial.</p>
+
+      <p class="eyebrow" style="margin-top:32px;">02 · Propuesta de valor</p>
+      <h2 class="subsection mt-0">Diseñada a la medida de Ofima Software.</h2>
+      <p class="text-soft" style="margin-bottom:12px; font-size:10pt;">Esta propuesta plantea una configuración flexible que se adapta a los requerimientos del equipo de Ofima Software:</p>
+
+      <table class="nexo">
+        <thead>
+          <tr>
+            <th style="width:42%;">Configuración propuesta</th>
+            <th>Solución Nexo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Menú amplio de bebidas calientes.</strong></td>
+            <td>Hasta 21 bebidas configurables según el menú acordado, que los usuarios compran libremente en la máquina.</td>
+          </tr>
+          <tr>
+            <td><strong>Pago electrónico prioritario.</strong></td>
+            <td>Datáfono integrado y/o código QR, además de efectivo.</td>
+          </tr>
+          <tr>
+            <td><strong>Cero carga operativa para Ofima.</strong></td>
+            <td>Nexo instala, abastece, limpia, mantiene y opera la máquina. El equipo de Ofima no tiene que hacer nada.</td>
+          </tr>
+          <tr>
+            <td><strong>Subsidio corporativo opcional.</strong></td>
+            <td>Por defecto el modelo es de pago por parte del consumidor. Si Ofima lo desea, puede subsidiar total o parcialmente las bebidas que elija.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer class="page__footer">
+      <span>Propuesta comercial · Ofima Software</span>
+      <span class="page__num">02 / 10</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================
+       PÁGINA 3 · LA MÁQUINA (FL505 · ~2 semanas)
+       ============================================================ -->
+  <section class="page">
+    <header class="page__header">
+      <div class="logo">
+        <svg class="logo-mark" viewBox="0 0 512 512">
+          <rect width="512" height="512" fill="#0D0D0D"/>
+          <g fill="#FFFFFF">
+            <rect x="126" y="106" width="68" height="300"/>
+            <rect x="318" y="106" width="68" height="300"/>
+            <polygon points="194,106 262,106 386,406 318,406"/>
+          </g>
+        </svg>
+        <span class="logo-text">NEXO</span>
+      </div>
+      <span>NX-2026-0152 · Ofima Software</span>
+    </header>
+
+    <div class="page__body">
+      <p class="eyebrow">03 · La máquina</p>
+      <h1 class="section-title">Implementación en<br/>aproximadamente 2 semanas.</h1>
+      <p class="lead">Le presentamos el equipo disponible para activar el servicio en el menor tiempo posible, manteniendo la calidad del café y la integración de pago electrónico.</p>
+
+      <div class="option-feature">
+        <figure class="option-feature__media">
+          <img src="../fotos/cafe/nexo-cafe-fl505.png" alt="Máquina Nexo Café" />
+        </figure>
+        <div class="option-feature__specs">
+          <span class="option-tag">Disponibilidad inmediata</span>
+          <h2>Disponible en 2 semanas.</h2>
+          <span class="time-pill">~2 semanas</span>
+
+          <table class="spec">
+            <tr><td>Tiempo de instalación</td><td>Aproximadamente 2 semanas a partir de la aceptación de esta propuesta</td></tr>
+            <tr><td>Tipos de café</td><td>Café soluble de alta calidad (polvo fino, alta solubilidad)</td></tr>
+            <tr><td>Tamaño de vasos</td><td>7 oz (207 ml)</td></tr>
+            <tr><td>Vasos</td><td>Vasos desechables entregados por la máquina.</td></tr>
+            <tr><td>Métodos de pago</td><td>Efectivo, datáfono y/o QR integrado</td></tr>
+            <tr><td>Pantalla</td><td>Táctil 32" HD, interfaz personalizable</td></tr>
+            <tr><td>Bebidas configurables</td><td>Hasta 21 bebidas según menú acordado</td></tr>
+            <tr><td>Dimensiones</td><td>650 × 670 × 1750 mm</td></tr>
+            <tr><td>Conexión</td><td>WIFI o 4G</td></tr>
+          </table>
+
+          <div class="consumo-strip">
+            <span><strong>Consumo:</strong> &lt; 100 kWh operando 24h</span>
+            <span class="mono">AC 110v – 120v · 60 Hz</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout-soft" style="margin-top:18px;">
+        <strong class="kicker">Nota</strong>
+        El servicio incluye activación presencial, soporte preventivo y correctivo, y abastecimiento programado bajo los términos descritos en esta propuesta.
+      </div>
+    </div>
+
+    <footer class="page__footer">
+      <span>Propuesta comercial · Ofima Software</span>
+      <span class="page__num">03 / 10</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================
+       PÁGINA 4 · BENEFICIOS INCLUIDOS
+       ============================================================ -->
+  <section class="page">
+    <header class="page__header">
+      <div class="logo">
+        <svg class="logo-mark" viewBox="0 0 512 512">
+          <rect width="512" height="512" fill="#0D0D0D"/>
+          <g fill="#FFFFFF">
+            <rect x="126" y="106" width="68" height="300"/>
+            <rect x="318" y="106" width="68" height="300"/>
+            <polygon points="194,106 262,106 386,406 318,406"/>
+          </g>
+        </svg>
+        <span class="logo-text">NEXO</span>
+      </div>
+      <span>NX-2026-0152 · Ofima Software</span>
+    </header>
+
+    <div class="page__body">
+      <p class="eyebrow">04 · Beneficios incluidos</p>
+      <h1 class="section-title">Todo incluido, sin carga<br/>operativa para Ofima.</h1>
+      <p class="lead">El servicio incluye un conjunto de beneficios pensados para que Ofima solo se ocupe de disfrutar el café, mientras Nexo se encarga de la operación completa.</p>
+
+      <div class="benefit-grid">
+        <div class="benefit-card">
+          <h4>Abastecimiento incluido</h4>
+          <p>Nexo abastece la máquina de forma programada. Los empleados de Ofima no tienen que hacer nada.</p>
+        </div>
+        <div class="benefit-card">
+          <h4>Soporte técnico</h4>
+          <p>Soporte técnico preventivo y correctivo cuando se necesite, sin costo adicional.</p>
+        </div>
+        <div class="benefit-card">
+          <h4>Instalación gratis</h4>
+          <p>Nexo cubre la instalación completa del equipo. Ofima no realiza ninguna inversión.</p>
+        </div>
+        <div class="benefit-card">
+          <h4>Mezcladores, vasos y azúcar gratis</h4>
+          <p>El usuario elige libremente mezcladores, vasos y azúcar para cada bebida, sin sobrecosto para Ofima.</p>
+        </div>
+        <div class="benefit-card">
+          <h4>Menú amplio</h4>
+          <p>Hasta 21 bebidas distintas que los usuarios compran libremente con efectivo, QR y/o datáfono.</p>
+        </div>
+        <div class="benefit-card">
+          <h4>Consumo en tiempo real <span class="tag-soon">Opcional</span></h4>
+          <p>Visualización en tiempo real del consumo de café de los empleados y estadísticas de preferencia.</p>
+        </div>
+        <div class="benefit-card">
+          <h4>Descuentos por horario <span class="tag-soon">Opcional</span></h4>
+          <p>Nexo puede activar descuentos en horarios establecidos para incentivar el consumo. Estas estrategias comerciales son opcionales y Nexo puede variarlas según lo considere.</p>
+        </div>
+        <div class="benefit-card">
+          <h4>Cupones de descuento <span class="tag-soon">En construcción</span></h4>
+          <p>Los empleados podrán registrarse y obtener cupones de descuento directamente en la máquina.</p>
+        </div>
+        <div class="benefit-card">
+          <h4>Experiencia personalizada <span class="tag-soon">En construcción</span></h4>
+          <p>Experiencia de compra más personalizada para cada usuario según sus preferencias.</p>
+        </div>
+      </div>
+
+      <div class="callout-soft" style="margin-top:16px;">
+        <strong class="kicker">Nota</strong>
+        Las funcionalidades marcadas como <em>en construcción</em> se irán habilitando progresivamente sin costo adicional para Ofima a medida que estén disponibles.
+      </div>
+    </div>
+
+    <footer class="page__footer">
+      <span>Propuesta comercial · Ofima Software</span>
+      <span class="page__num">04 / 10</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================
+       PÁGINA 5 · MENÚ Y PRECIOS (7 oz · consumidor final)
+       ============================================================ -->
+  <section class="page">
+    <header class="page__header">
+      <div class="logo">
+        <svg class="logo-mark" viewBox="0 0 512 512">
+          <rect width="512" height="512" fill="#0D0D0D"/>
+          <g fill="#FFFFFF">
+            <rect x="126" y="106" width="68" height="300"/>
+            <rect x="318" y="106" width="68" height="300"/>
+            <polygon points="194,106 262,106 386,406 318,406"/>
+          </g>
+        </svg>
+        <span class="logo-text">NEXO</span>
+      </div>
+      <span>NX-2026-0152 · Ofima Software</span>
+    </header>
+
+    <div class="page__body">
+      <p class="eyebrow">05 · Menú de bebidas y lista de precios</p>
+      <h1 class="section-title">Precios al consumidor final.</h1>
+      <p class="lead">El siguiente menú y lista de precios aplica para el servicio en las instalaciones de Ofima Software. Los usuarios pagan directamente en la máquina mediante efectivo, código QR y/o datáfono.</p>
+
+      <h4 class="label" style="margin-top:14px;">Precios por bebida</h4>
+      <p class="text-sm" style="margin-bottom:6px;">Tamaño 7 oz · Valores en pesos colombianos · <strong style="color:var(--nexo-gold);">Precio al consumidor final con IVA incluido.</strong></p>
+
+      <table class="nexo">
+        <thead>
+          <tr>
+            <th>Bebida</th>
+            <th class="num">Onzas</th>
+            <th class="num">Consumidor final<small>(con IVA)</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Café fuerte liofilizado</td><td class="num">7</td><td class="num">$ 2.300</td></tr>
+          <tr><td>Café suave liofilizado</td><td class="num">7</td><td class="num">$ 2.300</td></tr>
+          <tr><td>Café con leche</td><td class="num">7</td><td class="num">$ 3.500</td></tr>
+          <tr><td>Chocolate con leche</td><td class="num">7</td><td class="num">$ 3.500</td></tr>
+          <tr><td>Chocolate en agua fuerte</td><td class="num">7</td><td class="num">$ 2.500</td></tr>
+          <tr><td>Chocolate en agua suave</td><td class="num">7</td><td class="num">$ 2.500</td></tr>
+          <tr><td>Leche caliente</td><td class="num">7</td><td class="num">$ 2.500</td></tr>
+          <tr><td>Capuchino</td><td class="num">7</td><td class="num">$ 3.500</td></tr>
+          <tr><td>Capuchino vainilla</td><td class="num">7</td><td class="num">$ 3.500</td></tr>
+          <tr><td>Mocaccino</td><td class="num">7</td><td class="num">$ 3.500</td></tr>
+          <tr><td>Moca</td><td class="num">7</td><td class="num">$ 3.500</td></tr>
+        </tbody>
+      </table>
+
+      <div class="row-2" style="margin-top:14px;">
+        <div>
+          <h4 class="label mt-0">Todo incluido para el usuario</h4>
+          <ul class="bullet-clean">
+            <li>Mezcladores, vasos y azúcar disponibles sin costo para cada bebida.</li>
+            <li>El usuario elige libremente sus complementos en cada compra.</li>
+            <li>Sin cuotas ni cobros fijos para Ofima: el modelo base es de pago por parte del consumidor.</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="label mt-0">Subsidio corporativo (opcional)</h4>
+          <ul class="bullet-clean">
+            <li>Los precios subsidiados son <strong>más cómodos que los del consumidor final</strong>: al asumir Ofima parte o la totalidad del valor, la bebida se factura a un precio preferencial por unidad.</li>
+            <li>Si Ofima desea, puede subsidiar total o parcialmente las bebidas que elija.</li>
+            <li>Las bebidas subsidiadas se facturarían mensualmente a Ofima según el consumo real.</li>
+            <li>La configuración de precios y subsidios se define antes de la instalación.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <footer class="page__footer">
+      <span>Propuesta comercial · Ofima Software</span>
+      <span class="page__num">05 / 10</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================
+       PÁGINA 5 · ACTIVACIÓN DEL PUNTO
+       ============================================================ -->
+  <section class="page">
+    <header class="page__header">
+      <div class="logo">
+        <svg class="logo-mark" viewBox="0 0 512 512">
+          <rect width="512" height="512" fill="#0D0D0D"/>
+          <g fill="#FFFFFF">
+            <rect x="126" y="106" width="68" height="300"/>
+            <rect x="318" y="106" width="68" height="300"/>
+            <polygon points="194,106 262,106 386,406 318,406"/>
+          </g>
+        </svg>
+        <span class="logo-text">NEXO</span>
+      </div>
+      <span>NX-2026-0152 · Ofima Software</span>
+    </header>
+
+    <div class="page__body">
+      <p class="eyebrow">06 · Activación del punto · Evento de lanzamiento</p>
+      <h1 class="section-title">Acompañamos el arranque.</h1>
+      <p class="lead">Nexo cubre completamente el evento de activación de la máquina en las instalaciones de Ofima Software. <strong>Este evento no tiene ningún costo para la empresa.</strong></p>
+
+      <div class="row-2" style="margin-top:22px;">
+        <div>
+          <h4 class="label mt-0">¿En qué consiste la activación?</h4>
+          <ul class="bullet-clean">
+            <li><strong>Duración:</strong> 1 a 2 días hábiles en las instalaciones de Ofima Software.</li>
+            <li>Equipo Nexo presente en el punto durante las horas de mayor tráfico de empleados.</li>
+            <li>Degustación gratuita de algunas bebidas del menú para los empleados.</li>
+            <li>Explicación del funcionamiento de la máquina: selección de bebidas, pago electrónico, etc.</li>
+            <li>Resolución de dudas en tiempo real y recolección de feedback.</li>
+            <li>Utilización del sistema de pago QR y/o datáfono con acompañamiento presencial.</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="label mt-0">Objetivo de la activación</h4>
+          <p>Dar a conocer la máquina a los empleados y sus funcionalidades, y que sepan cómo usarla desde el primer día.</p>
+          <p>Esto es lo que diferencia a Nexo de una instalación tradicional: <strong>no dejamos la máquina y nos vamos, acompañamos el arranque.</strong></p>
+          <div class="callout-soft" style="margin-top:14px;">
+            <strong class="kicker">Importante</strong>
+            Los días de activación se coordinan con el equipo de Ofima Software en la semana previa a la instalación, adaptándonos a los horarios y flujos de la empresa.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="page__footer">
+      <span>Propuesta comercial · Ofima Software</span>
+      <span class="page__num">06 / 10</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================
+       PÁGINA 6 · CRONOGRAMA DE IMPLEMENTACIÓN (2 semanas)
+       ============================================================ -->
+  <section class="page">
+    <header class="page__header">
+      <div class="logo">
+        <svg class="logo-mark" viewBox="0 0 512 512">
+          <rect width="512" height="512" fill="#0D0D0D"/>
+          <g fill="#FFFFFF">
+            <rect x="126" y="106" width="68" height="300"/>
+            <rect x="318" y="106" width="68" height="300"/>
+            <polygon points="194,106 262,106 386,406 318,406"/>
+          </g>
+        </svg>
+        <span class="logo-text">NEXO</span>
+      </div>
+      <span>NX-2026-0152 · Ofima Software</span>
+    </header>
+
+    <div class="page__body">
+      <p class="eyebrow">07 · Cronograma de implementación</p>
+      <h1 class="section-title">De la firma a la operación normal.</h1>
+      <p class="lead">A continuación se presenta el cronograma estimado para la instalación en <strong>aproximadamente 2 semanas</strong> a partir de la aceptación de esta propuesta.</p>
+
+      <table class="nexo" style="margin-top:18px;">
+        <thead>
+          <tr>
+            <th>Actividad</th>
+            <th style="width:18%;">Fecha</th>
+            <th style="width:22%;">Responsable</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Aceptación de propuesta comercial</td><td>Semana 1</td><td>Ofima Software / Nexo</td></tr>
+          <tr><td>Configuración técnica de la máquina (menú, precios, pago electrónico)</td><td>Semana 1</td><td>Nexo</td></tr>
+          <tr><td>Coordinación logística: definición de espacio físico y conexión eléctrica</td><td>Semana 1</td><td>Ofima Software / Nexo</td></tr>
+          <tr><td>Firma del contrato de servicio y condiciones comerciales</td><td>Semana 1</td><td>Ofima Software / Nexo</td></tr>
+          <tr><td>Abastecimiento inicial de insumos (café, leche, chocolate, capuchino, vasos)</td><td>Semana 1</td><td>Nexo</td></tr>
+          <tr><td>Pruebas técnicas y calibración de bebidas (dosis, temperatura, tiempos)</td><td>Semana 2</td><td>Nexo</td></tr>
+          <tr><td>Instalación física de la máquina en el punto definitivo (una vez validada en pruebas)</td><td>Semana 2</td><td>Nexo</td></tr>
+          <tr><td>Activación presencial: evento de lanzamiento y degustación para empleados (1-2 días)</td><td>Semana 2</td><td>Nexo</td></tr>
+          <tr><td>Inicio de operación normal y primer ciclo de monitoreo</td><td>Semana 2</td><td>Nexo</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout-soft" style="margin-top:18px;">
+        <strong class="kicker">Nota</strong>
+        Los tiempos del cronograma inician con la aceptación de la propuesta y se ajustan a la disponibilidad de espacio físico y conexión eléctrica en las instalaciones de Ofima Software.
+      </div>
+    </div>
+
+    <footer class="page__footer">
+      <span>Propuesta comercial · Ofima Software</span>
+      <span class="page__num">07 / 10</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================
+       PÁGINA 7 · PLAN DE SOPORTE Y ABASTECIMIENTO
+       ============================================================ -->
+  <section class="page">
+    <header class="page__header">
+      <div class="logo">
+        <svg class="logo-mark" viewBox="0 0 512 512">
+          <rect width="512" height="512" fill="#0D0D0D"/>
+          <g fill="#FFFFFF">
+            <rect x="126" y="106" width="68" height="300"/>
+            <rect x="318" y="106" width="68" height="300"/>
+            <polygon points="194,106 262,106 386,406 318,406"/>
+          </g>
+        </svg>
+        <span class="logo-text">NEXO</span>
+      </div>
+      <span>NX-2026-0152 · Ofima Software</span>
+    </header>
+
+    <div class="page__body">
+      <p class="eyebrow">08 · Plan de soporte y abastecimiento</p>
+      <h1 class="section-title">Continuidad operativa garantizada.</h1>
+      <p class="lead">Nexo garantiza la continuidad operativa del servicio mediante un plan estructurado de visitas preventivas, atención correctiva y reabastecimiento programado.</p>
+
+      <h4 class="label" style="margin-top:22px;">8.1 · Soporte técnico</h4>
+      <table class="nexo">
+        <thead>
+          <tr>
+            <th style="width:14%;">Tipo</th>
+            <th style="width:24%;">Frecuencia</th>
+            <th style="width:24%;">Horario de atención</th>
+            <th>Contenido</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Preventivo</strong></td>
+            <td>Cada seis meses, coordinado con Ofima Software</td>
+            <td>Lun. – Vie. 7:00 a.m. – 5:00 p.m.<br/>Fecha y hora coordinada con Ofima Software</td>
+            <td>Limpieza de tolvas, revisión sistema de pago, calibración de dosis, verificación de sensores, actualización de menú si aplica</td>
+          </tr>
+          <tr>
+            <td><strong>Correctivo</strong></td>
+            <td>Ante fallo reportado — respuesta entre 4 y 8 horas hábiles según gravedad</td>
+            <td>Lun. – Vie. 7:00 a.m. – 6:00 p.m.</td>
+            <td>Atención de fallos técnicos, reemplazo de piezas, restauración del servicio</td>
+          </tr>
+          <tr>
+            <td><strong>Monitoreo remoto</strong></td>
+            <td>Continuo</td>
+            <td>24 / 7 — alertas automáticas</td>
+            <td>Monitoreo de conectividad, niveles de insumos y estado del sistema de pago</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="label" style="margin-top:24px;">8.2 · Visitas operativas (abastecimiento, limpieza y verificación)</h4>
+      <p class="text-sm text-soft" style="margin-bottom:8px;">Cada visita combina tres tareas en una sola intervención para garantizar que la máquina opere en condiciones óptimas y sin interrupciones.</p>
+      <table class="nexo">
+        <thead>
+          <tr>
+            <th style="width:24%;">Parámetro</th>
+            <th style="width:30%;">Valor</th>
+            <th>Observación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Actividades por visita</strong></td>
+            <td>Reposición de insumos, limpieza del equipo y verificación general del funcionamiento (sensores, dosis, sistema de pago, conectividad).</td>
+            <td>Tres tareas en una sola visita: cero impacto operativo para Ofima Software.</td>
+          </tr>
+          <tr>
+            <td><strong>Frecuencia inicial</strong></td>
+            <td>Inicialmente 2 veces por semana</td>
+            <td>Se ajustará según consumo real registrado en los primeros 15 a 30 días de operación.</td>
+          </tr>
+          <tr>
+            <td><strong>Horario de visita</strong></td>
+            <td>7:00 a.m. – 6:00 p.m., según el horario que funcione mejor para ambas partes</td>
+            <td>De preferencia antes del inicio del flujo de usuarios, para no interrumpir la operación.</td>
+          </tr>
+          <tr>
+            <td><strong>Canal de reporte</strong></td>
+            <td>WhatsApp / Correo electrónico</td>
+            <td>Nexo asigna un contacto directo para Ofima Software desde el día de la instalación.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer class="page__footer">
+      <span>Propuesta comercial · Ofima Software</span>
+      <span class="page__num">08 / 10</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================
+       PÁGINA 8 · CONDICIONES COMERCIALES
+       ============================================================ -->
+  <section class="page">
+    <header class="page__header">
+      <div class="logo">
+        <svg class="logo-mark" viewBox="0 0 512 512">
+          <rect width="512" height="512" fill="#0D0D0D"/>
+          <g fill="#FFFFFF">
+            <rect x="126" y="106" width="68" height="300"/>
+            <rect x="318" y="106" width="68" height="300"/>
+            <polygon points="194,106 262,106 386,406 318,406"/>
+          </g>
+        </svg>
+        <span class="logo-text">NEXO</span>
+      </div>
+      <span>NX-2026-0152 · Ofima Software</span>
+    </header>
+
+    <div class="page__body">
+      <p class="eyebrow">09 · Condiciones comerciales</p>
+      <h1 class="section-title">Términos del servicio.</h1>
+
+      <table class="spec" style="margin-top:24px; font-size:10pt;">
+        <tr>
+          <td>Modelo comercial</td>
+          <td>Comodato / suministros — la máquina es propiedad de Nexo. Ofima Software no realiza inversión en el equipo.</td>
+        </tr>
+        <tr>
+          <td>Costo de instalación</td>
+          <td>Sin costo para Ofima Software. Nexo cubre instalación y activación completa.</td>
+        </tr>
+        <tr>
+          <td>Costo de mantenimiento</td>
+          <td>Sin costo para Ofima Software. Nexo cubre soporte preventivo y correctivo.</td>
+        </tr>
+        <tr>
+          <td>Insumos (mezcladores, vasos, azúcar)</td>
+          <td>Incluidos sin costo. El usuario los elige libremente para cada bebida.</td>
+        </tr>
+        <tr>
+          <td>Modelo de pago</td>
+          <td>Los usuarios pagan directamente en la máquina (efectivo, datáfono y/o QR). El modelo base no implica cobros fijos para Ofima.</td>
+        </tr>
+        <tr>
+          <td>Subsidio corporativo (opcional)</td>
+          <td>Si Ofima opta por subsidiar bebidas, Nexo factura mensualmente el consumo subsidiado dentro de los primeros 5 días hábiles del mes siguiente, con 30 días calendario de plazo de pago.</td>
+        </tr>
+        <tr>
+          <td>Vigencia del contrato<sup style="color:var(--nexo-gold); font-weight:600;">*</sup></td>
+          <td>6 meses renovables automáticamente, con opción de actualización de equipo al vencimiento. Cualquiera de las partes puede rescindir el contrato en cualquier momento bajo las condiciones descritas en el mismo.</td>
+        </tr>
+        <tr>
+          <td>Pago electrónico</td>
+          <td>Datáfono y/o código QR habilitados desde el día de la instalación.</td>
+        </tr>
+        <tr>
+          <td>Vigencia de la propuesta</td>
+          <td>30 días hábiles a partir de la fecha de presentación.</td>
+        </tr>
+      </table>
+
+      <p class="text-sm text-soft" style="margin-top:18px; font-style:italic; line-height:1.5;">
+        <span style="color:var(--nexo-gold); font-weight:600;">*</span>
+        La continuidad del equipo depende del nivel de consumo. En caso de ser bajo, Nexo podrá proponer una opción alternativa que se acople mejor al consumo de la empresa, siempre previa conversación y acuerdo con Ofima Software, según los tiempos del contrato.
+      </p>
+    </div>
+
+    <footer class="page__footer">
+      <span>Propuesta comercial · Ofima Software</span>
+      <span class="page__num">09 / 10</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================
+       PÁGINA 9 · PRÓXIMOS PASOS + CIERRE
+       ============================================================ -->
+  <section class="page page--dark">
+    <div class="closing">
+      <header style="display:flex; justify-content:space-between; align-items:center;">
+        <div class="logo" style="display:flex; align-items:center; gap:10px;">
+          <svg class="logo-mark" viewBox="0 0 512 512">
+            <rect width="512" height="512" fill="#0D0D0D"/>
+            <g fill="#FFFFFF">
+              <rect x="126" y="106" width="68" height="300"/>
+              <rect x="318" y="106" width="68" height="300"/>
+              <polygon points="194,106 262,106 386,406 318,406"/>
+            </g>
+          </svg>
+          <span class="logo-text" style="color:#fff;">NEXO</span>
+        </div>
+        <span class="text-mono" style="font-size:8pt; letter-spacing:0.1em; color:rgba(255,255,255,0.45);">NX-2026-0152</span>
+      </header>
+
+      <div class="closing__msg">
+        <p class="kicker">10 · Próximos pasos</p>
+        <h2>Activamos el servicio<br/>en seis pasos.</h2>
+
+        <ol class="steps" style="margin-top:24px;">
+          <li><strong>Ofima Software</strong> confirma la aceptación de la propuesta (instalación en aproximadamente 2 semanas).</li>
+          <li><strong>Nexo y Ofima Software</strong> firman el contrato de servicio y condiciones comerciales acordadas.</li>
+          <li><strong>Nexo</strong> inicia configuración técnica de la máquina y coordinación logística con el equipo de Ofima Software.</li>
+          <li><strong>Nexo</strong> realiza visita previa al punto de instalación para validar conexión eléctrica y espacio físico destinado a la ubicación de la máquina.</li>
+          <li><strong>Calibración, instalación y evento de activación</strong> en fecha acordada.</li>
+          <li><strong>Inicio de operación normal</strong> con monitoreo semanal durante el primer mes.</li>
+        </ol>
+
+        <p class="note" style="margin-top:28px;">Quedamos atentos a cualquier duda o ajuste sobre esta propuesta.</p>
+      </div>
+
+      <div class="closing__contact">
+        <div>
+          <strong>Contacto comercial</strong>
+          Camilo Álvarez · Founder<br/>
+          WhatsApp +57 301 930 7252<br/>
+          contacto@nexotech.io
+        </div>
+        <div>
+          <strong>Nexo Technologies S.A.S.</strong>
+          NIT 902.041.808<br/>
+          Medellín, Colombia<br/>
+          www.nexotech.io
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
