@@ -120,10 +120,26 @@ const nextConfig: NextConfig = {
 
   // Opt-in al modo estricto de Server Actions (validación de origen automática).
   // Si en algún momento querés permitir orígenes adicionales explícitos:
-  // experimental: { serverActions: { allowedOrigins: ["www.nexotech.io"] } }
+  // experimental: { serverActions: { allowedOrigins: ["www.nexovending.co"] } }
 
   // Desactivar el header X-Powered-By para no exponer versión de Next.
   poweredByHeader: false,
+
+  // Canónico: www.nexovending.co. El .io y el apex .co redirigen 301.
+  async redirects() {
+    const canonical = "https://www.nexovending.co";
+    const fromHosts = [
+      "nexotech.io",
+      "www.nexotech.io",
+      "nexovending.co",
+    ];
+    return fromHosts.map((host) => ({
+      source: "/:path*",
+      has: [{ type: "host" as const, value: host }],
+      destination: `${canonical}/:path*`,
+      permanent: true,
+    }));
+  },
 
   async headers() {
     return [

@@ -2,17 +2,17 @@
 
 Este documento describe el modelo de seguridad de la landing y cómo reportar
 vulnerabilidades. Si encontrás un problema de seguridad, **no abras un issue
-público** — escríbenos directo a `contacto@nexotech.io`.
+público** — escríbenos directo a `contacto@nexovending.co`.
 
 ---
 
 ## Reporte de vulnerabilidades
 
-- **Email**: `contacto@nexotech.io`
+- **Email**: `contacto@nexovending.co` (`contacto@nexotech.io` reenvía al mismo buzón)
 - **Tiempo de respuesta esperado**: 72 horas
 - **Disclosure**: coordinada — pedimos no publicar hasta que el fix esté en producción
 
-(Nota: idealmente este reporte debería ir a un alias dedicado tipo `security@nexotech.io`. Cuando crees el alias, actualizá esto.)
+(Nota: idealmente este reporte debería ir a un alias dedicado tipo `security@nexovending.co`. Cuando crees el alias, actualizá esto.)
 
 Datos útiles para el reporte:
 - Descripción del impacto
@@ -62,7 +62,7 @@ Estas viven en panels externos y deben validarse al desplegar:
   WAF rules, Always Use HTTPS, Auto Minify
 - **Vercel**: variables de entorno marcadas como Sensitive, 2FA en cuenta,
   Vercel Firewall (Pro plan), Audit logs (Pro plan)
-- **DNS**: SPF/DKIM/DMARC para email outbound desde `@nexotech.io`
+- **DNS**: SPF/DKIM/DMARC para email outbound desde `@nexovending.co` (hoy el envío sigue saliendo de `@nexotech.io` hasta enganchar el dominio al Private Email)
 - **GitHub**: 2FA obligatorio, branch protection en `main`, requiere PR review
 
 ---

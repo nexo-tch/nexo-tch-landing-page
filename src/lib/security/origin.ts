@@ -6,9 +6,12 @@
  * y para tener allowlist concreta de dominios permitidos.
  *
  * Configuración:
- *   - NEXT_PUBLIC_SITE_URL: URL canónica del sitio (ej: https://www.nexotech.io)
+ *   - NEXT_PUBLIC_SITE_URL: URL canónica (ej: https://www.nexovending.co)
  *   - ALLOWED_ORIGINS: lista coma-separada opcional de orígenes adicionales
  *     (ej: previews de Vercel, otros subdominios)
+ *
+ * nexotech.io / www.nexotech.io quedan en allowlist como puente hasta
+ * que el .io deje de apuntar a esta app (objetivo: feb 2027).
  */
 
 import { company } from "@/lib/company";
@@ -31,7 +34,23 @@ function buildAllowedOrigins(): Set<string> {
     // siteUrl mal configurado, lo ignoramos en silencio.
   }
 
-  // 2. Orígenes adicionales explícitos (separados por coma).
+  // 2. Dominio legado: el 301 vive en next.config, pero el form puede
+  //    pegar todavía desde .io si el redirect aún no corrió (cache, preview).
+  if (company.site.legacyUrl) {
+    try {
+      const legacy = new URL(company.site.legacyUrl);
+      origins.add(legacy.origin);
+      if (legacy.hostname.startsWith("www.")) {
+        origins.add(`${legacy.protocol}//${legacy.hostname.slice(4)}`);
+      } else {
+        origins.add(`${legacy.protocol}//www.${legacy.hostname}`);
+      }
+    } catch {
+      // legacyUrl mal formado: no bloqueamos el arranque.
+    }
+  }
+
+  // 3. Orígenes adicionales explícitos (separados por coma).
   const extra = process.env.ALLOWED_ORIGINS;
   if (extra) {
     for (const o of extra.split(",").map((s) => s.trim()).filter(Boolean)) {
@@ -43,7 +62,7 @@ function buildAllowedOrigins(): Set<string> {
     }
   }
 
-  // 3. En dev, permitir localhost en cualquier puerto.
+  // 4. En dev, permitir localhost en cualquier puerto.
   if (process.env.NODE_ENV !== "production") {
     origins.add("http://localhost:3000");
     origins.add("http://localhost:3001");

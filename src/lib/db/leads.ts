@@ -29,7 +29,7 @@ export type LeadRecord = {
   consentAcceptedAt: string; // ISO-8601 timestamp
 
   // Source tracking
-  source: string; // "landing_nexotech_io"
+  source: string; // "landing_nexovending_co"
   utm?: {
     source?: string;
     medium?: string;

@@ -198,7 +198,7 @@ export async function submitLead(
     city: data.ciudad,
     phone: data.telefono || undefined,
     message: data.mensaje,
-    source: "landing_nexotech_io",
+    source: "landing_nexovending_co",
     consentAcceptedAt: new Date().toISOString(),
     meta: {
       userAgent: userAgent?.slice(0, 256),

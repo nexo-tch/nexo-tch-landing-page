@@ -16,8 +16,8 @@ export const company = {
   registeredAddress: "Medellín, Antioquia",
   digitalOperation: true,
   contact: {
-    // Canal único de atención al cliente y PQR.
-    email: "contacto@nexotech.io",
+    // Canal público. contacto@nexotech.io reenvía aquí un año (puente).
+    email: "contacto@nexovending.co",
     // Si se deja como null, los CTAs de WhatsApp se ocultan automáticamente.
     whatsapp: {
       // formato E.164 sin "+" para wa.me
@@ -31,8 +31,10 @@ export const company = {
     linkedin: "https://www.linkedin.com/company/nexotech-io",
   },
   site: {
-    // TODO(deploy): poner el dominio definitivo cuando se publique.
-    url: "https://www.nexotech.io",
+    url: "https://www.nexovending.co",
+    // Puente 2026–2027: nexotech.io hace 301 acá. No renovar el .io
+    // después de feb 2027 sin haber actualizado todos los materiales.
+    legacyUrl: "https://www.nexotech.io",
   },
 } as const;
 
