@@ -25,23 +25,23 @@ const crumbs = [
 ] as const;
 
 export const metadata: Metadata = {
-  title: "Comodato de máquinas vending",
+  title: "Máquina vending sin inversión (comodato)",
   description:
-    "Comodato de máquinas vending en Medellín: Nexo instala el equipo sin que tu empresa lo compre. Operación, abastecimiento y mantenimiento incluidos.",
+    "Vending en comodato en Medellín: máquina vending sin inversión. Nexo instala el equipo sin que tu empresa lo compre. Operación y abastecimiento incluidos.",
   alternates: { canonical: "/comodato-maquinas-vending" },
   openGraph: {
-    title: "Comodato de máquinas vending | Nexo",
+    title: "Máquina vending sin inversión (comodato) | Nexo",
     description:
-      "No compres la máquina. Comodato: instalación, operación y abastecimiento a cargo de Nexo.",
+      "Vending en comodato: no compres la máquina. Instalación, operación y abastecimiento a cargo de Nexo.",
     url: absoluteUrl("/comodato-maquinas-vending"),
     type: "website",
     images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Comodato de máquinas vending | Nexo",
+    title: "Máquina vending sin inversión (comodato) | Nexo",
     description:
-      "Máquina en tu espacio sin invertir en el equipo. Nexo opera todo.",
+      "Vending en comodato: la máquina en tu espacio sin invertir en el equipo.",
     images: [DEFAULT_OG_IMAGE.url],
   },
 };
@@ -84,9 +84,9 @@ export default function ComodatoPage() {
       <JsonLd data={breadcrumbSchema(crumbs)} />
       <JsonLd
         data={serviceSchema({
-          name: "Comodato de máquinas vending",
+          name: "Vending en comodato: máquina vending sin inversión",
           description:
-            "Modalidad comodato: Nexo entrega e instala la máquina vending sin costo de equipo para la empresa, con operación y abastecimiento incluidos en Medellín.",
+            "Vending en comodato en Medellín: máquina vending sin inversión. Nexo entrega e instala el equipo, con operación y abastecimiento incluidos.",
           slug: "/comodato-maquinas-vending",
           serviceType: "Comodato de máquinas vending",
         })}
@@ -98,13 +98,13 @@ export default function ComodatoPage() {
         eyebrow="Modelo comercial"
         title={
           <>
-            Comodato de máquinas vending:{" "}
+            Vending en comodato:{" "}
             <span className="font-extrabold text-accent">
-              sin comprar el equipo.
+              máquina sin inversión.
             </span>
           </>
         }
-        subtitle="Nexo instala café, snacks o proteína en tu espacio. La máquina es nuestra. Tú pones el lugar; nosotros la operación."
+        subtitle="Nexo instala café, snacks o proteína en tu espacio. No compras el equipo. Tú pones el lugar; nosotros la operación."
       />
 
       <section className="border-t border-border-soft py-24 lg:py-32">
@@ -123,14 +123,15 @@ export default function ComodatoPage() {
           />
           <div className="max-w-3xl space-y-5 text-base leading-relaxed text-fg-muted lg:text-lg">
             <p>
-              El comodato es la forma más frecuente de{" "}
+              El vending en comodato es la forma más frecuente de tener una
+              máquina vending sin inversión. Encaja en el{" "}
               <Link
                 href="/vending-corporativo-medellin"
                 className="text-fg underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent"
               >
                 vending corporativo
               </Link>{" "}
-              con Nexo. No es un préstamo informal: hay contrato, mínimos de
+              de Nexo. No es un préstamo informal: hay contrato, mínimos de
               consumo y un servicio completo detrás del equipo.
             </p>
             <p>
@@ -146,7 +147,7 @@ export default function ComodatoPage() {
                 href="/cafe"
                 className="text-fg underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent"
               >
-                máquina de café para oficina
+                máquina de café para empresas
               </Link>
               , snacks y proteína. La modalidad se confirma en la conversación
               inicial; si el caso pide suministros o renta fija, lo decimos
@@ -241,22 +242,34 @@ export default function ComodatoPage() {
         index="05"
         links={[
           {
-            href: "/vending-corporativo-medellin",
-            label: "Vending corporativo en Medellín",
+            href: "/vending-para-oficinas",
+            label: "Vending para oficinas",
             description:
-              "Visión del servicio completo: café, snacks y proteína para empresas.",
+              "Café y snacks en comodato: la oficina no compra el equipo.",
+          },
+          {
+            href: "/vending-para-gimnasios",
+            label: "Vending para gimnasios",
+            description:
+              "Proteína post-entreno. Comodato o revenue sharing.",
+          },
+          {
+            href: "/vending-para-coworkings",
+            label: "Vending para coworkings",
+            description:
+              "Amenidad de café y snacks, sin operación para el operador.",
           },
           {
             href: "/cafe",
-            label: "Máquina de café para oficinas",
+            label: "Máquina de café para empresas",
             description:
-              "La línea más pedida en oficinas y coworkings.",
+              "La línea más pedida: café en comodato para oficinas y coworkings.",
           },
           {
-            href: "/contacto",
-            label: "Cotiza sin compromiso",
+            href: "/vending-corporativo-medellin",
+            label: "Vending corporativo en Medellín",
             description:
-              "Definimos modalidad y viabilidad en la primera llamada.",
+              "Las tres líneas, una operación, Valle de Aburrá.",
           },
         ]}
       />

@@ -9,6 +9,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumb } from "@/components/seo/Breadcrumb";
 import { ProductSeo } from "@/components/product/ProductSeo";
+import { RelatedLinks } from "@/components/seo/RelatedLinks";
 import { FAQ } from "@/components/home/FAQ";
 import { snacksFaqs } from "@/data/faqs";
 import {
@@ -227,6 +228,30 @@ export default function SnacksPage() {
 
       <FAQ items={snacksFaqs} index="D" />
 
+      <RelatedLinks
+        index="E"
+        links={[
+          {
+            href: "/vending-para-oficinas",
+            label: "Vending para oficinas",
+            description:
+              "Café y snacks juntos, sin que facilities opere el punto.",
+          },
+          {
+            href: "/vending-para-coworkings",
+            label: "Vending para coworkings",
+            description:
+              "Snacks como amenidad. Cero inventario para el operador.",
+          },
+          {
+            href: "/cafe",
+            label: "Máquina de café para oficinas",
+            description:
+              "La línea que más se pide junto a Nexo Snacks.",
+          },
+        ]}
+      />
+
       {/* Final CTA */}
       <section className="border-t border-border-soft py-24 lg:py-32">
         <div className="mx-auto max-w-5xl px-6 lg:px-8">
@@ -251,7 +276,7 @@ export default function SnacksPage() {
               <ScrollReveal delay={0.15}>
                 <div className="mt-10">
                   <Magnetic strength={0.35} maxTravelPx={10}>
-                    <Button href="/contacto" variant="accent" size="lg" withArrow>
+                    <Button href="/contacto?linea=oficinas" variant="accent" size="lg" withArrow>
                       Quiero Nexo Snacks
                     </Button>
                   </Magnetic>

@@ -175,14 +175,52 @@ export function Products() {
             );
           })}
         </div>
-        <p className="mt-16 text-center text-sm text-fg-muted lg:mt-20">
+        <nav
+          aria-label="Según el tipo de espacio"
+          className="mt-16 flex flex-col items-center gap-3 text-center text-sm text-fg-muted lg:mt-20"
+        >
           <Link
             href="/vending-corporativo-medellin"
             className="text-fg underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent"
           >
             Cómo funciona el vending corporativo en Medellín
           </Link>
-        </p>
+          <p className="flex flex-wrap justify-center gap-x-3 gap-y-1">
+            <Link
+              href="/vending-para-oficinas"
+              className="text-fg underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent"
+            >
+              Oficinas
+            </Link>
+            <span aria-hidden="true" className="text-fg-subtle">
+              ·
+            </span>
+            <Link
+              href="/vending-para-gimnasios"
+              className="text-fg underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent"
+            >
+              Gimnasios
+            </Link>
+            <span aria-hidden="true" className="text-fg-subtle">
+              ·
+            </span>
+            <Link
+              href="/vending-para-coworkings"
+              className="text-fg underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent"
+            >
+              Coworkings
+            </Link>
+            <span aria-hidden="true" className="text-fg-subtle">
+              ·
+            </span>
+            <Link
+              href="/comodato-maquinas-vending"
+              className="text-fg underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent"
+            >
+              Máquina sin inversión
+            </Link>
+          </p>
+        </nav>
       </div>
     </section>
   );

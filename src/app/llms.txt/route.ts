@@ -36,7 +36,7 @@ Diferencial: calidad real en café, proteína y snacks; diseño cuidado; experie
 
 ## Líneas de producto
 
-- [Nexo Café](${absoluteUrl("/cafe")}): Máquina vending de café de calidad con bebidas clásicas (espresso, americano, cappuccino, latte, chocolate caliente, mocaccino, café con leche, tinto). Ideal para oficinas, coworkings y universidades.
+- [Nexo Café](${absoluteUrl("/cafe")}): Máquina de café para empresas en Medellín. Bebidas clásicas (espresso, americano, cappuccino, latte, chocolate caliente, mocaccino, café con leche, tinto). Oficinas, coworkings y universidades. Modalidad más común: comodato.
 - [Nexo Protein](${absoluteUrl("/proteinas")}): Máquina vending de batidos de proteína y barras proteicas lista al instante. Whey y opciones funcionales. Ideal para gimnasios de alto flujo.
 - [Nexo Snacks](${absoluteUrl("/snacks")}): Máquina vending de snacks seleccionados con opciones saludables y antojos de calidad, con rotación según el consumo real del espacio. Ideal para oficinas y espacios corporativos.
 
@@ -44,10 +44,22 @@ Diferencial: calidad real en café, proteína y snacks; diseño cuidado; experie
 
 - [Inicio](${absoluteUrl("/")}): Propuesta de valor completa, las tres líneas de producto, proceso de instalación y FAQ.
 - [Máquinas expendedoras en Medellín](${absoluteUrl("/vending-corporativo-medellin")}): Vending corporativo B2B — café, snacks y proteína para empresas en el Valle de Aburrá.
-- [Comodato de máquinas vending](${absoluteUrl("/comodato-maquinas-vending")}): Cómo funciona no comprar el equipo; comparación con renta, suministros y compra.
+- [Vending para oficinas](${absoluteUrl("/vending-para-oficinas")}): Café y snacks en la oficina, sin que el equipo salga del edificio. La empresa no compra ni opera el equipo.
+- [Vending para gimnasios](${absoluteUrl("/vending-para-gimnasios")}): Proteína post-entreno al instante. El gym no opera. Comodato o revenue sharing en sedes de alto flujo.
+- [Vending para coworkings](${absoluteUrl("/vending-para-coworkings")}): Café y snacks como amenidad. Cero operación e inventario para el operador del espacio.
+- [Máquina vending sin inversión (comodato)](${absoluteUrl("/comodato-maquinas-vending")}): Vending en comodato: la empresa no compra el equipo. Comparación con renta, suministros y compra.
 - [Nosotros](${absoluteUrl("/nosotros")}): Misión, visión, valores y diferenciadores de ${company.legalName}.
 - [Contacto](${absoluteUrl("/contacto")}): Formulario para solicitar instalación. Respuesta en menos de 24 horas.
 - [Política de privacidad](${absoluteUrl("/privacidad")}): Tratamiento de datos conforme a Ley 1581 de 2012 (Habeas Data Colombia).
+
+## Hechos citables (una frase por intención)
+
+- Oficinas: Nexo instala café y snacks en la oficina sin que la empresa compre o opere el equipo; el equipo no tiene que salir del edificio.
+- Gimnasios: Nexo Protein entrega batidos post-entreno al instante; el gym no opera. En sedes de alto flujo hay revenue sharing.
+- Coworkings: café y snacks como amenidad; el operador no gestiona inventario ni personal de alimentos.
+- Café: Nexo Café es una máquina de café para empresas en Medellín. La modalidad más común es el comodato (sin inversión en el equipo).
+- Comodato: vending en comodato significa máquina vending sin inversión. Nexo entrega, opera y abastece; la empresa no compra el equipo.
+- Cobertura: Medellín, Envigado, Sabaneta, Itagüí, Bello y La Estrella. Respuesta en menos de 24 horas. Tiempos de instalación sujetos a disponibilidad del mes.
 
 ## Cobertura geográfica
 

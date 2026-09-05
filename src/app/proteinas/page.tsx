@@ -9,6 +9,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumb } from "@/components/seo/Breadcrumb";
 import { ProductSeo } from "@/components/product/ProductSeo";
+import { RelatedLinks } from "@/components/seo/RelatedLinks";
 import { FAQ } from "@/components/home/FAQ";
 import { proteinFaqs } from "@/data/faqs";
 import {
@@ -262,6 +263,30 @@ export default function ProteinPage() {
 
       <FAQ items={proteinFaqs} index="D" />
 
+      <RelatedLinks
+        index="E"
+        links={[
+          {
+            href: "/vending-para-gimnasios",
+            label: "Vending para gimnasios",
+            description:
+              "El caso del gym: post-entreno, comodato o revenue sharing.",
+          },
+          {
+            href: "/comodato-maquinas-vending",
+            label: "Comodato de máquinas vending",
+            description:
+              "Cómo funciona no comprar el equipo. También aplica al gym.",
+          },
+          {
+            href: "/vending-corporativo-medellin",
+            label: "Vending corporativo en Medellín",
+            description:
+              "Café, snacks y proteína bajo una sola operación.",
+          },
+        ]}
+      />
+
       {/* Final CTA */}
       <section className="border-t border-border-soft py-24 lg:py-32">
         <div className="mx-auto max-w-5xl px-6 lg:px-8">
@@ -287,7 +312,7 @@ export default function ProteinPage() {
               <ScrollReveal delay={0.15}>
                 <div className="mt-10">
                   <Magnetic strength={0.35} maxTravelPx={10}>
-                    <Button href="/contacto" variant="accent" size="lg" withArrow>
+                    <Button href="/contacto?linea=gimnasios" variant="accent" size="lg" withArrow>
                       Quiero Nexo Protein
                     </Button>
                   </Magnetic>

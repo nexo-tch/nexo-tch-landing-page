@@ -9,8 +9,11 @@ const routes: Array<{
 }> = [
   { path: "/", changeFrequency: "weekly", priority: 1, lastModified: "2026-08-30" },
   { path: "/vending-corporativo-medellin", changeFrequency: "monthly", priority: 0.95, lastModified: "2026-08-30" },
-  { path: "/comodato-maquinas-vending", changeFrequency: "monthly", priority: 0.9, lastModified: "2026-08-30" },
-  { path: "/cafe", changeFrequency: "monthly", priority: 0.9, lastModified: "2026-08-30" },
+  { path: "/vending-para-oficinas", changeFrequency: "monthly", priority: 0.9, lastModified: "2026-09-05" },
+  { path: "/vending-para-gimnasios", changeFrequency: "monthly", priority: 0.9, lastModified: "2026-09-05" },
+  { path: "/vending-para-coworkings", changeFrequency: "monthly", priority: 0.9, lastModified: "2026-09-05" },
+  { path: "/comodato-maquinas-vending", changeFrequency: "monthly", priority: 0.9, lastModified: "2026-09-05" },
+  { path: "/cafe", changeFrequency: "monthly", priority: 0.9, lastModified: "2026-09-05" },
   { path: "/proteinas", changeFrequency: "monthly", priority: 0.9, lastModified: "2026-08-30" },
   { path: "/snacks", changeFrequency: "monthly", priority: 0.9, lastModified: "2026-08-30" },
   { path: "/nosotros", changeFrequency: "monthly", priority: 0.6, lastModified: "2026-08-30" },

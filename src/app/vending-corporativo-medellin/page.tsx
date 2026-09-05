@@ -232,22 +232,28 @@ export default function VendingCorporativoPage() {
         index="05"
         links={[
           {
-            href: "/cafe",
-            label: "Máquina de café para oficinas",
+            href: "/vending-para-oficinas",
+            label: "Vending para oficinas",
             description:
-              "Nexo Café: bebidas clásicas, sin obras, operación incluida en Medellín.",
+              "Café y snacks en la oficina. El equipo no sale del edificio.",
+          },
+          {
+            href: "/vending-para-gimnasios",
+            label: "Vending para gimnasios",
+            description:
+              "Proteína post-entreno. Comodato o revenue sharing.",
+          },
+          {
+            href: "/vending-para-coworkings",
+            label: "Vending para coworkings",
+            description:
+              "Amenidad de café y snacks. Cero operación para el operador.",
           },
           {
             href: "/comodato-maquinas-vending",
-            label: "Comodato de máquinas vending",
+            label: "Máquina vending sin inversión",
             description:
-              "Cómo funciona no comprar el equipo y qué incluye el servicio.",
-          },
-          {
-            href: "/contacto",
-            label: "Solicitar instalación",
-            description:
-              "Cuéntanos tu espacio. Te contactamos en menos de 24 horas.",
+              "Vending en comodato: no compras el equipo. Nexo opera el punto.",
           },
         ]}
       />

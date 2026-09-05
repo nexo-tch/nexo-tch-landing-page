@@ -45,9 +45,12 @@ function LinkedinIcon({ size = 16 }: { size?: number }) {
 }
 
 const productLinks = [
-  { href: "/cafe", label: "Máquina de café para oficinas" },
+  { href: "/cafe", label: "Máquina de café para empresas" },
   { href: "/proteinas", label: "Vending de proteína para gyms" },
   { href: "/snacks", label: "Máquina de snacks para oficinas" },
+  { href: "/vending-para-oficinas", label: "Vending para oficinas" },
+  { href: "/vending-para-gimnasios", label: "Vending para gimnasios" },
+  { href: "/vending-para-coworkings", label: "Vending para coworkings" },
 ];
 
 const companyLinks = [

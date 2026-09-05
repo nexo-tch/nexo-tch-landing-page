@@ -27,8 +27,8 @@ export const company = {
     },
   },
   social: {
-    instagram: "https://www.instagram.com/nexotechco",
-    linkedin: "https://www.linkedin.com/company/nexotech-io",
+    instagram: "https://www.instagram.com/nexovendingco",
+    linkedin: "https://www.linkedin.com/company/nexovending",
   },
   site: {
     url: "https://www.nexovending.co",

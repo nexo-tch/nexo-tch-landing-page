@@ -24,7 +24,12 @@ export const faqs: ReadonlyArray<Faq> = [
   {
     question: "¿Qué productos ofrecen las máquinas?",
     answer:
-      "Depende de la línea. Nexo Café ofrece bebidas clásicas de calidad (espresso, americano, cappuccino y más). Nexo Protein, proteína lista al instante. Nexo Snacks, una selección curada de snacks con opciones saludables y antojos de calidad. Las opciones específicas las ajustamos contigo según el espacio y el tipo de consumo.",
+      "Depende de la línea. Nexo Café es la máquina de café para empresas (espresso, americano, cappuccino y más). Nexo Protein, proteína lista al instante. Nexo Snacks, una selección curada de snacks con opciones saludables y antojos de calidad. Las opciones específicas las ajustamos contigo según el espacio y el tipo de consumo.",
+  },
+  {
+    question: "¿Sirve para oficinas, gimnasios y coworkings?",
+    answer:
+      "Sí. Oficinas: café y snacks, el equipo no sale del edificio. Gimnasios: proteína post-entreno; el gym no opera, y en alto flujo hay revenue sharing. Coworkings: café y snacks como amenidad, sin inventario para el operador. En los tres casos la modalidad más común es el vending en comodato: máquina sin inversión.",
   },
   {
     question: "¿En qué zonas de Medellín tienen cobertura?",
@@ -40,9 +45,9 @@ export const faqs: ReadonlyArray<Faq> = [
 
 export const cafeFaqs: ReadonlyArray<Faq> = [
   {
-    question: "¿Cuánto cuesta una máquina de café para oficina en Medellín?",
+    question: "¿Cuánto cuesta una máquina de café para empresas en Medellín?",
     answer:
-      "En comodato, la modalidad más común, tu empresa no paga la máquina ni la instalación. Nexo opera, abastece y mantiene. Los colaboradores pagan cada bebida a precio accesible, o la empresa puede subsidiar el consumo. Otras modalidades (suministros, arrendamiento) se cotizan según el punto.",
+      "En comodato, la modalidad más común, tu empresa no paga la máquina ni la instalación. Es vending en comodato: máquina sin inversión. Nexo opera, abastece y mantiene. Los colaboradores pagan cada bebida a precio accesible, o la empresa puede subsidiar el consumo. Otras modalidades (suministros, arrendamiento) se cotizan según el punto.",
   },
   {
     question: "¿Qué bebidas incluye Nexo Café?",
@@ -67,7 +72,12 @@ export const cafeFaqs: ReadonlyArray<Faq> = [
   {
     question: "¿Es mejor una máquina vending de café o una cafetería interna?",
     answer:
-      "Depende del tamaño y del horario. Una cafetería implica personal, horarios y proveedores. Una máquina de café para oficina opera cuando tu equipo la necesita, sin turnos. Nexo asume abastecimiento y mantenimiento; la empresa no monta una operación de alimentos.",
+      "Depende del tamaño y del horario. Una cafetería implica personal, horarios y proveedores. Una máquina de café para empresas opera cuando el equipo la necesita, sin turnos. Nexo asume abastecimiento y mantenimiento; la empresa no monta una operación de alimentos.",
+  },
+  {
+    question: "¿La máquina de café para empresas sirve solo en oficinas?",
+    answer:
+      "No. Es la misma línea para oficinas, coworkings y universidades. En oficina el dolor es no salir del edificio. En coworking es ofrecer café como amenidad sin operar una cafetería. El equipo y la operación son los de Nexo Café.",
   },
 ];
 
@@ -97,13 +107,28 @@ export const vendingCorporativoFaqs: ReadonlyArray<Faq> = [
     answer:
       "Depende de la disponibilidad operativa del mes y del tipo de máquina. En la primera conversación confirmamos fechas; mientras tanto avanzamos viabilidad, mix de productos y contrato.",
   },
+  {
+    question: "¿Instalan en oficinas, gimnasios y coworkings?",
+    answer:
+      "Sí. Oficinas: café y snacks. Gimnasios: proteína post-entreno, con comodato o revenue sharing. Coworkings: café y snacks como amenidad, sin que el operador gestione alimentos. Las tres verticales están en Medellín y el Valle de Aburrá.",
+  },
 ];
 
 export const comodatoFaqs: ReadonlyArray<Faq> = [
   {
     question: "¿Qué es el comodato de una máquina vending?",
     answer:
-      "Nexo entrega e instala la máquina en tu espacio sin que la empresa la compre. El equipo sigue siendo de Nexo. Nosotros operamos, abastecemos y damos soporte. Los usuarios pagan el consumo, o la empresa subsidia.",
+      "Vending en comodato: Nexo entrega e instala la máquina en tu espacio sin que la empresa la compre. Es una máquina vending sin inversión. El equipo sigue siendo de Nexo. Nosotros operamos, abastecemos y damos soporte. Los usuarios pagan el consumo, o la empresa subsidia.",
+  },
+  {
+    question: "¿Qué es una máquina vending sin inversión?",
+    answer:
+      "Es el vending en comodato de Nexo. La empresa no paga el equipo ni la instalación. Nexo opera el punto. Hay un mínimo de consumo mensual acordado según la máquina. Aplica a café para empresas, snacks y proteína.",
+  },
+  {
+    question: "¿El comodato sirve para oficina, gym y coworking?",
+    answer:
+      "Sí. Es la modalidad más usada en los tres. Oficina y coworking: café y snacks, la empresa o el operador no compran el equipo. Gimnasio: proteína en comodato, o revenue sharing si el flujo lo sostiene.",
   },
   {
     question: "¿Comodato es lo mismo que alquilar la máquina?",
@@ -147,6 +172,90 @@ export const snacksFaqs: ReadonlyArray<Faq> = [
     question: "¿Qué pasa si un producto no se vende?",
     answer:
       "Rotamos según el consumo real. Si una referencia no gira, la reemplazamos. El objetivo es disponibilidad y un surtido que tu equipo sí consume.",
+  },
+];
+
+export const oficinasFaqs: ReadonlyArray<Faq> = [
+  {
+    question: "¿Cuánto cuesta el vending para una oficina en Medellín?",
+    answer:
+      "En comodato, la modalidad más usada, la empresa no paga la máquina ni la instalación. Nexo opera y abastece. Los colaboradores pagan cada consumo, o la oficina subsidia café o snacks. Otras modalidades se cotizan según el flujo del punto.",
+  },
+  {
+    question: "¿Qué máquinas van en una oficina?",
+    answer:
+      "Lo más frecuente es Nexo Café, sola o con Nexo Snacks. Proteína solo tiene sentido si hay un espacio de entrenamiento en el edificio. El mix se define con el flujo real: número de personas, turnos y si hay cafetería interna.",
+  },
+  {
+    question: "¿Facilities tiene que operar o comprar insumos?",
+    answer:
+      "No. Nexo instala, repone, limpia y da soporte. La oficina aporta un espacio interior y un punto eléctrico estable. Un interlocutor, respuesta en menos de 24 horas.",
+  },
+  {
+    question: "¿Hay que hacer obras o comprar el equipo?",
+    answer:
+      "No. Instalamos sin obras. El equipo sigue siendo de Nexo. Si el punto no alcanza el mínimo de consumo acordado, se puede reubicar o retirar, con aviso previo.",
+  },
+  {
+    question: "¿Cubren oficinas en Envigado, Sabaneta o Itagüí?",
+    answer:
+      "Sí. Operamos en Medellín y el Valle de Aburrá: Envigado, Sabaneta, Itagüí, Bello y La Estrella. Otras ciudades se evalúan caso a caso.",
+  },
+];
+
+export const gimnasiosFaqs: ReadonlyArray<Faq> = [
+  {
+    question: "¿Cómo funciona el vending de proteína en un gimnasio?",
+    answer:
+      "Instalamos Nexo Protein en el punto de mayor flujo (salida de salas, zona de pesas o recepción). Los socios compran batidos y barras al instante. Nexo abastece y mantiene. El gym no monta barra ni asigna personal.",
+  },
+  {
+    question: "¿El gimnasio gana con las ventas? ¿Qué es revenue sharing?",
+    answer:
+      "En gimnasios de alto flujo evaluamos revenue sharing: un porcentaje de las ventas del punto para el gym. En otros casos usamos comodato, sin canon por el equipo. La modalidad se define con el tráfico real de la sede.",
+  },
+  {
+    question: "¿El gym tiene que invertir o operar la máquina?",
+    answer:
+      "En comodato, no. Nexo entrega el equipo, instala y opera. El gimnasio aporta espacio interior, punto eléctrico y acceso para reposición. Sin obras.",
+  },
+  {
+    question: "¿Qué productos van en la máquina?",
+    answer:
+      "Batidos whey y barras funcionales de marcas confiables. Sabores y formatos se acuerdan con cada sede según el perfil de los socios. Rotamos lo que no gira.",
+  },
+  {
+    question: "¿Sirve para gimnasios en Medellín y el Valle de Aburrá?",
+    answer:
+      "Sí. Cubrimos Medellín, Envigado, Sabaneta, Itagüí, Bello y La Estrella. Pedimos un flujo constante: Nexo Protein está pensado para sedes con rotación, no para estudios de bajo tráfico.",
+  },
+];
+
+export const coworkingsFaqs: ReadonlyArray<Faq> = [
+  {
+    question: "¿Por qué un coworking pondría vending en vez de una cafetería?",
+    answer:
+      "Una cafetería pide personal, horarios y proveedores. El vending opera cuando el miembro está, sin turnos. El operador del coworking no gestiona alimentos: Nexo opera el punto.",
+  },
+  {
+    question: "¿Quién opera café y snacks en el espacio?",
+    answer:
+      "Nexo. Instalamos, abastecemos, limpiamos y damos soporte. El coworking aporta ubicación visible (kitchenette, zona común o recepción) y un punto eléctrico. Cero inventario para el operador.",
+  },
+  {
+    question: "¿El coworking paga la máquina?",
+    answer:
+      "En comodato, no. No hay costo de equipo ni de instalación. Los miembros pagan cada consumo a precio accesible. Si el operador quiere subsidiar café como amenidad, se configura en la propuesta.",
+  },
+  {
+    question: "¿Qué líneas encajan en un coworking?",
+    answer:
+      "Nexo Café es la base. Nexo Snacks suma si hay kitchenette o zona de descanso con tráfico todo el día. Proteína solo si el edificio tiene gym o wellness.",
+  },
+  {
+    question: "¿Instalan en coworkings de Medellín y el Valle de Aburrá?",
+    answer:
+      "Sí. Medellín, Envigado, Sabaneta, Itagüí, Bello y La Estrella. Validamos flujo de miembros y ubicación del punto antes de instalar.",
   },
 ];
 

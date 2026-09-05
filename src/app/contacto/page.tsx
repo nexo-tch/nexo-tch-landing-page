@@ -34,7 +34,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ContactoPage() {
+type ContactoPageProps = {
+  searchParams: Promise<{ linea?: string | string[] }>;
+};
+
+function firstParam(value?: string | string[]) {
+  return Array.isArray(value) ? value[0] : value;
+}
+
+export default async function ContactoPage({ searchParams }: ContactoPageProps) {
+  const { linea } = await searchParams;
+
   return (
     <>
       <JsonLd
@@ -95,7 +105,7 @@ export default function ContactoPage() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <ContactForm />
+            <ContactForm linea={firstParam(linea)} />
           </ScrollReveal>
         </div>
       </section>

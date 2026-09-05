@@ -24,7 +24,7 @@ import {
 
 const PRODUCT_NAME = "Nexo Café";
 const PRODUCT_DESCRIPTION =
-  "Máquina vending de café para oficinas y coworkings en Medellín. Bebidas clásicas al instante, sin inversión, operación y mantenimiento incluidos.";
+  "Máquina de café para empresas en Medellín: oficinas, coworkings y universidades. Bebidas clásicas al instante, sin inversión. Nexo instala, opera y abastece.";
 
 const cafeCrumbs = [
   { name: "Inicio", path: "/" },
@@ -32,23 +32,23 @@ const cafeCrumbs = [
 ] as const;
 
 export const metadata: Metadata = {
-  title: "Máquina de café para oficinas en Medellín",
+  title: "Máquina de café para empresas en Medellín",
   description:
-    "Máquina vending de café para oficinas en Medellín. Espresso, americano, cappuccino y más. Sin inversión: Nexo instala, opera y abastece.",
+    "Máquina de café para empresas en Medellín. Espresso, americano, cappuccino y más. Sin inversión: Nexo instala, opera y abastece en oficinas y coworkings.",
   alternates: { canonical: "/cafe" },
   openGraph: {
-    title: "Máquina de café para oficinas en Medellín | Nexo Café",
+    title: "Máquina de café para empresas en Medellín | Nexo Café",
     description:
-      "Vending de café corporativo: bebidas clásicas al instante, cero obras, operación incluida.",
+      "Café para empresas: bebidas clásicas al instante, cero obras, operación incluida.",
     url: absoluteUrl("/cafe"),
     type: "website",
     images: [PAGE_OG_IMAGES.cafe],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Máquina de café para oficinas en Medellín | Nexo Café",
+    title: "Máquina de café para empresas en Medellín | Nexo Café",
     description:
-      "Café de calidad en tu oficina. Sin inversión. Nexo opera todo.",
+      "Café de calidad en tu empresa. Sin inversión. Nexo opera todo.",
     images: [PAGE_OG_IMAGES.cafe.url],
   },
 };
@@ -121,7 +121,7 @@ export default function CafePage() {
       <JsonLd data={breadcrumbSchema(cafeCrumbs)} />
       <JsonLd
         data={serviceSchema({
-          name: "Nexo Café — máquina de café para oficinas",
+          name: "Nexo Café — máquina de café para empresas",
           description: PRODUCT_DESCRIPTION,
           slug: "/cafe",
           serviceType: "Vending de café corporativo",
@@ -145,15 +145,15 @@ export default function CafePage() {
         compactTop
         headline={
           <>
-            Máquina de café para oficinas,{" "}
+            Máquina de café para empresas,{" "}
             <span className="font-extrabold text-accent">
               al instante.
             </span>
           </>
         }
-        subheadline="Vending de café en Medellín: espresso, americano, cappuccino y más. Calidad real en cada taza. Sin obras, sin inversión — Nexo opera, mantiene y abastece."
+        subheadline="Para oficinas, coworkings y universidades en Medellín. Espresso, americano, cappuccino y más. Sin obras y sin invertir en el equipo: Nexo opera, mantiene y abastece."
         ctaText="Quiero mi máquina"
-        ctaHref="/contacto"
+        ctaHref="/contacto?linea=oficinas"
         machineImage="/images/nexo-cafe-machine.webp"
         machineAlt="Máquina vending Nexo Café para oficinas en Medellín"
       />
@@ -299,10 +299,10 @@ export default function CafePage() {
         }
       >
         <p>
-          Nexo Café es una máquina vending de café para oficinas, coworkings y
-          universidades en Medellín y el Valle de Aburrá. No vendemos el equipo:
-          lo instalamos, lo operamos y lo abastecemos. Tu empresa no asume la
-          compra ni la logística diaria.
+          Nexo Café es una máquina de café para empresas en Medellín y el Valle
+          de Aburrá: oficinas, coworkings y universidades. No vendemos el
+          equipo: lo instalamos, lo operamos y lo abastecemos. Tu empresa no
+          asume la compra ni la logística diaria.
         </p>
         <p>
           El menú se configura contigo: tinto, espresso, americano, cappuccino,
@@ -336,6 +336,12 @@ export default function CafePage() {
         index="E"
         links={[
           {
+            href: "/vending-para-oficinas",
+            label: "Vending para oficinas",
+            description:
+              "El caso completo: café y snacks, sin que facilities opere nada.",
+          },
+          {
             href: "/vending-corporativo-medellin",
             label: "Vending corporativo en Medellín",
             description:
@@ -343,9 +349,15 @@ export default function CafePage() {
           },
           {
             href: "/comodato-maquinas-vending",
-            label: "Comodato de máquinas vending",
+            label: "Máquina vending sin inversión",
             description:
-              "Por qué no hace falta comprar el equipo ni montar una cafetería.",
+              "Vending en comodato: por qué no hace falta comprar el equipo.",
+          },
+          {
+            href: "/vending-para-coworkings",
+            label: "Vending para coworkings",
+            description:
+              "Café como amenidad. El operador no monta una cafetería.",
           },
           {
             href: "/snacks",
@@ -362,7 +374,7 @@ export default function CafePage() {
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-7">
               <ScrollReveal>
-                <Eyebrow>Lleva Nexo Café a tu oficina</Eyebrow>
+                <Eyebrow>Lleva Nexo Café a tu empresa</Eyebrow>
               </ScrollReveal>
               <ScrollReveal delay={0.05}>
                 <h2 className="display-lg mt-6 text-fg">
@@ -380,7 +392,7 @@ export default function CafePage() {
               <ScrollReveal delay={0.15}>
                 <div className="mt-10">
                   <Magnetic strength={0.35} maxTravelPx={10}>
-                    <Button href="/contacto" variant="accent" size="lg" withArrow>
+                    <Button href="/contacto?linea=oficinas" variant="accent" size="lg" withArrow>
                       Quiero mi máquina
                     </Button>
                   </Magnetic>

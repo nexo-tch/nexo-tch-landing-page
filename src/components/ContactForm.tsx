@@ -68,8 +68,26 @@ const selectBase = inputBase + " appearance-none";
 // corre en modo permissive (gated por TURNSTILE_SECRET_KEY del lado server).
 const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
 
-export function ContactForm() {
-  const [showOptional, setShowOptional] = useState(false);
+const LINEA_DEFAULTS = {
+  oficinas: { productos: ["cafe", "snacks"], tipoEspacio: "oficina" },
+  gimnasios: { productos: ["protein"], tipoEspacio: "gimnasio" },
+  coworkings: { productos: ["cafe", "snacks"], tipoEspacio: "coworking" },
+} as const;
+
+type Linea = keyof typeof LINEA_DEFAULTS;
+
+function resolveLinea(linea?: string): Linea | undefined {
+  if (linea && linea in LINEA_DEFAULTS) return linea as Linea;
+  return undefined;
+}
+
+export function ContactForm({ linea }: { linea?: string }) {
+  const fromLinea = resolveLinea(linea);
+  const lineaDefaults = fromLinea ? LINEA_DEFAULTS[fromLinea] : undefined;
+  const preselected = new Set(
+    lineaDefaults ? lineaDefaults.productos : (["cafe"] as const),
+  );
+  const [showOptional, setShowOptional] = useState(Boolean(lineaDefaults));
   const [submitted, setSubmitted] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -83,7 +101,8 @@ export function ContactForm() {
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
-      productos: ["cafe"],
+      productos: lineaDefaults ? [...lineaDefaults.productos] : ["cafe"],
+      tipoEspacio: lineaDefaults?.tipoEspacio ?? "",
       ciudad: company.city,
       consentimiento: false as unknown as true,
       website: "",
@@ -256,6 +275,7 @@ export function ContactForm() {
                         type="checkbox"
                         value={prod.value}
                         className="peer sr-only"
+                        defaultChecked={preselected.has(prod.value)}
                         {...register("productos")}
                       />
                       <span className="flex h-12 items-center justify-center gap-2 rounded-lg border border-border-soft bg-bg-elevated px-4 text-sm font-medium text-fg-muted transition-[color,border-color,background-color] duration-200 hover:border-border peer-checked:border-accent/50 peer-checked:bg-accent/10 peer-checked:text-accent peer-focus-visible:ring-2 peer-focus-visible:ring-accent/30">
@@ -355,6 +375,7 @@ export function ContactForm() {
                           <select
                             id="tipoEspacio"
                             className={selectBase}
+                            defaultValue={lineaDefaults?.tipoEspacio ?? ""}
                             {...register("tipoEspacio")}
                           >
                             <option value="">Selecciona un tipo</option>
