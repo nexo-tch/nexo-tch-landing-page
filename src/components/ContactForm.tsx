@@ -84,8 +84,8 @@ function resolveLinea(linea?: string): Linea | undefined {
 export function ContactForm({ linea }: { linea?: string }) {
   const fromLinea = resolveLinea(linea);
   const lineaDefaults = fromLinea ? LINEA_DEFAULTS[fromLinea] : undefined;
-  const preselected = new Set(
-    lineaDefaults ? lineaDefaults.productos : (["cafe"] as const),
+  const preselected = new Set<string>(
+    lineaDefaults ? lineaDefaults.productos : ["cafe"],
   );
   const [showOptional, setShowOptional] = useState(Boolean(lineaDefaults));
   const [submitted, setSubmitted] = useState(false);
