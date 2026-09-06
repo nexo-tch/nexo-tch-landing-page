@@ -1,6 +1,6 @@
 /**
  * Centralized SEO helpers: canonical builder, absolute URLs, and structured
- * data (JSON-LD) schemas for Organization, LocalBusiness and Product.
+ * data (JSON-LD) schemas for Organization, LocalBusiness and Service.
  *
  * Keeping schemas here guarantees a single source of truth for NAP
  * (Name / Address / Phone) and brand metadata across pages.
@@ -190,41 +190,6 @@ export function websiteSchema() {
   } as const;
 }
 
-export interface ProductSchemaInput {
-  name: string;
-  description: string;
-  slug: string; // e.g. "/cafe"
-  image: string; // absolute URL or /public path
-  category: string;
-  audience: string;
-}
-
-/**
- * Product schema — enables rich results on product pages.
- * Omitting price/offer on purpose: pricing is quote-based (B2B commodato).
- */
-export function productSchema(input: ProductSchemaInput) {
-  const image = input.image.startsWith("http")
-    ? input.image
-    : absoluteUrl(input.image);
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: input.name,
-    description: input.description,
-    image,
-    url: absoluteUrl(input.slug),
-    brand: { "@type": "Brand", name: "Nexo" },
-    category: input.category,
-    audience: {
-      "@type": "BusinessAudience",
-      audienceType: input.audience,
-    },
-    manufacturer: { "@id": `${absoluteUrl("/")}#organization` },
-  } as const;
-}
-
 export interface BreadcrumbItem {
   name: string;
   path: string;
@@ -253,7 +218,9 @@ export interface ServiceSchemaInput {
 
 /**
  * Service schema — B2B vending is a service (comodato / operación),
- * not a priced retail SKU. Complements Product on line pages.
+ * not a priced retail SKU. Do not emit Product: Google Product snippets
+ * require offers, review or aggregateRating, which Nexo cannot publish
+ * (quote-based, no reviews yet).
  */
 export function serviceSchema(input: ServiceSchemaInput) {
   return {

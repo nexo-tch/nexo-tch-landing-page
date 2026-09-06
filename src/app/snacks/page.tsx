@@ -17,11 +17,9 @@ import {
   absoluteUrl,
   breadcrumbSchema,
   faqPageSchema,
-  productSchema,
   serviceSchema,
 } from "@/lib/seo";
 
-const PRODUCT_NAME = "Nexo Snacks";
 const PRODUCT_DESCRIPTION =
   "Máquina vending de snacks para oficinas y coworkings en Medellín. Selección curada, rotación según consumo, sin inversión para tu empresa.";
 
@@ -84,16 +82,6 @@ export default function SnacksPage() {
         })}
       />
       <JsonLd data={faqPageSchema(snacksFaqs)} />
-      <JsonLd
-        data={productSchema({
-          name: PRODUCT_NAME,
-          description: PRODUCT_DESCRIPTION,
-          slug: "/snacks",
-          image: "/images/nexo-snacks-machine.webp",
-          category: "Snack vending machine",
-          audience: "Oficinas, coworkings y espacios corporativos",
-        })}
-      />
       <Breadcrumb items={snacksCrumbs} />
       <ProductHero
         badge="Nexo Snacks"

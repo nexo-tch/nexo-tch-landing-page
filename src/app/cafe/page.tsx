@@ -18,11 +18,9 @@ import {
   absoluteUrl,
   breadcrumbSchema,
   faqPageSchema,
-  productSchema,
   serviceSchema,
 } from "@/lib/seo";
 
-const PRODUCT_NAME = "Nexo Café";
 const PRODUCT_DESCRIPTION =
   "Máquina de café para empresas en Medellín: oficinas, coworkings y universidades. Bebidas clásicas al instante, sin inversión. Nexo instala, opera y abastece.";
 
@@ -128,16 +126,6 @@ export default function CafePage() {
         })}
       />
       <JsonLd data={faqPageSchema(cafeFaqs)} />
-      <JsonLd
-        data={productSchema({
-          name: PRODUCT_NAME,
-          description: PRODUCT_DESCRIPTION,
-          slug: "/cafe",
-          image: "/images/nexo-cafe-machine.webp",
-          category: "Coffee vending machine",
-          audience: "Oficinas, coworkings y universidades",
-        })}
-      />
       <Breadcrumb items={cafeCrumbs} />
       <ProductHero
         badge="Nexo Café"

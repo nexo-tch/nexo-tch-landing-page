@@ -17,11 +17,9 @@ import {
   absoluteUrl,
   breadcrumbSchema,
   faqPageSchema,
-  productSchema,
   serviceSchema,
 } from "@/lib/seo";
 
-const PRODUCT_NAME = "Nexo Protein";
 const PRODUCT_DESCRIPTION =
   "Máquina vending de proteína para gimnasios en Medellín. Batidos y barras al instante, sin inversión ni operación para el gym.";
 
@@ -103,16 +101,6 @@ export default function ProteinPage() {
         })}
       />
       <JsonLd data={faqPageSchema(proteinFaqs)} />
-      <JsonLd
-        data={productSchema({
-          name: PRODUCT_NAME,
-          description: PRODUCT_DESCRIPTION,
-          slug: "/proteinas",
-          image: "/images/nexo-protein-machine.webp",
-          category: "Protein shake vending machine",
-          audience: "Gimnasios y centros deportivos",
-        })}
-      />
       <Breadcrumb items={proteinCrumbs} />
       <ProductHero
         badge="Nexo Protein"
